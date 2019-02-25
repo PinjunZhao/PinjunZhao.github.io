@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit_32px.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit_16px.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本讲内容：回顾上次作业 sql初识sql语句 实验部分.使用php操作数据库完成一个真正的登录注册页面培训结束之前，为了让大家认真听讲，页面上文字图片不全，培训结束后我会补全方便大家回顾内容">
+<meta name="keywords" content="记录,培训,SIPC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科技协会web组后端第二次培训">
+<meta property="og:url" content="http://www.pinjunz.com/2019/01/14/sipc_web2/index.html">
+<meta property="og:site_name" content="费心悦己">
+<meta property="og:description" content="本讲内容：回顾上次作业 sql初识sql语句 实验部分.使用php操作数据库完成一个真正的登录注册页面培训结束之前，为了让大家认真听讲，页面上文字图片不全，培训结束后我会补全方便大家回顾内容">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/first.jpg">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/insert.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/delete.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/update.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/select.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/dt.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/users.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/insert.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/delete.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/update.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/select.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/simpleform.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/phpform.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/null.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/error.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/display.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/mwh.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/font-size.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/label.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/rad.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/middle.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/background.png">
+<meta property="og:updated_time" content="2019-02-03T14:37:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="科技协会web组后端第二次培训">
+<meta name="twitter:description" content="本讲内容：回顾上次作业 sql初识sql语句 实验部分.使用php操作数据库完成一个真正的登录注册页面培训结束之前，为了让大家认真听讲，页面上文字图片不全，培训结束后我会补全方便大家回顾内容">
+<meta name="twitter:image" content="http://www.pinjunz.com/2019/01/14/sipc_web2/first.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.pinjunz.com/2019/01/14/sipc_web2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>科技协会web组后端第二次培训 | 费心悦己</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">费心悦己</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于我</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.pinjunz.com/2019/01/14/sipc_web2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵品均">
+      <meta itemprop="description" content="2021届在读本科生">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="费心悦己">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">科技协会web组后端第二次培训
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-14 12:12:58" itemprop="dateCreated datePublished" datetime="2019-01-14T12:12:58+08:00">2019-01-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-03 22:37:36" itemprop="dateModified" datetime="2019-02-03T22:37:36+08:00">2019-02-03</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>本讲内容：回顾上次作业</li>
+<li>sql初识sql语句</li>
+<li>实验部分.使用php操作数据库完成一个真正的登录注册页面<br><em>培训结束之前，为了让大家认真听讲，页面上文字图片不全，培训结束后我会补全方便大家回顾内容</em><a id="more"></a>
+<img src="/2019/01/14/sipc_web2/first.jpg" alt="avatar"></li>
+</ul>
+<blockquote>
+<p>世界上只有两种语言： 没人用的和经常被喷的。</p>
+</blockquote>
+<h2 id="作业回顾："><a href="#作业回顾：" class="headerlink" title="作业回顾："></a>作业回顾：</h2><h3 id="foreach中list-和-amp-的用法"><a href="#foreach中list-和-amp-的用法" class="headerlink" title="foreach中list()和 &amp; 的用法"></a>foreach中list()和 &amp; 的用法</h3><h4 id="list-函数"><a href="#list-函数" class="headerlink" title="list()函数"></a>list()函数</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$info = <span class="keyword">array</span>(<span class="string">'coffee'</span>, <span class="string">'brown'</span>, <span class="string">'caffeine'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 列出所有变量</span></span><br><span class="line"><span class="keyword">list</span>($drink, $color, $power) = $info;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$drink is $color and $power makes it special.\n"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 列出他们的其中一个</span></span><br><span class="line"><span class="keyword">list</span>($drink, , $power) = $info;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$drink has $power.\n"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者让我们跳到仅第三个</span></span><br><span class="line"><span class="keyword">list</span>( , , $power) = $info;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"I need $power!\n"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// list() 不能对字符串起作用</span></span><br><span class="line"><span class="keyword">list</span>($bar) = <span class="string">"abcde"</span>;</span><br><span class="line">var_dump($bar); <span class="comment">// NULL</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>coffee is brown and caffeine makes it special. coffee has caffeine. I need caffeine! NULL</p>
+</blockquote>
+<blockquote>
+<p>摘自<a href="http://www.php.net/" target="_blank" rel="noopener">php官方文档</a></p>
+</blockquote>
+<h4 id="foreach中list用法：解包！"><a href="#foreach中list用法：解包！" class="headerlink" title="foreach中list用法：解包！"></a>foreach中list用法：解包！</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$array = <span class="keyword">array</span>(</span><br><span class="line">    <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($array <span class="keyword">as</span> <span class="keyword">list</span>($a, $b)) &#123;</span><br><span class="line">    <span class="comment">// $a contains the first element of the nested array,</span></span><br><span class="line">    <span class="comment">// and $b contains the second element.</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"A: $a; B: $b\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>A: 1; B: 2 A: 3; B: 4</p>
+</blockquote>
+<h4 id="amp-引用"><a href="#amp-引用" class="headerlink" title="&amp; 引用"></a>&amp; 引用</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$arr = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $value) &#123;</span><br><span class="line">    $value = $value * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// $arr is now array(2, 4, 6, 8)</span></span><br><span class="line">print_r($arr);</span><br><span class="line"><span class="keyword">unset</span>($value); <span class="comment">// 最后取消掉引用</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">$arr = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> &amp;$value) &#123;</span><br><span class="line">    $value = $value * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// $arr is now array(2, 4, 6, 8)</span></span><br><span class="line">print_r($arr);</span><br><span class="line"><span class="keyword">unset</span>($value); <span class="comment">// 最后取消掉引用</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Array ( [0] =&gt; 1 [1] =&gt; 2 [2] =&gt; 3 [3] =&gt; 4 )<br>Array ( [0] =&gt; 2 [1] =&gt; 4 [2] =&gt; 6 [3] =&gt; 8 )</p>
+</blockquote>
+<h3 id="php操作数据库函数"><a href="#php操作数据库函数" class="headerlink" title="php操作数据库函数"></a>php操作数据库函数</h3><h4 id="连接数据库（这里只写一种方法）"><a href="#连接数据库（这里只写一种方法）" class="headerlink" title="连接数据库（这里只写一种方法）"></a>连接数据库（这里只写一种方法）</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$conn = <span class="keyword">new</span> mysqli(<span class="string">'地址'</span>,<span class="string">'用户名'</span>,<span class="string">'密码'</span>,<span class="string">'数据库'</span>);</span><br></pre></td></tr></table></figure>
+<p><em>提示：可以用var_dump()函数查看$conn的详细内容</em></p>
+<h4 id="mysqli-query"><a href="#mysqli-query" class="headerlink" title="mysqli_query()"></a>mysqli_query()</h4><p>执行一条mysql查询的函数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$result = mysqli_query(连接标识,<span class="string">'sql语句'</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="mysqli-fetch-…"><a href="#mysqli-fetch-…" class="headerlink" title="mysqli_fetch_…"></a>mysqli_fetch_…</h4><p>解析</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">mysqli_fetch_all()</td>
+<td style="text-align:left">从结果集中取得所有行作为关联数组，或数字数组，或二者兼有。</td>
+</tr>
+<tr>
+<td style="text-align:left">mysqli_fetch_assoc()</td>
+<td style="text-align:left">从结果集中取得一行作为关联数组。</td>
+</tr>
+<tr>
+<td style="text-align:left">mysqli_fetch_array()</td>
+<td style="text-align:left">从结果集中取得一行作为关联数组，或数字数组，或二者兼有。</td>
+</tr>
+<tr>
+<td style="text-align:left">mysqli_fetch_row()</td>
+<td style="text-align:left">从结果集中取得一行，并作为枚举数组返回。</td>
+</tr>
+</tbody>
+</table>
+<p><em>还有很多，这里只列出比较常用的</em></p>
+<h2 id="初识sql语句"><a href="#初识sql语句" class="headerlink" title="初识sql语句"></a>初识sql语句</h2><p><em>接下来的部分请认真看演示!只是给大家开个头，具体知识自己去了解</em></p>
+<h3 id="sql语句是什么？"><a href="#sql语句是什么？" class="headerlink" title="sql语句是什么？"></a>sql语句是什么？</h3><blockquote>
+<p>SQL 是用于访问和处理数据库的标准的计算机语言。</p>
+</blockquote>
+<h4 id="建库建表"><a href="#建库建表" class="headerlink" title="建库建表"></a>建库建表</h4><blockquote>
+<p>create database 数据库名<br>create table 数据表名</p>
+</blockquote>
+<p><em>为了避免重复可以加if not exists，例如：</em></p>
+<blockquote>
+<p>create database if not exists 数据库名</p>
+</blockquote>
+<h4 id="增"><a href="#增" class="headerlink" title="增"></a>增</h4><blockquote>
+<p>INSERT INTO 表名称 VALUES (值1, 值2,….)</p>
+</blockquote>
+<p><img src="/2019/01/14/sipc_web2/insert.png" alt="avatar"></p>
+<h4 id="删"><a href="#删" class="headerlink" title="删"></a>删</h4><blockquote>
+<p>DELETE FROM 表名称 WHERE 列名称 = 值</p>
+</blockquote>
+<p><img src="/2019/01/14/sipc_web2/delete.png" alt="avatar"></p>
+<h4 id="改"><a href="#改" class="headerlink" title="改"></a>改</h4><blockquote>
+<p>UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值</p>
+</blockquote>
+<p><img src="/2019/01/14/sipc_web2/update.png" alt="avatar"></p>
+<h4 id="查"><a href="#查" class="headerlink" title="查"></a>查</h4><blockquote>
+<p>SELECT 列名称 FROM 表名称</p>
+</blockquote>
+<p><img src="/2019/01/14/sipc_web2/select.png" alt="avatar"><br>经过上面的修改之后，可以看到原有插入的两条数据被改变了(在查询原密码123456时得不到结果)</p>
+<h3 id="演示环节"><a href="#演示环节" class="headerlink" title="演示环节"></a>演示环节</h3><p><em>接下来为演示环节</em></p>
+<h2 id="实验：表单和数据库的爱情故事"><a href="#实验：表单和数据库的爱情故事" class="headerlink" title="实验：表单和数据库的爱情故事"></a>实验：表单和数据库的爱情故事</h2><h3 id="单身狗数据库"><a href="#单身狗数据库" class="headerlink" title="单身狗数据库"></a>单身狗数据库</h3><p>数据库是个单身狗，他需要不断的充实自己，渴望得到表单妹子的侧目：</p>
+<h4 id="命令行操作数据库"><a href="#命令行操作数据库" class="headerlink" title="命令行操作数据库"></a>命令行操作数据库</h4><h5 id="建库建表-1"><a href="#建库建表-1" class="headerlink" title="建库建表"></a>建库建表</h5><p>建库并更改使用的数据库</p>
+<p><img src="/2019/01/14/sipc_web2/dt.png" alt="avatar"></p>
+<p>建表并在成功后查看表结构</p>
+<p><img src="/2019/01/14/sipc_web2/users.png" alt="avatar"></p>
+<h4 id="数据库的增删改查"><a href="#数据库的增删改查" class="headerlink" title="数据库的增删改查"></a>数据库的增删改查</h4><p>偷个懒，和上面sql语句介绍部分是一样哒~<br><img src="/2019/01/14/sipc_web2/insert.png" alt="avatar"></p>
+<h5 id="删-1"><a href="#删-1" class="headerlink" title="删"></a>删</h5><blockquote>
+<p>DELETE FROM 表名称 WHERE 列名称 = 值</p>
+</blockquote>
+<p><img src="/2019/01/14/sipc_web2/delete.png" alt="avatar"></p>
+<h5 id="改-1"><a href="#改-1" class="headerlink" title="改"></a>改</h5><blockquote>
+<p>UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值</p>
+</blockquote>
+<p><img src="/2019/01/14/sipc_web2/update.png" alt="avatar"></p>
+<h5 id="查-1"><a href="#查-1" class="headerlink" title="查"></a>查</h5><blockquote>
+<p>SELECT 列名称 FROM 表名称</p>
+</blockquote>
+<p><img src="/2019/01/14/sipc_web2/select.png" alt="avatar"></p>
+<h3 id="素颜的表单"><a href="#素颜的表单" class="headerlink" title="素颜的表单"></a>素颜的表单</h3><p><em>表单妹子其实没化妆的话长得也就那么回事，但是人家身材有料，心地善良呀！</em><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=<span class="string">"post"</span> action=<span class="string">"index.php"</span>&gt;</span><br><span class="line">&lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span>&gt;</span><br><span class="line">&lt;input type=<span class="string">"password"</span> name=<span class="string">"password"</span>&gt;</span><br><span class="line">&lt;input type=<span class="string">"submit"</span> name=<span class="string">"submit"</span> value=<span class="string">"提交"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p>表单中的几个重要属性（其他属性自行了解）：<br>method 参数传输方式get/post …<br>action 参数提交到的位置<br>name 参数名</p>
+<p><img src="/2019/01/14/sipc_web2/simpleform.png" alt="avatar"></p>
+<h3 id="初次相遇"><a href="#初次相遇" class="headerlink" title="初次相遇"></a>初次相遇</h3><p>牵红线月老：php<br><em>具体代码含写在注释里啦！</em><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//error_reporting()函数规定了php的报错级别</span></span><br><span class="line">error_reporting(E_ALL &amp;~ E_NOTICE);</span><br><span class="line"></span><br><span class="line"><span class="comment">//用超全局变量的方法获得表单传递的参数</span></span><br><span class="line">$username = $_POST[<span class="string">'username'</span>];</span><br><span class="line">$password = $_POST[<span class="string">'password'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//php连接数据库，成功后返回连接标识$conn,数据类型为对象</span></span><br><span class="line">$conn = <span class="keyword">new</span> mysqli(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">''</span>,<span class="string">'px0114'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//mysqli_query()函数用来对数据库执行sql语句</span></span><br><span class="line">$result = mysqli_query($conn,<span class="string">"select * from users where username = '$username' and password = '$password'"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//mysqli_fetch_assoc()函数用来将查询到的结果(数据类型为对象)解析成减值数组的形式</span></span><br><span class="line">$result_arr =  mysqli_fetch_assoc($result);</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断结果，根据sql语句：如果数据库中存在同时满足匹配用户输入的用户名和密码的数据则查询结果不为空，密码输入正确</span></span><br><span class="line"><span class="keyword">if</span>($result_arr == <span class="keyword">null</span>)&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'密码错误'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"欢迎你"</span>;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>以上，验证:<br>输入ming 123456后：<br><img src="/2019/01/14/sipc_web2/phpform.png" alt="avatar"></p>
+<p>输入zeng 123456(数据库中不存在这条数据)后：<br><img src="/2019/01/14/sipc_web2/null.png" alt="avatar"></p>
+<p><em>表单提交到本页面相当于带着参数重新访问页面，所以最后我们看到的结果页面输入框中没有数据，是因为上次填写的数据已经被刷新(重新访问)掉了</em></p>
+<p>若不加error_reporting()函数，则会在访问时提示：<br><img src="/2019/01/14/sipc_web2/error.png" alt="avatar"><br><em>其实还可以用错误运算控制符@解决报错问题。</em></p>
+<h3 id="我们的表单会化妆"><a href="#我们的表单会化妆" class="headerlink" title="我们的表单会化妆"></a>我们的表单会化妆</h3><h4 id="表单爱上了数据库，第二次约会，她决定要打扮一下再去！"><a href="#表单爱上了数据库，第二次约会，她决定要打扮一下再去！" class="headerlink" title="表单爱上了数据库，第二次约会，她决定要打扮一下再去！"></a>表单爱上了数据库，第二次约会，她决定要打扮一下再去！</h4><p>不觉得两个输入框连在一起太丑了嘛~显得人很臃肿，没关系呀~添加一个css属性display:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">input&#123;</span><br><span class="line">  display: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/14/sipc_web2/display.png" alt="avatar"></p>
+<h4 id="妹子的身高还是不够，把两个输入框之间加点间距！另外，表单妹子的身材也太小啦！"><a href="#妹子的身高还是不够，把两个输入框之间加点间距！另外，表单妹子的身材也太小啦！" class="headerlink" title="妹子的身高还是不够，把两个输入框之间加点间距！另外，表单妹子的身材也太小啦！"></a>妹子的身高还是不够，把两个输入框之间加点间距！另外，表单妹子的身材也太小啦！</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">input&#123;</span><br><span class="line">  margin-top:<span class="number">15</span>px;</span><br><span class="line">  width:<span class="number">300</span>px;</span><br><span class="line">  height:<span class="number">30</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/14/sipc_web2/mwh.png" alt="avatar"></p>
+<h4 id="身高是够了-可是这个胸部…-（字体大小）"><a href="#身高是够了-可是这个胸部…-（字体大小）" class="headerlink" title="身高是够了..可是这个胸部….（字体大小）"></a>身高是够了..可是这个胸部….（字体大小）</h4><p><em>input里面的字，再大也不可能大过input</em><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">  font-size:<span class="number">17</span>px;</span><br><span class="line">&#125;</span><br><span class="line">input&#123;</span><br><span class="line">  font-size:<span class="number">20</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/14/sipc_web2/font-size.png" alt="avatar"></p>
+<h4 id="还有妹子一看这也没啥内涵啊，在输入框前面加点提示吧qwq"><a href="#还有妹子一看这也没啥内涵啊，在输入框前面加点提示吧qwq" class="headerlink" title="还有妹子一看这也没啥内涵啊，在输入框前面加点提示吧qwq"></a>还有妹子一看这也没啥内涵啊，在输入框前面加点提示吧qwq</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"username"</span>&gt;</span>用户名<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"password"</span>&gt;</span>密码<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/14/sipc_web2/label.png" alt="avatar"></p>
+<h4 id="另外能不能让妹子处事圆滑一点呢？-输入框边角变圆"><a href="#另外能不能让妹子处事圆滑一点呢？-输入框边角变圆" class="headerlink" title="另外能不能让妹子处事圆滑一点呢？(输入框边角变圆)"></a>另外能不能让妹子处事圆滑一点呢？(输入框边角变圆)</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span>&#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">7px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/14/sipc_web2/rad.png" alt="avatar"></p>
+<h4 id="另外能不能让妹子站在舞台中间呢？先在整个表单外套个class-”form”的div标签！然后css属性："><a href="#另外能不能让妹子站在舞台中间呢？先在整个表单外套个class-”form”的div标签！然后css属性：" class="headerlink" title="另外能不能让妹子站在舞台中间呢？先在整个表单外套个class=”form”的div标签！然后css属性："></a>另外能不能让妹子站在舞台中间呢？先在整个表单外套个class=”form”的div标签！然后css属性：</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.form</span>&#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">38%</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">20%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/14/sipc_web2/middle.png" alt="avatar"></p>
+<h4 id="最后还要给舞台加一点背景！这里我引用了一个在线网址，更新背景。"><a href="#最后还要给舞台加一点背景！这里我引用了一个在线网址，更新背景。" class="headerlink" title="最后还要给舞台加一点背景！这里我引用了一个在线网址，更新背景。"></a>最后还要给舞台加一点背景！这里我引用了一个在线网址，更新背景。</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">background</span>:<span class="built_in">url</span>(https://source.unsplash.com/random/1920x1080);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了让输入框的白色不那么突兀，可以给让她穿上透明一点的裙子！<br>input{<br>  background-color: rgba(255, 255, 255, 0.5);<br>}<br>化妆后的整体效果：<br><img src="/2019/01/14/sipc_web2/background.png" alt="avatar"></p>
+<h4 id="最后给出完整代码："><a href="#最后给出完整代码：" class="headerlink" title="最后给出完整代码："></a>最后给出完整代码：</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">  &lt;title&gt;sipcweb&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">body&#123;</span><br><span class="line">  background:url(https:<span class="comment">//source.unsplash.com/random/1920x1080);</span></span><br><span class="line">  font-size:<span class="number">17</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.form&#123;</span><br><span class="line">  margin-left: <span class="number">38</span>%;</span><br><span class="line">  margin-top: <span class="number">20</span>%;</span><br><span class="line">&#125;</span><br><span class="line">input&#123;</span><br><span class="line">  display: block;</span><br><span class="line">  margin-top:<span class="number">15</span>px;</span><br><span class="line">  width:<span class="number">300</span>px;</span><br><span class="line">  height:<span class="number">30</span>px;</span><br><span class="line">  font-size:<span class="number">20</span>px;</span><br><span class="line">  border-radius: <span class="number">7</span>px;</span><br><span class="line">  background-color: rgba(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class="form"&gt;</span><br><span class="line">&lt;form method=<span class="string">"post"</span>&gt;</span><br><span class="line">  &lt;label <span class="keyword">for</span>=<span class="string">"username"</span>&gt;用户名&lt;/lable&gt;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span>&gt;</span><br><span class="line">  &lt;label <span class="keyword">for</span>=<span class="string">"password"</span>&gt;密码&lt;/lable&gt;</span><br><span class="line">  &lt;input type=<span class="string">"password"</span> name=<span class="string">"password"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"submit"</span> name=<span class="string">"submit"</span> value=<span class="string">"提交"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(E_ALL &amp;~ E_NOTICE);</span><br><span class="line">$username = $_POST[<span class="string">'username'</span>];</span><br><span class="line">$password = $_POST[<span class="string">'password'</span>];</span><br><span class="line">$conn = <span class="keyword">new</span> mysqli(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">''</span>,<span class="string">'px0114'</span>);</span><br><span class="line">$result = mysqli_query($conn,<span class="string">"select * from users where username = '$username' and password = '$password'"</span>);</span><br><span class="line">$result_arr =  mysqli_fetch_assoc($result);</span><br><span class="line"><span class="keyword">if</span>($result_arr == <span class="keyword">null</span>)&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'密码错误'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"欢迎你"</span>;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="meta">?&gt;</span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="假期作业："><a href="#假期作业：" class="headerlink" title="假期作业："></a>假期作业：</h2><ul>
+<li>每周注意查看博客，有最新的作业更新（每次都很简单但都不一样，放心）</li>
+<li>寒假的最后一周作业会结合之前已学知识完成一个小项目，(在你们前端作业的基础上添加后端。)</li>
+<li><a href="http://www.php.net/" target="_blank" rel="noopener">php官方文档</a><br><em>祝大家假期愉快≡ω≡</em></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果对你有用送我点零食吧( •̀ ω •́ )！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="赵品均 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/记录/" rel="tag"># 记录</a>
+          
+            <a href="/tags/培训/" rel="tag"># 培训</a>
+          
+            <a href="/tags/SIPC/" rel="tag"># SIPC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/12/Atompackage/" rel="next" title="Atom编辑器插件">
+                <i class="fa fa-chevron-left"></i> Atom编辑器插件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/26/lanqiaoweek1/" rel="prev" title="蓝桥杯省赛学习第一周记录（字符串，时间，排序）">
+                蓝桥杯省赛学习第一周记录（字符串，时间，排序） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="赵品均">
+            
+              <p class="site-author-name" itemprop="name">赵品均</p>
+              <p class="site-description motion-element" itemprop="description">2021届在读本科生</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:834550296@qq.com" title="E-Mail &rarr; mailto:834550296@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chenxiumiao.cn/" title="https://chenxiumiao.cn/" rel="noopener" target="_blank">辰宿喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cactus1102.club" title="https://www.cactus1102.club" rel="noopener" target="_blank">D&X's Studio.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作业回顾："><span class="nav-number">1.</span> <span class="nav-text">作业回顾：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#foreach中list-和-amp-的用法"><span class="nav-number">1.1.</span> <span class="nav-text">foreach中list()和 &amp; 的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#list-函数"><span class="nav-number">1.1.1.</span> <span class="nav-text">list()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#foreach中list用法：解包！"><span class="nav-number">1.1.2.</span> <span class="nav-text">foreach中list用法：解包！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#amp-引用"><span class="nav-number">1.1.3.</span> <span class="nav-text">&amp; 引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php操作数据库函数"><span class="nav-number">1.2.</span> <span class="nav-text">php操作数据库函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接数据库（这里只写一种方法）"><span class="nav-number">1.2.1.</span> <span class="nav-text">连接数据库（这里只写一种方法）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysqli-query"><span class="nav-number">1.2.2.</span> <span class="nav-text">mysqli_query()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysqli-fetch-…"><span class="nav-number">1.2.3.</span> <span class="nav-text">mysqli_fetch_…</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初识sql语句"><span class="nav-number">2.</span> <span class="nav-text">初识sql语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sql语句是什么？"><span class="nav-number">2.1.</span> <span class="nav-text">sql语句是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建库建表"><span class="nav-number">2.1.1.</span> <span class="nav-text">建库建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增"><span class="nav-number">2.1.2.</span> <span class="nav-text">增</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删"><span class="nav-number">2.1.3.</span> <span class="nav-text">删</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改"><span class="nav-number">2.1.4.</span> <span class="nav-text">改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查"><span class="nav-number">2.1.5.</span> <span class="nav-text">查</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示环节"><span class="nav-number">2.2.</span> <span class="nav-text">演示环节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验：表单和数据库的爱情故事"><span class="nav-number">3.</span> <span class="nav-text">实验：表单和数据库的爱情故事</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单身狗数据库"><span class="nav-number">3.1.</span> <span class="nav-text">单身狗数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令行操作数据库"><span class="nav-number">3.1.1.</span> <span class="nav-text">命令行操作数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建库建表-1"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">建库建表</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库的增删改查"><span class="nav-number">3.1.2.</span> <span class="nav-text">数据库的增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#删-1"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">删</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#改-1"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查-1"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#素颜的表单"><span class="nav-number">3.2.</span> <span class="nav-text">素颜的表单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初次相遇"><span class="nav-number">3.3.</span> <span class="nav-text">初次相遇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我们的表单会化妆"><span class="nav-number">3.4.</span> <span class="nav-text">我们的表单会化妆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#表单爱上了数据库，第二次约会，她决定要打扮一下再去！"><span class="nav-number">3.4.1.</span> <span class="nav-text">表单爱上了数据库，第二次约会，她决定要打扮一下再去！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#妹子的身高还是不够，把两个输入框之间加点间距！另外，表单妹子的身材也太小啦！"><span class="nav-number">3.4.2.</span> <span class="nav-text">妹子的身高还是不够，把两个输入框之间加点间距！另外，表单妹子的身材也太小啦！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#身高是够了-可是这个胸部…-（字体大小）"><span class="nav-number">3.4.3.</span> <span class="nav-text">身高是够了..可是这个胸部….（字体大小）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#还有妹子一看这也没啥内涵啊，在输入框前面加点提示吧qwq"><span class="nav-number">3.4.4.</span> <span class="nav-text">还有妹子一看这也没啥内涵啊，在输入框前面加点提示吧qwq</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#另外能不能让妹子处事圆滑一点呢？-输入框边角变圆"><span class="nav-number">3.4.5.</span> <span class="nav-text">另外能不能让妹子处事圆滑一点呢？(输入框边角变圆)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#另外能不能让妹子站在舞台中间呢？先在整个表单外套个class-”form”的div标签！然后css属性："><span class="nav-number">3.4.6.</span> <span class="nav-text">另外能不能让妹子站在舞台中间呢？先在整个表单外套个class=”form”的div标签！然后css属性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后还要给舞台加一点背景！这里我引用了一个在线网址，更新背景。"><span class="nav-number">3.4.7.</span> <span class="nav-text">最后还要给舞台加一点背景！这里我引用了一个在线网址，更新背景。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后给出完整代码："><span class="nav-number">3.4.8.</span> <span class="nav-text">最后给出完整代码：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#假期作业："><span class="nav-number">4.</span> <span class="nav-text">假期作业：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵品均</span>
+
+  
+
+  
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

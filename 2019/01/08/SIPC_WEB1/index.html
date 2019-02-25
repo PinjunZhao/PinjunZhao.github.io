@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit_32px.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit_16px.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="写在培训之前：培训的作用是引导大家，更多的不在于传授知识，而是给大家指明学长走过的坑。教给大家的是绕开坑走的经验，是学习路线和方向，想要进步仅仅学会培训讲的是远远不够的。可惜人毕竟只能活一次，所以我的经验仅供参考，不论对错。望大家能够有所借鉴。  本讲内容：初识后端语言，配置开发环境，Hello World培训时间 2019 01 11">
+<meta name="keywords" content="记录,培训,SIPC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科技协会web组后端第一次培训">
+<meta property="og:url" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/index.html">
+<meta property="og:site_name" content="费心悦己">
+<meta property="og:description" content="写在培训之前：培训的作用是引导大家，更多的不在于传授知识，而是给大家指明学长走过的坑。教给大家的是绕开坑走的经验，是学习路线和方向，想要进步仅仅学会培训讲的是远远不够的。可惜人毕竟只能活一次，所以我的经验仅供参考，不论对错。望大家能够有所借鉴。  本讲内容：初识后端语言，配置开发环境，Hello World培训时间 2019 01 11">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/px1.jpg">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/px2.jpg">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/px3.jpg">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/aly.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/apache2.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/php-v.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/phpelse.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/phpinfo.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/VMware.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/Macifconfig.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/root.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/rootR.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/root1.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/root1R.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/root2.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/root2R.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/px4.jpg">
+<meta property="og:updated_time" content="2019-02-03T14:37:41.602Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="科技协会web组后端第一次培训">
+<meta name="twitter:description" content="写在培训之前：培训的作用是引导大家，更多的不在于传授知识，而是给大家指明学长走过的坑。教给大家的是绕开坑走的经验，是学习路线和方向，想要进步仅仅学会培训讲的是远远不够的。可惜人毕竟只能活一次，所以我的经验仅供参考，不论对错。望大家能够有所借鉴。  本讲内容：初识后端语言，配置开发环境，Hello World培训时间 2019 01 11">
+<meta name="twitter:image" content="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/px1.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>科技协会web组后端第一次培训 | 费心悦己</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">费心悦己</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于我</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.pinjunz.com/2019/01/08/SIPC_WEB1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵品均">
+      <meta itemprop="description" content="2021届在读本科生">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="费心悦己">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">科技协会web组后端第一次培训
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-08 17:55:11" itemprop="dateCreated datePublished" datetime="2019-01-08T17:55:11+08:00">2019-01-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-03 22:37:41" itemprop="dateModified" datetime="2019-02-03T22:37:41+08:00">2019-02-03</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="写在培训之前："><a href="#写在培训之前：" class="headerlink" title="写在培训之前："></a>写在培训之前：</h2><p>培训的作用是引导大家，更多的不在于传授知识，而是给大家指明学长走过的坑。教给大家的是绕开坑走的经验，是学习路线和方向，想要进步仅仅学会培训讲的是远远不够的。可惜人毕竟只能活一次，所以我的经验仅供参考，不论对错。望大家能够有所借鉴。</p>
+<blockquote>
+<p>本讲内容：初识后端语言，配置开发环境，Hello World<br>培训时间 2019 01 11<br><a id="more"></a></p>
+</blockquote>
+<p><em>部分文字，图片侵删！</em><br><em>培训结束之前，为了让大家认真听讲，页面上文字不全，培训结束后我会补全方便大家回顾内容</em></p>
+<hr>
+<h2 id="初识后端语言"><a href="#初识后端语言" class="headerlink" title="初识后端语言"></a>初识后端语言</h2><h3 id="在学习之前，请你相信php7！"><a href="#在学习之前，请你相信php7！" class="headerlink" title="在学习之前，请你相信php7！"></a>在学习之前，请你相信php7！</h3><p>下面这一个是 <a href="https://blog.famzah.net/2016/02/09/cpp-vs-python-vs-perl-vs-php-performance-benchmark-2016/" target="_blank" rel="noopener">C++ vs Python vs PHP vs Java vs NodeJS性能大PK</a> （注：排名越靠前越好）<br><img src="/2019/01/08/SIPC_WEB1/px1.jpg" alt="avatar"><br>从运行结果来看，毫无疑问，PHP7 是最快的脚本语言 （注意是脚本语言哈）。</p>
+<p>有同学在困惑 NodeJS 不是脚本语言？ JS 也就是这里的 Nodejs 是运行在是 V8 上的，V8 引擎会对 JS 进行预编译，具体见这里 <a href="https://hashnode.com/post/is-nodejs-compiled-or-interpreted-language-cijylh0ed00keco5318e1em8p" target="_blank" rel="noopener">Is Node.js compiled or interpreted language? - Hashnode</a><br>看这个表的时候要注意：</p>
+<ul>
+<li>Total CPU time 越低越快；</li>
+<li>Java 8 (non-std lib) 与 Python 2.7 + PyPy 因为不支持通用函数库，所以只参考不列入计算。</li>
+</ul>
+<hr>
+<p>PHP 的将来是由 PHP7 决定的，再来看下 PHP 7 的表现。<br><img src="/2019/01/08/SIPC_WEB1/px2.jpg" alt="avatar"><br>上图为发明 PHP 的 Zend 公司发布的 <a href="http://www.zend.com/en/resources/php7_infographic" target="_blank" rel="noopener">PHP 与其他语言运行效率对比</a> （注：越低证明速度越快</p>
+<hr>
+<p><img src="/2019/01/08/SIPC_WEB1/px3.jpg" alt="avatar"><br>上面这张数据图，是由 <a href="https://w3techs.com/technologies/overview/programming_language/all" target="_blank" rel="noopener">W3Techs</a> 网站提供的 <a href="https://w3techs.com/technologies/overview/programming_language/all" target="_blank" rel="noopener">服务器端脚本语言市场占有率</a>，请配合以下信息一起理解此图：</p>
+<ul>
+<li>样本是 <a href="https://www.alexa.com/" target="_blank" rel="noopener">Keyword Research, Competitor Analysis, &amp; Website Ranking | Alexa</a> 世界排名前一千万的网站；</li>
+<li>此数据每日更新。</li>
+<li>以上列表信息选自：<a href="https://w3techs.com/technologies" target="_blank" rel="noopener">Technologies Overview</a></li>
+</ul>
+<hr>
+<h3 id="php语言和我们掌握的C语言的不同？"><a href="#php语言和我们掌握的C语言的不同？" class="headerlink" title="php语言和我们掌握的C语言的不同？"></a>php语言和我们掌握的C语言的不同？</h3><ul>
+<li>代码块均有&lt;?php  ?&gt;包裹</li>
+<li>弱类型语言啥玩儿全用$定义！<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$name = <span class="string">'小明'</span>;</span><br><span class="line">$student[<span class="string">'number'</span>] = <span class="number">123456</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"学生名字叫"</span>.$name.<span class="string">"学号为"</span>.$student[<span class="string">'number'</span>];</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>学生名字叫小明学号为123456</p>
+</blockquote>
+<p>爽！但并不代表他没有类型！在基本变量中她还比C语言多了两种类型：’字符串’(String) 布尔型（Boolean）</p>
+<ul>
+<li>数组，不，应该叫做集合<br>php的数组是一个疯狂的东西，里面啥玩儿都能放！<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$student = <span class="keyword">array</span>(</span><br><span class="line">  <span class="string">"name"</span> =&gt; <span class="string">'小明'</span>,</span><br><span class="line">  <span class="string">"number"</span> =&gt; <span class="number">123456</span>,</span><br><span class="line">);</span><br><span class="line">print_r($student);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">var_dump($student);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>Array ( [name] =&gt; 小明 [number] =&gt; 123456 )<br>array(2) { [“name”]=&gt; string(6) “小明” [“number”]=&gt; int(123456) }</p>
+</blockquote>
+<p><em>注意在数组最后一个值后面加 ‘,’ 只有在最新的php7.3中才开始支持(“number” =&gt; 123456,)</em></p>
+<ul>
+<li>新的循环方式foreach<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$arr = <span class="keyword">array</span>(</span><br><span class="line"><span class="string">"one"</span> =&gt; <span class="number">1</span>,</span><br><span class="line"><span class="string">"two"</span> =&gt; <span class="number">2</span>,</span><br><span class="line"><span class="string">"three"</span> =&gt; <span class="number">3</span>,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;pre&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"[$key] =&gt; $value\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>[one] =&gt; 1<br>[two] =&gt; 2<br>[three] =&gt; 3</p>
+</blockquote>
+<ul>
+<li>庞大丰富的函数库</li>
+<li>支持面向对象</li>
+</ul>
+<p><em>小作业：了解 foreach 中 list() 函数的用法和 &amp; 的用法</em></p>
+<h2 id="开发环境的配置"><a href="#开发环境的配置" class="headerlink" title="开发环境的配置"></a>开发环境的配置</h2><h3 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h3><h4 id="这里以Ubuntu-16-04-作例"><a href="#这里以Ubuntu-16-04-作例" class="headerlink" title="这里以Ubuntu 16.04 作例"></a>这里以Ubuntu 16.04 作例</h4><p>为了提高下载速度可以先更换镜像源<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi sources.<span class="keyword">list</span></span><br></pre></td></tr></table></figure></p>
+<p>加入以下内容</p>
+<blockquote>
+<p>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.aliyun.com/ubuntu/</a> trusty main multiverse restricted universe<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.aliyun.com/ubuntu/</a> trusty-backports main multiverse restricted universe<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.aliyun.com/ubuntu/</a> trusty-proposed main multiverse restricted universe<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.aliyun.com/ubuntu/</a> trusty-security main multiverse restricted universe<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates main multiverse restricted universe<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.aliyun.com/ubuntu/</a> trusty main multiverse restricted universe<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.aliyun.com/ubuntu/</a> trusty-backports main multiverse restricted universe<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.aliyun.com/ubuntu/</a> trusty-proposed main multiverse restricted universe<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.aliyun.com/ubuntu/</a> trusty-security main multiverse restricted universe<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="noopener">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates main multiverse restricted universe</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
+<p>更换成功：<br><img src="/2019/01/08/SIPC_WEB1/aly.png" alt="avatar"></p>
+<hr>
+<p>然后安装Apache<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install apache2</span><br></pre></td></tr></table></figure></p>
+<p>安装完成:<br><img src="/2019/01/08/SIPC_WEB1/apache2.png" alt="avatar"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install software-properties-common python-software-properties</span><br><span class="line"></span><br><span class="line">$ sudo add-apt-repository ppa:ondrej/php &amp;&amp; sudo apt-get update</span><br><span class="line"></span><br><span class="line">$ sudo apt-get -y install php7.2</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/08/SIPC_WEB1/php-v.png" alt="avatar"><br>为了让Apache支持解析php7，我们可以查看适合php7的插件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-cache search libapache2-mod-php</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/08/SIPC_WEB1/phpelse.png" alt="avatar"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install libapache2-mod-php7.2</span><br></pre></td></tr></table></figure></p>
+<p>cd到网站根目录新建info.php文件<br><img src="/2019/01/08/SIPC_WEB1/phpinfo.png" alt="avatar"><br>其中包含函数 <em>phpinfo();</em>他的作用是输出当前的php版本</p>
+<h4 id="最后访问虚拟机中的该页面："><a href="#最后访问虚拟机中的该页面：" class="headerlink" title="最后访问虚拟机中的该页面："></a>最后访问虚拟机中的该页面：</h4><h5 id="如果使用windows用VMware配置虚拟机系统："><a href="#如果使用windows用VMware配置虚拟机系统：" class="headerlink" title="如果使用windows用VMware配置虚拟机系统："></a>如果使用windows用VMware配置虚拟机系统：</h5><p>编辑&gt;首选项&gt;虚拟网络编辑器&gt;更改设置</p>
+<p><img src="/2019/01/08/SIPC_WEB1/VMware.png" alt="avatar"></p>
+<p>直接ifconfig查看地址：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ifconfig</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/08/SIPC_WEB1/Macifconfig.png" alt="avatar"><br><em>(这里我使用的是服务器上的ubuntu)</em><br>在windows的浏览器中输入ip地址访问</p>
+<h5 id="如果你使用Mac"><a href="#如果你使用Mac" class="headerlink" title="如果你使用Mac"></a>如果你使用Mac</h5><p>直接ifconfig查看地址在浏览器中输入ip访问即可</p>
+<hr>
+<h3 id="OS-X系统"><a href="#OS-X系统" class="headerlink" title="OS X系统"></a>OS X系统</h3><p>关于 OS X系统的php开发环境配置可以参考我的这篇博文 <em><a href="/2019/01/08/MAC_setEnov">吃苦记之Mac的php开发环境的搭建</a></em></p>
+<hr>
+<h3 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h3><p>集成环境，不多废话</p>
+<ul>
+<li>phpstudy</li>
+<li>XAMPP</li>
+<li>WampServer</li>
+<li>…</li>
+</ul>
+<p>别问，问就是好用！</p>
+<p><em>但还是推荐有条件的话使用命令行安装</em></p>
+<hr>
+<h3 id="通过配置文件我们能学习到的："><a href="#通过配置文件我们能学习到的：" class="headerlink" title="通过配置文件我们能学习到的："></a>通过配置文件我们能学习到的：</h3><h4 id="Apache2-http-conf"><a href="#Apache2-http-conf" class="headerlink" title="Apache2 http.conf"></a>Apache2 http.conf</h4><blockquote>
+<p>listen:80</p>
+</blockquote>
+<p>目前只需要了解listen设置端口号</p>
+<h4 id="php-php-ini"><a href="#php-php-ini" class="headerlink" title="php php.ini"></a>php php.ini</h4><p>具体大家看这个<a href="http://www.jinbuguo.com/php/php52-ini.html" target="_blank" rel="noopener">php.ini中文版</a>了解每一项配置的具体含义</p>
+<h4 id="Mysql-my-ini-my-cnf"><a href="#Mysql-my-ini-my-cnf" class="headerlink" title="Mysql my.ini my.cnf"></a>Mysql my.ini my.cnf</h4><blockquote>
+<p>[client]</p>
+<p>port=3306</p>
+<p>[mysql]</p>
+<p>default-character-set=gb2312</p>
+</blockquote>
+<p>port设置端口号，default-character-set设置默认字符集<br><em>这里刚刚安装完成，推荐把字符集设成utf-8</em></p>
+<h2 id="关于网站根目录的进一步探究："><a href="#关于网站根目录的进一步探究：" class="headerlink" title="关于网站根目录的进一步探究："></a>关于网站根目录的进一步探究：</h2><p><img src="/2019/01/08/SIPC_WEB1/root.png" alt="avatar"><br><img src="/2019/01/08/SIPC_WEB1/rootR.png" alt="avatar"><br><em>在网站根目录中的文件和访问他的方法</em><br><img src="/2019/01/08/SIPC_WEB1/root1.png" alt="avatar"><br><img src="/2019/01/08/SIPC_WEB1/root1R.png" alt="avatar"><br><em>在网站1级目录中的文件和访问他的方法</em><br><img src="/2019/01/08/SIPC_WEB1/root2.png" alt="avatar"><br><img src="/2019/01/08/SIPC_WEB1/root2R.png" alt="avatar"><br><em>在网站2级目录中的文件和访问他的方法</em><br>相信通过对比图片大家已经看出了我想让大家了解的内容。<br><em>另外一定要把文件放到网页根目录下，人家可不知道到哪去找你请求的文件</em></p>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><p>进入最后一个部分，我并不是要带着大家一起输出一个Hello World来，没啥意义<br>我们先来看一下这张图片：<br><img src="/2019/01/08/SIPC_WEB1/px4.jpg" alt="avatar"><br>我们可以看到，用户想浏览器使用访问网页，浏览器向服务器发送请求。此时在服务器中首先由php或其他服务器端语言进行处理，例如：查询数据库得到需要的数据。最后将网页(也就是文档和数据传输给浏览器)，而浏览器需要做的就是解析js代码，解析css代码，把一个只有文字和数据的页面解析成有样式的。<br>那么我们接下来要做的，就是写一个小页面，来实际经历一遍上图所示的流程：<br>接下来为实验部分…</p>
+<h3 id="实验部分补全："><a href="#实验部分补全：" class="headerlink" title="实验部分补全："></a>实验部分补全：</h3><p>我们主要讲了表单是如何和php关联的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">"这里填数据提交到的位置"</span> method=<span class="string">"这里填数据提交的方式get/post 了解二者的区别"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"这里填输入元素类型"</span> name=<span class="string">"这里填该输入的名称"</span> value=<span class="string">"默认的值"</span>/&gt;&lt;/p&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p>例子：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">"index.php"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"password"</span> name=<span class="string">"password"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"submit"</span> name=<span class="string">"submit"</span> value=<span class="string">"提交"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如何用php获得表单提交的数据呢？<br><figure class="highlight php7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"> $name = $_POST[<span class="string">'username'</span>];</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>上面这段代码定义了变量name存储通过POST方法提交的名字叫做name的数据<br>接下来，我们可以用判断语句做一些判断….</p>
+<p><em>课后作业：自学php操作数据库的函数</em></p>
+<ul>
+<li>1.如何连接数据库</li>
+<li>2.mysqli_query()</li>
+<li>3.mysqli_fetch_ …等函数<br>下节课： 我们将会做一个与数据库有联系的登录注册页面。<br>前置任务：</li>
+<li>最少在一个平台下有配置好的环境</li>
+<li>必须完成本节课作业</li>
+<li>有文本编辑器。txt等…不算</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果对你有用送我点零食吧( •̀ ω •́ )！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="赵品均 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/记录/" rel="tag"># 记录</a>
+          
+            <a href="/tags/培训/" rel="tag"># 培训</a>
+          
+            <a href="/tags/SIPC/" rel="tag"># SIPC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/08/blog_record/" rel="next" title="开篇：博客hexo框架的折腾实录">
+                <i class="fa fa-chevron-left"></i> 开篇：博客hexo框架的折腾实录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/08/MAC_setEnov/" rel="prev" title="吃苦记之Mac的php开发环境的搭建">
+                吃苦记之Mac的php开发环境的搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="赵品均">
+            
+              <p class="site-author-name" itemprop="name">赵品均</p>
+              <p class="site-description motion-element" itemprop="description">2021届在读本科生</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:834550296@qq.com" title="E-Mail &rarr; mailto:834550296@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chenxiumiao.cn/" title="https://chenxiumiao.cn/" rel="noopener" target="_blank">辰宿喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cactus1102.club" title="https://www.cactus1102.club" rel="noopener" target="_blank">D&X's Studio.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在培训之前："><span class="nav-number">1.</span> <span class="nav-text">写在培训之前：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初识后端语言"><span class="nav-number">2.</span> <span class="nav-text">初识后端语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在学习之前，请你相信php7！"><span class="nav-number">2.1.</span> <span class="nav-text">在学习之前，请你相信php7！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php语言和我们掌握的C语言的不同？"><span class="nav-number">2.2.</span> <span class="nav-text">php语言和我们掌握的C语言的不同？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境的配置"><span class="nav-number">3.</span> <span class="nav-text">开发环境的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux系统"><span class="nav-number">3.1.</span> <span class="nav-text">Linux系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这里以Ubuntu-16-04-作例"><span class="nav-number">3.1.1.</span> <span class="nav-text">这里以Ubuntu 16.04 作例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后访问虚拟机中的该页面："><span class="nav-number">3.1.2.</span> <span class="nav-text">最后访问虚拟机中的该页面：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如果使用windows用VMware配置虚拟机系统："><span class="nav-number">3.1.2.1.</span> <span class="nav-text">如果使用windows用VMware配置虚拟机系统：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如果你使用Mac"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">如果你使用Mac</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OS-X系统"><span class="nav-number">3.2.</span> <span class="nav-text">OS X系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows系统"><span class="nav-number">3.3.</span> <span class="nav-text">Windows系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过配置文件我们能学习到的："><span class="nav-number">3.4.</span> <span class="nav-text">通过配置文件我们能学习到的：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache2-http-conf"><span class="nav-number">3.4.1.</span> <span class="nav-text">Apache2 http.conf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#php-php-ini"><span class="nav-number">3.4.2.</span> <span class="nav-text">php php.ini</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mysql-my-ini-my-cnf"><span class="nav-number">3.4.3.</span> <span class="nav-text">Mysql my.ini my.cnf</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于网站根目录的进一步探究："><span class="nav-number">4.</span> <span class="nav-text">关于网站根目录的进一步探究：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-World"><span class="nav-number">5.</span> <span class="nav-text">Hello World</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验部分补全："><span class="nav-number">5.1.</span> <span class="nav-text">实验部分补全：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵品均</span>
+
+  
+
+  
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

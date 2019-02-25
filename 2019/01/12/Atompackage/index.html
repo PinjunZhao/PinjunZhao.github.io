@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit_32px.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit_16px.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Atom,一款好用的文本编辑器 我认为他会是未来的趋势！ Github 出品的基于 Electron / Node.js 的半开源文本编辑器  开源！注意他是开源的，这就意味着全世界在使用他的人如果有意愿，都可以升级改进它！GitHub 上的大佬叫他是 Hackable 就不是吹的，配置文件是 cson，样式文件是 CSS 和 Less，所以理论上你可以把 Atom 配置成任何你想要的样子。">
+<meta name="keywords" content="分享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Atom编辑器插件">
+<meta property="og:url" content="http://www.pinjunz.com/2019/01/12/Atompackage/index.html">
+<meta property="og:site_name" content="费心悦己">
+<meta property="og:description" content="Atom,一款好用的文本编辑器 我认为他会是未来的趋势！ Github 出品的基于 Electron / Node.js 的半开源文本编辑器  开源！注意他是开源的，这就意味着全世界在使用他的人如果有意愿，都可以升级改进它！GitHub 上的大佬叫他是 Hackable 就不是吹的，配置文件是 cson，样式文件是 CSS 和 Less，所以理论上你可以把 Atom 配置成任何你想要的样子。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/theme.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/Chinese.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/Chinese.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/power.gif">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/clock.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/color.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/paths.gif">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/goto.gif">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/beauty1.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/beauty2.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/double.gif">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/browser.gif">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/php.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/linter.png">
+<meta property="og:updated_time" content="2019-01-11T18:51:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Atom编辑器插件">
+<meta name="twitter:description" content="Atom,一款好用的文本编辑器 我认为他会是未来的趋势！ Github 出品的基于 Electron / Node.js 的半开源文本编辑器  开源！注意他是开源的，这就意味着全世界在使用他的人如果有意愿，都可以升级改进它！GitHub 上的大佬叫他是 Hackable 就不是吹的，配置文件是 cson，样式文件是 CSS 和 Less，所以理论上你可以把 Atom 配置成任何你想要的样子。">
+<meta name="twitter:image" content="http://www.pinjunz.com/2019/01/12/Atompackage/theme.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.pinjunz.com/2019/01/12/Atompackage/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Atom编辑器插件 | 费心悦己</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">费心悦己</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于我</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.pinjunz.com/2019/01/12/Atompackage/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵品均">
+      <meta itemprop="description" content="2021届在读本科生">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="费心悦己">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Atom编辑器插件
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-12 00:31:08 / 修改时间：02:51:04" itemprop="dateCreated datePublished" datetime="2019-01-12T00:31:08+08:00">2019-01-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Atom-一款好用的文本编辑器-我认为他会是未来的趋势！"><a href="#Atom-一款好用的文本编辑器-我认为他会是未来的趋势！" class="headerlink" title="Atom,一款好用的文本编辑器 我认为他会是未来的趋势！"></a>Atom,一款好用的文本编辑器 我认为他会是未来的趋势！</h2><blockquote>
+<p>Github 出品的基于 Electron / Node.js 的半开源文本编辑器</p>
+</blockquote>
+<p>开源！注意他是开源的，这就意味着全世界在使用他的人如果有意愿，都可以升级改进它！<br>GitHub 上的大佬叫他是 Hackable 就不是吹的，配置文件是 cson，样式文件是 CSS 和 Less，所以理论上你可以把 Atom 配置成任何你想要的样子。<br><a id="more"></a></p>
+<h3 id="主题："><a href="#主题：" class="headerlink" title="主题："></a>主题：</h3><p>自带四款主题，随心搭配，黑色白色棕色？自己选！<br><img src="/2019/01/12/Atompackage/theme.png" alt="avatar"></p>
+<h3 id="语言方面："><a href="#语言方面：" class="headerlink" title="语言方面："></a>语言方面：</h3><p><img src="/2019/01/12/Atompackage/Chinese.png" alt="avatar"></p>
+<h4 id="刚刚安装好Atom，全是英文看不懂怎么办-直接点击install-a-package搜索Chinese！"><a href="#刚刚安装好Atom，全是英文看不懂怎么办-直接点击install-a-package搜索Chinese！" class="headerlink" title="刚刚安装好Atom，全是英文看不懂怎么办 直接点击install a package搜索Chinese！"></a>刚刚安装好Atom，全是英文看不懂怎么办 直接点击install a package搜索Chinese！</h4><p><img src="/2019/01/12/Atompackage/Chinese.png" alt="avatar"><br><em>因为我已经装好中文插件，所以可以看到我的界面已经是中文了！</em><br>想用其他语言的也可以安装别的，点击后面的Disable或者Eable就可以启用或者禁用了</p>
+<h3 id="美化方面"><a href="#美化方面" class="headerlink" title="美化方面"></a>美化方面</h3><h4 id="界面美化"><a href="#界面美化" class="headerlink" title="界面美化"></a>界面美化</h4><h5 id="Activate-power-mode"><a href="#Activate-power-mode" class="headerlink" title="Activate-power-mode"></a>Activate-power-mode</h5><p><img src="/2019/01/12/Atompackage/power.gif" alt="avatar"><br>除了图片以上特效：还有：屏幕右上角的连击数，达到一定连击之后的音效！可以自己在配置文件中更改，选择关闭或启用任何一种特效。</p>
+<h5 id="Atom-clock"><a href="#Atom-clock" class="headerlink" title="Atom clock"></a>Atom clock</h5><p>在编辑器右下角显示当前时间，全屏模式看时间必备！<br><img src="/2019/01/12/Atompackage/clock.png" alt="avatar"></p>
+<h4 id="编辑简化："><a href="#编辑简化：" class="headerlink" title="编辑简化："></a>编辑简化：</h4><h5 id="Color-picker"><a href="#Color-picker" class="headerlink" title="Color picker"></a>Color picker</h5><p>windows:ctrl + alt + c<br>Mac :command + shift + c<br><img src="/2019/01/12/Atompackage/color.png" alt="avatar"></p>
+<h5 id="Emmet"><a href="#Emmet" class="headerlink" title="Emmet"></a>Emmet</h5><p>使用Emmet语法快速编写HTML。</p>
+<h5 id="autocomplete-paths"><a href="#autocomplete-paths" class="headerlink" title="autocomplete-paths"></a>autocomplete-paths</h5><p>写路径时自动补全<br><img src="/2019/01/12/Atompackage/paths.gif" alt="avatar"></p>
+<h5 id="goto-definition"><a href="#goto-definition" class="headerlink" title="goto-definition"></a>goto-definition</h5><p>直接跳转到函数（变量）的定义处，支持Hyperclick即Ctrl/Command + 鼠标左键直接跳转，不过需要根据文档自行设置<br><img src="/2019/01/12/Atompackage/goto.gif" alt="avatar"></p>
+<h5 id="atom-beautify-划重点！"><a href="#atom-beautify-划重点！" class="headerlink" title="atom-beautify 划重点！"></a>atom-beautify 划重点！</h5><p>emmm…到我最喜欢的了！我最喜欢干的事，就是把从网上下载一个jquery或者类似的插件：下载下来他们是这样的：<br><img src="/2019/01/12/Atompackage/beauty1.png" alt="avatar"><br>在我ctrl + alt + b 之后，他们变成了这样：<br><img src="/2019/01/12/Atompackage/beauty2.png" alt="avatar"><br><em>虽然这么干大部分时候没啥用，但万一要改人家的代码呢！</em><br><em>这里图片右侧是另一个插件 mini map</em></p>
+<h5 id="double-tag"><a href="#double-tag" class="headerlink" title="double-tag"></a>double-tag</h5><p>直接看图！<br><img src="/2019/01/12/Atompackage/double.gif" alt="avatar"></p>
+<h5 id="mini-map"><a href="#mini-map" class="headerlink" title="mini map"></a>mini map</h5><p>还是上面那两张插件图：超长代码的地图，快速找到想要的位置！</p>
+<h5 id="browser-plus"><a href="#browser-plus" class="headerlink" title="browser-plus"></a>browser-plus</h5><p>这个就很帅了，吐血推荐！编辑器内置的浏览器！<br><img src="/2019/01/12/Atompackage/browser.gif" alt="avatar"></p>
+<h5 id="autocomplete-各种语言"><a href="#autocomplete-各种语言" class="headerlink" title="autocomplete-各种语言"></a>autocomplete-各种语言</h5><p>例如：autocomplete-php<br><img src="/2019/01/12/Atompackage/php.png" alt="avatar"></p>
+<h5 id="linter"><a href="#linter" class="headerlink" title="linter"></a>linter</h5><p>例如 linter-php<br><img src="/2019/01/12/Atompackage/linter.png" alt="avatar"><br>注意看22行少了分号</p>
+<p>####<br><em>未完待续！</em></p>
+<blockquote>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果对你有用送我点零食吧( •̀ ω •́ )！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="赵品均 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分享/" rel="tag"># 分享</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/11/phpUnit/" rel="next" title="phpUnit">
+                <i class="fa fa-chevron-left"></i> phpUnit
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/14/sipc_web2/" rel="prev" title="科技协会web组后端第二次培训">
+                科技协会web组后端第二次培训 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="赵品均">
+            
+              <p class="site-author-name" itemprop="name">赵品均</p>
+              <p class="site-description motion-element" itemprop="description">2021届在读本科生</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:834550296@qq.com" title="E-Mail &rarr; mailto:834550296@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chenxiumiao.cn/" title="https://chenxiumiao.cn/" rel="noopener" target="_blank">辰宿喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cactus1102.club" title="https://www.cactus1102.club" rel="noopener" target="_blank">D&X's Studio.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Atom-一款好用的文本编辑器-我认为他会是未来的趋势！"><span class="nav-number">1.</span> <span class="nav-text">Atom,一款好用的文本编辑器 我认为他会是未来的趋势！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主题："><span class="nav-number">1.1.</span> <span class="nav-text">主题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语言方面："><span class="nav-number">1.2.</span> <span class="nav-text">语言方面：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#刚刚安装好Atom，全是英文看不懂怎么办-直接点击install-a-package搜索Chinese！"><span class="nav-number">1.2.1.</span> <span class="nav-text">刚刚安装好Atom，全是英文看不懂怎么办 直接点击install a package搜索Chinese！</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#美化方面"><span class="nav-number">1.3.</span> <span class="nav-text">美化方面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#界面美化"><span class="nav-number">1.3.1.</span> <span class="nav-text">界面美化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Activate-power-mode"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Activate-power-mode</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Atom-clock"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Atom clock</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编辑简化："><span class="nav-number">1.3.2.</span> <span class="nav-text">编辑简化：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Color-picker"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Color picker</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Emmet"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">Emmet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#autocomplete-paths"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">autocomplete-paths</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#goto-definition"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">goto-definition</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#atom-beautify-划重点！"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">atom-beautify 划重点！</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#double-tag"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">double-tag</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mini-map"><span class="nav-number">1.3.2.7.</span> <span class="nav-text">mini map</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#browser-plus"><span class="nav-number">1.3.2.8.</span> <span class="nav-text">browser-plus</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#autocomplete-各种语言"><span class="nav-number">1.3.2.9.</span> <span class="nav-text">autocomplete-各种语言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#linter"><span class="nav-number">1.3.2.10.</span> <span class="nav-text">linter</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵品均</span>
+
+  
+
+  
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

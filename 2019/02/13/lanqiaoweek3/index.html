@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit_32px.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit_16px.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="这周恰逢农历春节，休息了两天。另外下周溜出去了，停课一周 核心思想深度优先搜索的核心思想是递归所谓深度优先搜索，就是一条路走到黑，找不到合适的就回溯。">
+<meta name="keywords" content="学习记录,总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蓝桥杯省赛学习第三周记录（深度优先搜索）">
+<meta property="og:url" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/index.html">
+<meta property="og:site_name" content="费心悦己">
+<meta property="og:description" content="这周恰逢农历春节，休息了两天。另外下周溜出去了，停课一周 核心思想深度优先搜索的核心思想是递归所谓深度优先搜索，就是一条路走到黑，找不到合适的就回溯。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/head.jpg">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/head.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/family1.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/family2.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/mzr1.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/mzr2.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/N.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/forn.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/2n.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/sd1.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/s1.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/s2.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/bomb1.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/bomb2.png">
+<meta property="og:updated_time" content="2019-02-14T13:27:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="蓝桥杯省赛学习第三周记录（深度优先搜索）">
+<meta name="twitter:description" content="这周恰逢农历春节，休息了两天。另外下周溜出去了，停课一周 核心思想深度优先搜索的核心思想是递归所谓深度优先搜索，就是一条路走到黑，找不到合适的就回溯。">
+<meta name="twitter:image" content="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/head.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>蓝桥杯省赛学习第三周记录（深度优先搜索） | 费心悦己</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">费心悦己</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于我</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.pinjunz.com/2019/02/13/lanqiaoweek3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵品均">
+      <meta itemprop="description" content="2021届在读本科生">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="费心悦己">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">蓝桥杯省赛学习第三周记录（深度优先搜索）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-13 16:43:16" itemprop="dateCreated datePublished" datetime="2019-02-13T16:43:16+08:00">2019-02-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-14 21:27:39" itemprop="dateModified" datetime="2019-02-14T21:27:39+08:00">2019-02-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2019/02/13/lanqiaoweek3/head.jpg" alt="avatar"><br>这周恰逢农历春节，休息了两天。另外下周溜出去了，停课一周<br><img src="/2019/02/13/lanqiaoweek3/head.png" alt="avatar"></p>
+<h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><h3 id="深度优先搜索的核心思想是递归"><a href="#深度优先搜索的核心思想是递归" class="headerlink" title="深度优先搜索的核心思想是递归"></a>深度优先搜索的核心思想是递归</h3><h2 id="所谓深度优先搜索，就是一条路走到黑，找不到合适的就回溯。"><a href="#所谓深度优先搜索，就是一条路走到黑，找不到合适的就回溯。" class="headerlink" title="所谓深度优先搜索，就是一条路走到黑，找不到合适的就回溯。"></a>所谓深度优先搜索，就是一条路走到黑，找不到合适的就回溯。</h2><a id="more"></a>
+<h3 id="最简单的深度优先搜索：走迷宫"><a href="#最简单的深度优先搜索：走迷宫" class="headerlink" title="最简单的深度优先搜索：走迷宫"></a>最简单的深度优先搜索：走迷宫</h3><h4 id="迷宫的最短路"><a href="#迷宫的最短路" class="headerlink" title="迷宫的最短路"></a>迷宫的最短路</h4><p>给出一个迷宫’#’代表墙，’.’代表路 S 为入口，T 为出口<br>首先输入两个数代表迷宫的长和宽，接下来输入整个迷宫的样式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5 6</span><br><span class="line">....S*</span><br><span class="line">.**...</span><br><span class="line">.*..*.</span><br><span class="line">*..**.</span><br><span class="line">.T....</span><br></pre></td></tr></table></figure></p>
+<p>结果为 7</p>
+<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><p>深度优先搜索就是一条路走到黑，所以可以定义函数dfs:<br>三个参数分别为下一步要走到的位置下标xy，走到了第几步step<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> step)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因为是深度优先搜索，所以我们定义搜索的四个方向，优先级为 上，下，左，右<br>对应的方向数组和以写成<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dir[<span class="number">4</span>][<span class="number">2</span>]=&#123;&#123;<span class="number">-1</span>, <span class="number">0</span>&#125;,&#123;<span class="number">0</span>, <span class="number">1</span>&#125;,&#123;<span class="number">1</span>, <span class="number">0</span>&#125;,&#123;<span class="number">0</span>, <span class="number">-1</span>&#125;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>在深度优先搜索函数dfs()中，用一循环结合上面的方向数组将下一步的坐标算出来，并判断这个方向是否可以进行搜索。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断坐标是否在地图内的函数in</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">in</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> &lt;= x &amp;&amp; x &lt; n &amp;&amp; <span class="number">0</span> &lt;= y &amp;&amp; y &lt; m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//深搜函数dfs</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> step)</span></span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//计算下一步搜索的下标</span></span><br><span class="line">    <span class="keyword">int</span> tx = x + dir[i][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> ty = y + dir[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 判断此时下标是否能进行搜索,定义in()函数判断坐标是否在地图中,vis[][]数组用来存储此位置是否已经被搜索过 */</span></span><br><span class="line">    <span class="comment">/* maze[][]数组 用来存储迷宫地图，如果下一步为’#’(墙)，则不执行搜索*/</span></span><br><span class="line">    <span class="keyword">if</span>(in(tx, ty) &amp;&amp; maze[tx][ty] != <span class="string">'*'</span> &amp;&amp; !vis[tx][ty])&#123;</span><br><span class="line">            dfs(tx, ty, step + <span class="number">1</span>); <span class="comment">//下一步坐标可以搜索，执行搜索并将步长+1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到深度优先搜索就是递归的思想，在某个位置的路径选择不止一条时步长就产生差异，他们分别递归出所在路径的长度<br>所以我们还需要预设一个数值较大的变量，当算出的步长比该变量的值小时，进行替换:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans = <span class="number">100000000</span>;</span><br></pre></td></tr></table></figure></p>
+<p>在dfs函数中的替换操作:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(maze[x][y] == <span class="string">'T'</span>)&#123;   <span class="comment">//当到达重点时，判断是否步长为当前最小</span></span><br><span class="line">    <span class="keyword">if</span>(step &lt; ans)&#123;</span><br><span class="line">        ans = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样当所有路径递归完成后，得到的答案就是替换掉的最小值。<br>下面给出源码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="built_in">string</span> maze[<span class="number">110</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">110</span>][<span class="number">110</span>];</span><br><span class="line"><span class="keyword">int</span> dir[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">-1</span>, <span class="number">0</span>&#125;,&#123;<span class="number">0</span>, <span class="number">-1</span>&#125;,&#123;<span class="number">1</span>, <span class="number">0</span>&#125;,&#123;<span class="number">0</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">100000000</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">in</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> &lt;= x &amp;&amp; x &lt; n &amp;&amp; <span class="number">0</span> &lt;= y &amp;&amp; y &lt; m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> step)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(maze[x][y] == <span class="string">'T'</span>)&#123;   <span class="comment">//当到达重点时，判断是否步长为当前最小</span></span><br><span class="line">        <span class="keyword">if</span>(step &lt; ans)&#123;</span><br><span class="line">            ans = step;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//标记此位置已被搜索</span></span><br><span class="line">    vis[x][y] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//计算下一步搜索的下标</span></span><br><span class="line">        <span class="keyword">int</span> tx = x + dir[i][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> ty = y + dir[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断此时下标是否能进行搜索,定义in()函数判断坐标是否在地图中,vis[][]数组用来存储此位置是否已经被搜索过</span></span><br><span class="line">        <span class="comment">//maze[][]数组 用来存储迷宫地图，如果下一步为’#’(墙)，则不执行搜索</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(in(tx, ty) &amp;&amp; maze[tx][ty] != <span class="string">'*'</span> &amp;&amp; !vis[tx][ty])&#123;</span><br><span class="line">            dfs(tx, ty, step + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; maze[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x, y;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (maze[i][j] == <span class="string">'S'</span>) &#123;</span><br><span class="line">                x = i, y = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(x, y, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p>以上是最简单的深度优先搜索实例，他不包含搜索失败时的回溯操作，下面来看一个需要回溯的深度优先搜索</p>
+<h4 id="不走重复路径的走迷宫解决方案数量查找"><a href="#不走重复路径的走迷宫解决方案数量查找" class="headerlink" title="不走重复路径的走迷宫解决方案数量查找"></a>不走重复路径的走迷宫解决方案数量查找</h4><p>同样是走迷宫，这回的要求是不走重复路径，一共有多少条路能走出迷宫<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5 5</span><br><span class="line">s####</span><br><span class="line">.####</span><br><span class="line">.####</span><br><span class="line">.####</span><br><span class="line">....e</span><br></pre></td></tr></table></figure></p>
+<p>为了不走回头路（即在两块地板上来回走），依然需要定义一个bool类型的数组存储 <em>在这条搜索路径上</em> 这块地板有没有被走，<em>因为在深度搜索其他路径的时候，这块地板必须恢复成没被走过的状态</em>，这样这第二条搜索路径才能正常搜索下去。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> vis[<span class="number">1005</span>][<span class="number">1005</span>]; <span class="comment">//因为这里是全局变量，所以不需要赋初值，自动设为false</span></span><br></pre></td></tr></table></figure></p>
+<p>因此：在原有的搜索基础上，每次搜索完成后，都需要将vis数组回溯到false状态<br>下面给出dfs的源码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> next_x;</span><br><span class="line">    <span class="keyword">int</span> next_y;</span><br><span class="line">    <span class="keyword">if</span>(x == ex &amp;&amp; y == ey)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">//走到终点，证明这条递归路径可行，返回true</span></span><br><span class="line">    &#125;</span><br><span class="line">    vis[x][y] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i= <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">        next_x = x + dir[i][<span class="number">0</span>];</span><br><span class="line">        next_y = y + dir[i][<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(in(next_x, next_y) &amp;&amp; (<span class="built_in">map</span>[next_x][next_y] == <span class="string">'.'</span> || <span class="built_in">map</span>[next_x][next_y] == <span class="string">'e'</span>) &amp;&amp; !vis[next_x][next_y])&#123;</span><br><span class="line"></span><br><span class="line">          <span class="comment">//返回true，结果+1</span></span><br><span class="line">            <span class="keyword">if</span>(dfs(next_x, next_y))&#123;</span><br><span class="line">                ans++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//整条递归路径结束，回溯，将访问记录删除，另一条递归路径正常搜索</span></span><br><span class="line">    <span class="comment">//或者最后循环结束也没有找到可走路径，回溯</span></span><br><span class="line">    vis[x][y] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在整个递归路径中的回溯会一直进行下去，直到回溯到某一步，在此步可以继续向其他路径递归搜索下去。<br><em>这里的回溯比较难以理解，个人认为需要仔细思考qwq</em></p>
+<hr>
+<h3 id="简单的深度优先搜索例题：切蛋糕"><a href="#简单的深度优先搜索例题：切蛋糕" class="headerlink" title="简单的深度优先搜索例题：切蛋糕"></a>简单的深度优先搜索例题：切蛋糕</h3><blockquote>
+<p>输入一块蛋糕，’#’代表有水果的，’.’代表没水果的<br>第一行为蛋糕的长宽 n,m<br>下面n行为蛋糕样式<br>要求：</p>
+<ul>
+<li>切出的蛋糕连成一块(可以不为矩形,但必须在网格上连通)</li>
+<li>切出的蛋糕只包含水果<br>输出最大切出的蛋糕大小</li>
+</ul>
+</blockquote>
+<p>样例输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5 6</span><br><span class="line">.#....</span><br><span class="line">..#...</span><br><span class="line">..#..#</span><br><span class="line">...##.</span><br><span class="line">.#....</span><br></pre></td></tr></table></figure></p>
+<p>样例输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure></p>
+<h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><p>这题太简单，就是最最简单的深度优先搜索，甚至不需要回溯<br>定义四个搜索方向，每走一步答案+1,并把此位置蛋糕标记为已经切过。直到搜索全部完成，返回结果。<br>在主函数中循环调用深度优先搜索函数，每次调用结束后查找下一块有水果的蛋糕位置<br>下面给出源码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> R, C;</span><br><span class="line"><span class="keyword">char</span> <span class="built_in">map</span>[<span class="number">1000</span>][<span class="number">1000</span>];</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//搜索方向数组</span></span><br><span class="line"><span class="keyword">int</span> dir[<span class="number">4</span>][<span class="number">2</span>]=&#123;&#123;<span class="number">1</span>, <span class="number">0</span>&#125;,&#123;<span class="number">0</span>, <span class="number">1</span>&#125;,&#123;<span class="number">0</span>, <span class="number">-1</span>&#125;,&#123;<span class="number">-1</span> ,<span class="number">0</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断下一步搜索是否在蛋糕内部</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">in</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &lt; R &amp;&amp; x &gt;= <span class="number">0</span> &amp;&amp; y &lt; C &amp;&amp; y &gt;= <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> next_x,next_y;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将该位置蛋糕标记为切过</span></span><br><span class="line">    <span class="built_in">map</span>[x][y] = <span class="string">'.'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//结果蛋糕大小+1</span></span><br><span class="line">    ans++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">        next_x = x + dir[i][<span class="number">0</span>];</span><br><span class="line">        next_y = y + dir[i][<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(in(next_x, next_y) &amp;&amp; <span class="built_in">map</span>[next_x][next_y] == <span class="string">'#'</span>)&#123;</span><br><span class="line">            dfs(next_x, next_y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//搜索到尽头，该方向递归结束。</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; R &gt;&gt; C;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; R; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>  j = <span class="number">0</span>; j &lt; C; j++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; <span class="built_in">map</span>[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; R; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>  j = <span class="number">0</span>; j &lt; C; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">map</span>[i][j] == <span class="string">'#'</span>)&#123;</span><br><span class="line">                ans = <span class="number">0</span>;</span><br><span class="line">                dfs(i, j);</span><br><span class="line">                <span class="comment">//当前结果大于ans，替换</span></span><br><span class="line">                <span class="keyword">if</span>(ans &gt; max)&#123;</span><br><span class="line">                    max = ans;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; max &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="与数据结构结合的深度优先搜索"><a href="#与数据结构结合的深度优先搜索" class="headerlink" title="与数据结构结合的深度优先搜索"></a>与数据结构结合的深度优先搜索</h3><p><img src="/2019/02/13/lanqiaoweek3/family1.png" alt="avatar"><br><img src="/2019/02/13/lanqiaoweek3/family2.png" alt="avatar"></p>
+<h4 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h4><p>用set做此题只能说比较巧妙，每个set存 已知的每个人的后代（就是输入的）<br>根据每个后代找到它对应的set，查看他的已知后代，就这样深度搜索下去。难就难在能不能想到用set（估计还有其他简单方法我没想出来）</p>
+<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; family[<span class="number">100005</span>];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//类似于搜索地图中的四个方向，这里以小的标号为优先开始深度搜索（别忘了set自动排序）</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator it = family[x].begin(); it != family[x].end(); it++)&#123;</span><br><span class="line">      <span class="comment">//当此人无后代，只加此人本人一个人数</span></span><br><span class="line">        <span class="keyword">if</span>(family[*it].empty())&#123;</span><br><span class="line">            ans ++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//此人有后代，他的所有后代(递归计算)加他本人</span></span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">           ans += dfs(*it) + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">int</span> father,child;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; father &gt;&gt; child;</span><br><span class="line">        family[father].insert(child);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        ans = <span class="number">0</span>;</span><br><span class="line">        dfs(i);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="已经要被做烂了的马走日"><a href="#已经要被做烂了的马走日" class="headerlink" title="已经要被做烂了的马走日"></a>已经要被做烂了的马走日</h3><blockquote>
+<p>如果不是因为马走日这种题太多，我一定不会把它放到博客当例题 —鲁迅</p>
+</blockquote>
+<p><img src="/2019/02/13/lanqiaoweek3/mzr1.png" alt="avatar"><br><img src="/2019/02/13/lanqiaoweek3/mzr2.png" alt="avatar"></p>
+<h4 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h4><p>不想分析，一样的in()函数判断是否在棋盘，一样的访问后标记已访问。没别的了。哦，唯一一点，这题能走八个方向<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">char</span> <span class="built_in">map</span>[<span class="number">105</span>][<span class="number">105</span>];</span><br><span class="line"><span class="keyword">int</span> dir[<span class="number">8</span>][<span class="number">2</span>]=&#123;&#123;<span class="number">-2</span>, <span class="number">-1</span>&#125;,&#123;<span class="number">-2</span>, <span class="number">1</span>&#125;,</span><br><span class="line">               &#123;<span class="number">-1</span>, <span class="number">2</span>&#125;,&#123;<span class="number">1</span>, <span class="number">2</span>&#125;,</span><br><span class="line">               &#123;<span class="number">2</span>, <span class="number">1</span>&#125;,&#123;<span class="number">2</span>, <span class="number">-1</span>&#125;,</span><br><span class="line">               &#123;<span class="number">1</span>, <span class="number">-2</span>&#125;,&#123;<span class="number">-1</span>, <span class="number">-2</span>&#125;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">in</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &lt; n &amp;&amp; n &gt;= <span class="number">0</span> &amp;&amp; y &lt; m &amp;&amp; y &gt;= <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> step)</span></span>&#123;</span><br><span class="line">	<span class="built_in">map</span>[x][y] = <span class="string">'#'</span>;</span><br><span class="line">    <span class="keyword">if</span>(step &lt; <span class="number">3</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> next_x = x + dir[i][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> next_y = y + dir[i][<span class="number">1</span>];</span><br><span class="line">           	<span class="keyword">if</span>(in(next_x,next_y))&#123;</span><br><span class="line">                dfs(next_x, next_y, step + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)&#123;</span><br><span class="line">            <span class="built_in">map</span>[i][j] = <span class="string">'.'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x, y;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; x &gt;&gt; y;</span><br><span class="line">    dfs(x - <span class="number">1</span>, y - <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="built_in">map</span>[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="难度提升：抽象的深度优先搜索"><a href="#难度提升：抽象的深度优先搜索" class="headerlink" title="难度提升：抽象的深度优先搜索"></a>难度提升：抽象的深度优先搜索</h2><p>以上做的所有例题全部都是真实存在的一个地图，让你去找。下面的例题跟提议搜索没关系，但是用搜索来做</p>
+<h3 id="经典的N皇后问题"><a href="#经典的N皇后问题" class="headerlink" title="经典的N皇后问题"></a>经典的N皇后问题</h3><p>在国际象棋中，皇后可以横着走，竖着走，斜着走，现在问题来了，n*n的棋盘中放n个皇后，怎么放才能让皇后之间不能互相攻击？<br><img src="/2019/02/13/lanqiaoweek3/N.png" alt="avatar"><br>同样用到了深度优先搜索，同时也是一种枚举，因为皇后是可以横着走的，所以每行肯定只能且必须放一个皇后</p>
+<ul>
+<li>在第一行的一个位置放置皇后</li>
+<li>继续放下一行（深度搜索过程中）</li>
+<li>当放置到某一行时，发现已经没有位置可以防止皇后，此路径搜索失败</li>
+<li>当放置到最后一行后，确认此路径成功</li>
+</ul>
+<p>图中数字代表冲突个数，以列为顺序放置皇后<br><img src="/2019/02/13/lanqiaoweek3/forn.png" alt="avatar"></p>
+<h4 id="关于是否在一条斜线线上的判断："><a href="#关于是否在一条斜线线上的判断：" class="headerlink" title="关于是否在一条斜线线上的判断："></a>关于是否在一条斜线线上的判断：</h4><p>正斜线下标和相等，反斜线下标差相等<br>在实际题目中，可以用bool型数组存储每条斜线是否还能放置</p>
+<p>分析完成，其实还是非常简单，看源码：</p>
+<h4 id="n皇后问题的源码"><a href="#n皇后问题的源码" class="headerlink" title="n皇后问题的源码"></a>n皇后问题的源码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> n</span><br><span class="line"><span class="keyword">bool</span> row[<span class="number">10</span>], x1[<span class="number">20</span>], x2[<span class="number">20</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !row[i] &amp;&amp; !x1[c + i] &amp;&amp; !x2[c - i + n];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(c == n)&#123;</span><br><span class="line">        ans++;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(check(c, i))&#123;</span><br><span class="line">            row[i] = x1[c + i] = x2[c - i + n] = <span class="literal">true</span>;</span><br><span class="line">            dfs(c + <span class="number">1</span>);</span><br><span class="line">            row[i] = x1[c + i] = x2[c - i + n] = <span class="literal">false</span>; <span class="comment">//回溯</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    dfs(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为以列为顺序放皇后，所以不需要考虑有多个皇后在同一列的问题，所以需要三个bool类型存储各个位置是否还能再放位置<br>他们分别是：</p>
+<ul>
+<li>row 行</li>
+<li>x1 正斜线</li>
+<li>x2 反斜线</li>
+</ul>
+<p>当然在一次深度搜索完成后，不要忘记将这些标记数组回溯，便于其他搜索线路的正常进行（关于回溯的问题已经在前面讲到）</p>
+<h4 id="加强版：2n皇后-出错点：避免搜索路线的重复"><a href="#加强版：2n皇后-出错点：避免搜索路线的重复" class="headerlink" title="加强版：2n皇后 (出错点：避免搜索路线的重复)"></a>加强版：2n皇后 (出错点：避免搜索路线的重复)</h4><p>2n皇后，一个棋盘中有白皇后和黑皇后，白皇后之间不能互相攻击，黑皇后之间不能互相攻击<br>基本思路是和n皇后问题一样的。不同的是不能在每次放置皇后的时候把白皇后和黑皇后都放下，这样会在循环式导致一条搜索路线比多次重复搜索。<br><img src="/2019/02/13/lanqiaoweek3/2n.png" alt="avatar"></p>
+<h5 id="错误示范源码："><a href="#错误示范源码：" class="headerlink" title="错误示范源码："></a>错误示范源码：</h5><hr>
+<p>不想看怎么错的以下这些都不用看！！！！<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>[<span class="number">9</span>][<span class="number">9</span>];</span><br><span class="line"><span class="keyword">int</span> ans;</span><br><span class="line"><span class="keyword">bool</span> slant1[<span class="number">2</span>][<span class="number">16</span>];</span><br><span class="line"><span class="keyword">bool</span> slant2[<span class="number">2</span>][<span class="number">16</span>];</span><br><span class="line"><span class="keyword">bool</span> tx[<span class="number">2</span>][<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ty[<span class="number">2</span>][<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> finish;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> wn, <span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span>(wn == n &amp;&amp; bn == <span class="number">2</span>)&#123;</span><br><span class="line">       ans++;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">               <span class="built_in">cout</span> &lt;&lt; <span class="built_in">map</span>[i][j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">       <span class="keyword">return</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span>&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">           <span class="keyword">if</span>(!slant1[<span class="number">0</span>][wn + i] &amp;&amp; !slant2[<span class="number">0</span>][<span class="number">8</span> - (wn - i)] &amp;&amp; !tx[<span class="number">0</span>][wn] &amp;&amp; !ty[<span class="number">0</span>][i] &amp;&amp; <span class="built_in">map</span>[wn][i] == <span class="number">1</span> &amp;&amp; wn &lt; n)&#123;</span><br><span class="line">               slant1[<span class="number">0</span>][wn + i] = <span class="literal">true</span>;</span><br><span class="line">               slant2[<span class="number">0</span>][<span class="number">8</span> - (wn - i)] = <span class="literal">true</span>;</span><br><span class="line">               tx[<span class="number">0</span>][wn] = <span class="literal">true</span>;</span><br><span class="line">               ty[<span class="number">0</span>][i] = <span class="literal">true</span>;</span><br><span class="line">               <span class="built_in">map</span>[wn][i] = <span class="number">3</span>;</span><br><span class="line">               dfs(wn + <span class="number">1</span>, bn);</span><br><span class="line">               <span class="built_in">map</span>[wn][i] = <span class="number">1</span>;</span><br><span class="line">               slant1[<span class="number">0</span>][wn + i] = <span class="literal">false</span>;</span><br><span class="line">               slant2[<span class="number">0</span>][<span class="number">8</span> - (wn - i)] = <span class="literal">false</span>;</span><br><span class="line">               tx[<span class="number">0</span>][wn] = <span class="literal">false</span>;</span><br><span class="line">               ty[<span class="number">0</span>][i] = <span class="literal">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">           <span class="keyword">if</span>(!slant1[<span class="number">1</span>][bn + i] &amp;&amp; !slant2[<span class="number">1</span>][<span class="number">8</span> - (bn - i)] &amp;&amp; !tx[<span class="number">1</span>][bn] &amp;&amp; !ty[<span class="number">1</span>][i] &amp;&amp; <span class="built_in">map</span>[bn][i] == <span class="number">1</span> &amp;&amp; bn &lt; n)&#123;</span><br><span class="line">               slant1[<span class="number">1</span>][bn + i] = <span class="literal">true</span>;</span><br><span class="line">               slant2[<span class="number">1</span>][<span class="number">8</span> - (bn - i)] = <span class="literal">true</span>;</span><br><span class="line">               tx[<span class="number">1</span>][bn] = <span class="literal">true</span>;</span><br><span class="line">               ty[<span class="number">1</span>][i] = <span class="literal">true</span>;</span><br><span class="line">               <span class="built_in">map</span>[bn][i] = <span class="number">4</span>;</span><br><span class="line">               dfs(wn, bn + <span class="number">1</span>);</span><br><span class="line">               <span class="built_in">map</span>[bn][i] = <span class="number">1</span>;</span><br><span class="line">               slant1[<span class="number">1</span>][bn + i] = <span class="literal">false</span>;</span><br><span class="line">               slant2[<span class="number">1</span>][<span class="number">8</span> - (bn - i)] = <span class="literal">false</span>;</span><br><span class="line">               tx[<span class="number">1</span>][bn] = <span class="literal">false</span>;</span><br><span class="line">               ty[<span class="number">1</span>][i] = <span class="literal">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">   <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">           <span class="built_in">cin</span> &gt;&gt; <span class="built_in">map</span>[i][j];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   dfs(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这段程序我写错了两次，现在展示的是第二次，第二次的程序用两个循环分别放白皇后和黑皇后，但他还是不对！！！<em>因为没有跳出一起放白黑的根本问题！</em><br>最后给出的结果非常大，当棋盘大小为4<em>4时结果为80420(好像是这个数)<br>当这些搜索路线最后完成的结果输出时，我发现</em>他们的摆放方式都是完全一样的<em>，也就是说，</em>同样的放置方式，可以由不同的搜索路线完成<em><br>第一次是在一次循环里放白和黑也就是一次搜索放两个。这样就导致了重复，</em>把很多一样的摆放方法被区分开了<em>。比如在同一行中先放白先放黑就被区分开了，</em>在程序中这被认作是两种搜索顺序*。</p>
+<hr>
+<h4 id="正确的搜索方法，先摆好一个颜色，再摆另一个颜色"><a href="#正确的搜索方法，先摆好一个颜色，再摆另一个颜色" class="headerlink" title="正确的搜索方法，先摆好一个颜色，再摆另一个颜色"></a>正确的搜索方法，先摆好一个颜色，再摆另一个颜色</h4><p>这样就不存在每一步中先放白或黑会被认作两种情况的问题了，因为放置的顺序已经提前被定义好了！<br><em>这还是深度优先搜索的原则问题，一条路走到黑，每次只能做一个选择，不能在函数中给出一次以上的路径！</em></p>
+<h5 id="正确的源码"><a href="#正确的源码" class="headerlink" title="正确的源码"></a>正确的源码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>[<span class="number">9</span>][<span class="number">9</span>];</span><br><span class="line"><span class="keyword">int</span> ans;</span><br><span class="line"><span class="keyword">bool</span> slant1[<span class="number">2</span>][<span class="number">16</span>];</span><br><span class="line"><span class="keyword">bool</span> slant2[<span class="number">2</span>][<span class="number">16</span>];</span><br><span class="line"><span class="keyword">bool</span> tx[<span class="number">2</span>][<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ty[<span class="number">2</span>][<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> finish;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> wn, <span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(wn == n &amp;&amp; p == <span class="number">1</span>)&#123;</span><br><span class="line">        ans++;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(wn == n &amp;&amp; p == <span class="number">0</span>)&#123;</span><br><span class="line">        dfs(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!slant1[p][wn + i] &amp;&amp; !slant2[p][<span class="number">8</span> - (wn - i)] &amp;&amp; !tx[p][wn] &amp;&amp; !ty[p][i] &amp;&amp; <span class="built_in">map</span>[wn][i] == <span class="number">1</span> &amp;&amp; wn &lt; n)&#123;</span><br><span class="line">                slant1[p][wn + i] = <span class="literal">true</span>;</span><br><span class="line">                slant2[p][<span class="number">8</span> - (wn - i)] = <span class="literal">true</span>;</span><br><span class="line">                tx[p][wn] = <span class="literal">true</span>;</span><br><span class="line">                ty[p][i] = <span class="literal">true</span>;</span><br><span class="line">                <span class="built_in">map</span>[wn][i] = <span class="number">3</span>;</span><br><span class="line">                dfs(wn + <span class="number">1</span>, p);</span><br><span class="line">                <span class="built_in">map</span>[wn][i] = <span class="number">1</span>;</span><br><span class="line">                slant1[p][wn + i] = <span class="literal">false</span>;</span><br><span class="line">                slant2[p][<span class="number">8</span> - (wn - i)] = <span class="literal">false</span>;</span><br><span class="line">                tx[p][wn] = <span class="literal">false</span>;</span><br><span class="line">                ty[p][i] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; <span class="built_in">map</span>[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>dfs()函数中多加了一个参数，用来规定此次摆放的是什么颜色的皇后</p>
+<h3 id="经典的数独问题"><a href="#经典的数独问题" class="headerlink" title="经典的数独问题"></a>经典的数独问题</h3><p>编个程解决数独？简单！做完这题我突然想写个界面化的小程序做数独了(๑•̀ㅂ•́)و✧<br><img src="/2019/02/13/lanqiaoweek3/sd1.png" alt="avatar"></p>
+<blockquote>
+<p>样例输入</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">* 2 6 * * * * * *</span><br><span class="line">* * * 5 * 2 * * 4</span><br><span class="line">* * * 1 * * * * 7</span><br><span class="line">* 3 * * 2 * 1 8 *</span><br><span class="line">* * * 3 * 9 * * *</span><br><span class="line">* 5 4 * 1 * * 7 *</span><br><span class="line">5 * * * * 1 * * *</span><br><span class="line">6 * * 9 * 7 * * *</span><br><span class="line">* * * * * * 7 5 *</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>样例输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1 2 6 7 3 4 5 9 8</span><br><span class="line">3 7 8 5 9 2 6 1 4</span><br><span class="line">4 9 5 1 6 8 2 3 7</span><br><span class="line">7 3 9 4 2 5 1 8 6</span><br><span class="line">8 6 1 3 7 9 4 2 5</span><br><span class="line">2 5 4 8 1 6 3 7 9</span><br><span class="line">5 4 7 2 8 1 9 6 3</span><br><span class="line">6 1 3 9 5 7 8 4 2</span><br><span class="line">9 8 2 6 4 3 7 5 1</span><br></pre></td></tr></table></figure>
+<h4 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h4><p>一样是深度优先搜索，核心思想就是每次往当前格里填合适的数，直到填到不能再填或者完成该数独<br>填完一格之后需要获得下一个没有填的格子的坐标<br>另外，严格区分九个大格子，（每个独立的大格子里的数字也不能重复）<br>这里我推了个公式 num就是第几个大格子，可以用一个bool型数组存每个大格子里面还有哪些数可以填<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> qq = i / <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> ww = j / <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> num = qq * <span class="number">3</span> + <span class="number">1</span> + ww;</span><br></pre></td></tr></table></figure></p>
+<h4 id="直接给出源码："><a href="#直接给出源码：" class="headerlink" title="直接给出源码："></a>直接给出源码：</h4><p>输入时字符型*,为了后面计算方便我先转换成0<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> tempx, tempy;</span><br><span class="line"><span class="keyword">bool</span> big[<span class="number">10</span>][<span class="number">10</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line"><span class="keyword">bool</span> finish = <span class="literal">false</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> ans)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">map</span>[x][i] == ans)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">map</span>[i][y] == ans)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">next</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; <span class="number">9</span>; x++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; <span class="number">9</span>; y++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">map</span>[x][y] == <span class="number">0</span>)&#123;</span><br><span class="line">                tempx = x;</span><br><span class="line">                tempy = y;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	finish = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> qq = x / <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">int</span> ww = y / <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">int</span> num = qq * <span class="number">3</span> + <span class="number">1</span> + ww;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> ans = <span class="number">1</span>; ans &lt;= <span class="number">9</span>; ans++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!big[num][ans] &amp;&amp; check(x, y, ans))&#123;</span><br><span class="line">            <span class="built_in">map</span>[x][y] = ans;</span><br><span class="line">            big[num][ans] = <span class="literal">true</span>;</span><br><span class="line">            next();</span><br><span class="line">            dfs(tempx, tempy);</span><br><span class="line">            <span class="keyword">if</span>(finish)&#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            big[num][ans] = <span class="literal">false</span>;</span><br><span class="line">            <span class="built_in">map</span>[x][y] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> temp;</span><br><span class="line">    <span class="keyword">int</span> x, y;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; temp;</span><br><span class="line">            <span class="keyword">if</span>(temp == <span class="string">'*'</span>)&#123;</span><br><span class="line">                <span class="built_in">map</span>[i][j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                a = temp - <span class="string">'0'</span>;</span><br><span class="line">                <span class="built_in">map</span>[i][j] = a;</span><br><span class="line">                <span class="keyword">int</span> qq = i / <span class="number">3</span>;</span><br><span class="line">                <span class="keyword">int</span> ww = j / <span class="number">3</span>;</span><br><span class="line">                <span class="keyword">int</span> num = qq * <span class="number">3</span> + <span class="number">1</span> + ww;</span><br><span class="line">                big[num][a] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> find = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">map</span>[i][j] == <span class="number">0</span>)&#123;</span><br><span class="line">                x = i;</span><br><span class="line">                y = j;</span><br><span class="line">                find = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(find)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(x, y);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j != <span class="number">8</span>)&#123;</span><br><span class="line">            	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">map</span>[i][j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">            &#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="built_in">map</span>[i][j] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="深度探究：dfs函数退出的问题"><a href="#深度探究：dfs函数退出的问题" class="headerlink" title="深度探究：dfs函数退出的问题"></a>深度探究：dfs函数退出的问题</h3><p>在做题的时候时长会被搜索过程中失败或者完成后的退出所困扰，随便找个例子<br>马走日 题的深搜函数：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> step)</span></span>&#123;</span><br><span class="line">	<span class="built_in">map</span>[x][y] = <span class="string">'#'</span>;</span><br><span class="line">    <span class="keyword">if</span>(step &lt; <span class="number">3</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> next_x = x + dir[i][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> next_y = y + dir[i][<span class="number">1</span>];</span><br><span class="line">           	<span class="keyword">if</span>(in(next_x,next_y))&#123;</span><br><span class="line">                dfs(next_x, next_y, step + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不知道别人学习时有没有和我一样的疑问：这里在走完八个方向之后的return，return到哪里去了。<br>后来经过仔细的思考：首先应该确认的是，return只是结束当前这个函数，并不结束整个搜索线路，也就是说：<br>现在这个位置确实走到死胡同了，<em>但是它只往后退了一步，继续去寻找上一步其他路线，</em> 若上一步找完了所有路线，则继续return，回到上一步，其实这就是回溯。这很好考虑，<em>但是如果一个程序，只要走到了头，就需要退出呢？</em></p>
+<p><em>比如上一个的数独问题，第一个小格子可以填很多数，从1开始深度搜索，最后搜索到最后一个发现依然是合适的，这个时候还有必要继续去深度搜索第一个小格子填2，填3，填4……的情况吗？</em><br>如果我只单独写一个return，想必它还是会继续搜索那些其他情况的，虽然对结果毫无影响，但不可否认他耽误了大量的时间，所以这里不需要全部搜索玩的程序，完全可以在定义一个bool类型的值，当找到想要的结果之后，就用它来操纵函数完全退出(<em>当然，这里一下子完全退出依然是不可能的，他还是需要一步一步回溯，直到当前搜索路线退回起点。</em>)<br>所以我在上一题数独中，就写清了，一个控制退出的bool类型（因为是全局变量，默认初值为false）<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> finish;</span><br></pre></td></tr></table></figure></p>
+<p>并在dfs函数一开头就写上了<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(finish)&#123;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="超简单：抽象深搜的小练习，等边三角形"><a href="#超简单：抽象深搜的小练习，等边三角形" class="headerlink" title="超简单：抽象深搜的小练习，等边三角形"></a>超简单：抽象深搜的小练习，等边三角形</h4><p>难题是前面的皇后和数独，这题不难~<br><img src="/2019/02/13/lanqiaoweek3/s1.png" alt="avatar"><br><img src="/2019/02/13/lanqiaoweek3/s2.png" alt="avatar"></p>
+<h5 id="分析-5"><a href="#分析-5" class="headerlink" title="分析"></a>分析</h5><p>每根小棍子都要用到，那就一条边一条边的凑呗<br>先把小棍排排队，对于每根小棍只有两种选择（用在这条边or不用在这条边）<br>因此在深搜时可以这么写 :<em>(这个dfs()函数的代码不完整，不完整，不完整)</em>!<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// x为第几条边，i为第几个小棍，l为当前边长度</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> i, <span class="keyword">int</span> l)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//这条小棍还没选且选上当前边也不会超长</span></span><br><span class="line">    <span class="keyword">if</span>(!vis[i] &amp;&amp; (l + p[i]) &lt;= sum)&#123;</span><br><span class="line">        vis[i] = <span class="literal">true</span>;</span><br><span class="line">        dfs(x, i + <span class="number">1</span>, l + p[i]); <span class="comment">//选这条小棍</span></span><br><span class="line"></span><br><span class="line">        vis[i] = <span class="literal">false</span>;         <span class="comment">//不选这条小棍，回溯，把vis改回false</span></span><br><span class="line">        dfs(x, i + <span class="number">1</span>, l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;               <span class="comment">//这条小棍选了或者选上当前边超长，直接看下一个小棍</span></span><br><span class="line">        dfs(x, ++i, l);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>程序的核心思想就是以上，下面给出源码：</p>
+<h5 id="源码-1"><a href="#源码-1" class="headerlink" title="源码"></a>源码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n, sum;</span><br><span class="line"><span class="keyword">int</span> p[<span class="number">21</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">21</span>];</span><br><span class="line"><span class="keyword">bool</span> f = <span class="literal">false</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> i, <span class="keyword">int</span> l)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(f)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i &gt; n)&#123;              <span class="comment">//小棍都找没了，回溯</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(l == sum)&#123;</span><br><span class="line">        <span class="keyword">if</span>(x == <span class="number">3</span>)&#123;        <span class="comment">//3条边都满足条件了，改变f值，退出</span></span><br><span class="line">            f = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">        	dfs(x + <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);  <span class="comment">//一条边满足条件了，去下一个边，小棍走头开始选</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这条小棍还没选且选上当前边也不会超长</span></span><br><span class="line">     <span class="keyword">if</span>(!vis[i] &amp;&amp; (l + p[i]) &lt;= sum)&#123;</span><br><span class="line">         vis[i] = <span class="literal">true</span>;</span><br><span class="line">         dfs(x, i + <span class="number">1</span>, l + p[i]); <span class="comment">//选这条小棍</span></span><br><span class="line"></span><br><span class="line">         vis[i] = <span class="literal">false</span>;         <span class="comment">//不选这条小棍，回溯，把vis改回false</span></span><br><span class="line">         dfs(x, i + <span class="number">1</span>, l);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span>&#123;               <span class="comment">//这条小棍选了或者选上当前边超长，直接看下一个小棍</span></span><br><span class="line">         dfs(x, ++i, l);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; p[i];</span><br><span class="line">        sum += p[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(sum % <span class="number">3</span> != <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"no"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        sum /= <span class="number">3</span>;</span><br><span class="line">        dfs(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(f)&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"no"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样为了节省时间，用bool型变量f。一旦找到解，直接退出</p>
+<h4 id="简单但有坑的例题：引爆炸弹"><a href="#简单但有坑的例题：引爆炸弹" class="headerlink" title="简单但有坑的例题：引爆炸弹"></a>简单但有坑的例题：引爆炸弹</h4><p><img src="/2019/02/13/lanqiaoweek3/bomb1.png" alt="avatar"><br><img src="/2019/02/13/lanqiaoweek3/bomb2.png" alt="avatar"><br>这题卡了我半天，其实我是没想明白<em>引爆哪个炸弹的顺序无所谓，因为所有关联在一起的炸弹有一个爆了就全爆，剩下的都是跟这些炸弹没关系的，所以无所谓引爆顺序问题</em>，这题怎么算，都是一个数，没有最小最大之分</p>
+<p>另外，如果正常用深度搜索，引爆一个后去深搜和他关联的….会超时，此时在每次深搜时，都要便利一遍地图中和炸弹在同一行列的炸弹。<br>为了节约时间，一个炸弹炸完后的行列就做上标记，在改关联炸弹组的后续深搜中避免遍历。<br>比如，同在2列的2枚炸弹，第一枚深搜之后，路线会继续深搜第2枚炸弹的行和列，但此时，很明显第二枚炸弹的列已经无需便利了。<em>（在第一枚炸弹深搜时，已经把这列炸弹都清干净了）</em></p>
+<h5 id="源码-2"><a href="#源码-2" class="headerlink" title="源码"></a>源码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> ans;</span><br><span class="line"><span class="keyword">char</span> <span class="built_in">map</span>[<span class="number">1005</span>][<span class="number">1005</span>];</span><br><span class="line"><span class="keyword">bool</span> visx[<span class="number">1005</span>], visy[<span class="number">1005</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="built_in">map</span>[x][y] = <span class="string">'0'</span>;</span><br><span class="line">    <span class="keyword">if</span>(!visy[x])&#123;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">           <span class="keyword">if</span>(<span class="built_in">map</span>[x][i] == <span class="string">'1'</span>)&#123;</span><br><span class="line">               dfs(x, i);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       visy[x] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!visx[y])&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">           <span class="keyword">if</span>(<span class="built_in">map</span>[i][y] == <span class="string">'1'</span>)&#123;</span><br><span class="line">               dfs(i, y);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">        visx[y] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; <span class="built_in">map</span>[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">map</span>[i][j] == <span class="string">'1'</span>)&#123;</span><br><span class="line">                ans++;</span><br><span class="line">				dfs(i, j);</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; j &lt;&lt; e</span><br><span class="line">                ndl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="进一步节约时间：深度搜索的剪枝策略"><a href="#进一步节约时间：深度搜索的剪枝策略" class="headerlink" title="进一步节约时间：深度搜索的剪枝策略"></a>进一步节约时间：深度搜索的剪枝策略</h2><h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果对你有用送我点零食吧( •̀ ω •́ )！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="赵品均 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习记录/" rel="tag"># 学习记录</a>
+          
+            <a href="/tags/总结/" rel="tag"># 总结</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/07/blogrecord1902/" rel="next" title="风格改版">
+                <i class="fa fa-chevron-left"></i> 风格改版
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/25/lanqiaoweek4/" rel="prev" title="蓝桥杯省赛学习第四周记录（广度优先搜索）">
+                蓝桥杯省赛学习第四周记录（广度优先搜索） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="赵品均">
+            
+              <p class="site-author-name" itemprop="name">赵品均</p>
+              <p class="site-description motion-element" itemprop="description">2021届在读本科生</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:834550296@qq.com" title="E-Mail &rarr; mailto:834550296@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chenxiumiao.cn/" title="https://chenxiumiao.cn/" rel="noopener" target="_blank">辰宿喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cactus1102.club" title="https://www.cactus1102.club" rel="noopener" target="_blank">D&X's Studio.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#核心思想"><span class="nav-number">1.</span> <span class="nav-text">核心思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#深度优先搜索的核心思想是递归"><span class="nav-number">1.1.</span> <span class="nav-text">深度优先搜索的核心思想是递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所谓深度优先搜索，就是一条路走到黑，找不到合适的就回溯。"><span class="nav-number">2.</span> <span class="nav-text">所谓深度优先搜索，就是一条路走到黑，找不到合适的就回溯。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最简单的深度优先搜索：走迷宫"><span class="nav-number">2.1.</span> <span class="nav-text">最简单的深度优先搜索：走迷宫</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#迷宫的最短路"><span class="nav-number">2.1.1.</span> <span class="nav-text">迷宫的最短路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分析"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回溯"><span class="nav-number">2.2.</span> <span class="nav-text">回溯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不走重复路径的走迷宫解决方案数量查找"><span class="nav-number">2.2.1.</span> <span class="nav-text">不走重复路径的走迷宫解决方案数量查找</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的深度优先搜索例题：切蛋糕"><span class="nav-number">2.3.</span> <span class="nav-text">简单的深度优先搜索例题：切蛋糕</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与数据结构结合的深度优先搜索"><span class="nav-number">2.4.</span> <span class="nav-text">与数据结构结合的深度优先搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#源码"><span class="nav-number">2.4.2.</span> <span class="nav-text">源码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已经要被做烂了的马走日"><span class="nav-number">2.5.</span> <span class="nav-text">已经要被做烂了的马走日</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析-3"><span class="nav-number">2.5.1.</span> <span class="nav-text">分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#难度提升：抽象的深度优先搜索"><span class="nav-number">3.</span> <span class="nav-text">难度提升：抽象的深度优先搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#经典的N皇后问题"><span class="nav-number">3.1.</span> <span class="nav-text">经典的N皇后问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于是否在一条斜线线上的判断："><span class="nav-number">3.1.1.</span> <span class="nav-text">关于是否在一条斜线线上的判断：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#n皇后问题的源码"><span class="nav-number">3.1.2.</span> <span class="nav-text">n皇后问题的源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加强版：2n皇后-出错点：避免搜索路线的重复"><span class="nav-number">3.1.3.</span> <span class="nav-text">加强版：2n皇后 (出错点：避免搜索路线的重复)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#错误示范源码："><span class="nav-number">3.1.3.1.</span> <span class="nav-text">错误示范源码：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正确的搜索方法，先摆好一个颜色，再摆另一个颜色"><span class="nav-number">3.1.4.</span> <span class="nav-text">正确的搜索方法，先摆好一个颜色，再摆另一个颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#正确的源码"><span class="nav-number">3.1.4.1.</span> <span class="nav-text">正确的源码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#经典的数独问题"><span class="nav-number">3.2.</span> <span class="nav-text">经典的数独问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析-4"><span class="nav-number">3.2.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接给出源码："><span class="nav-number">3.2.2.</span> <span class="nav-text">直接给出源码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度探究：dfs函数退出的问题"><span class="nav-number">3.3.</span> <span class="nav-text">深度探究：dfs函数退出的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#超简单：抽象深搜的小练习，等边三角形"><span class="nav-number">3.3.1.</span> <span class="nav-text">超简单：抽象深搜的小练习，等边三角形</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分析-5"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#源码-1"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">源码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单但有坑的例题：引爆炸弹"><span class="nav-number">3.3.2.</span> <span class="nav-text">简单但有坑的例题：引爆炸弹</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#源码-2"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">源码</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步节约时间：深度搜索的剪枝策略"><span class="nav-number">4.</span> <span class="nav-text">进一步节约时间：深度搜索的剪枝策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#未完待续"><span class="nav-number">4.1.</span> <span class="nav-text">未完待续</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵品均</span>
+
+  
+
+  
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

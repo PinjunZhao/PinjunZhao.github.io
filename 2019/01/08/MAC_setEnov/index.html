@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit_32px.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit_16px.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="放假回家翻出了已经放在柜子里落了一层灰的Mac book Air 2014。抱着玩玩的心态打开了他的后盖..于是故事就这么开始了：">
+<meta name="keywords" content="记录,吃苦记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吃苦记之Mac的php开发环境的搭建">
+<meta property="og:url" content="http://www.pinjunz.com/2019/01/08/MAC_setEnov/index.html">
+<meta property="og:site_name" content="费心悦己">
+<meta property="og:description" content="放假回家翻出了已经放在柜子里落了一层灰的Mac book Air 2014。抱着玩玩的心态打开了他的后盖..于是故事就这么开始了：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/MAC_setEnov/phpinfo.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/01/08/MAC_setEnov/port.png">
+<meta property="og:updated_time" content="2019-01-10T08:56:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="吃苦记之Mac的php开发环境的搭建">
+<meta name="twitter:description" content="放假回家翻出了已经放在柜子里落了一层灰的Mac book Air 2014。抱着玩玩的心态打开了他的后盖..于是故事就这么开始了：">
+<meta name="twitter:image" content="http://www.pinjunz.com/2019/01/08/MAC_setEnov/phpinfo.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.pinjunz.com/2019/01/08/MAC_setEnov/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>吃苦记之Mac的php开发环境的搭建 | 费心悦己</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">费心悦己</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于我</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.pinjunz.com/2019/01/08/MAC_setEnov/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵品均">
+      <meta itemprop="description" content="2021届在读本科生">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="费心悦己">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">吃苦记之Mac的php开发环境的搭建
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-08 19:31:19" itemprop="dateCreated datePublished" datetime="2019-01-08T19:31:19+08:00">2019-01-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-10 16:56:51" itemprop="dateModified" datetime="2019-01-10T16:56:51+08:00">2019-01-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="放假回家翻出了已经放在柜子里落了一层灰的Mac-book-Air-2014。抱着玩玩的心态打开了他的后盖-于是故事就这么开始了："><a href="#放假回家翻出了已经放在柜子里落了一层灰的Mac-book-Air-2014。抱着玩玩的心态打开了他的后盖-于是故事就这么开始了：" class="headerlink" title="放假回家翻出了已经放在柜子里落了一层灰的Mac book Air 2014。抱着玩玩的心态打开了他的后盖..于是故事就这么开始了："></a>放假回家翻出了已经放在柜子里落了一层灰的Mac book Air 2014。抱着玩玩的心态打开了他的后盖..于是故事就这么开始了：</h3><a id="more"></a>
+<p>这台Mac总共工作时长大概不超300小时，可就这么把他弃用了，实属可惜，只怪当年年少轻狂，把自带的系统覆盖成 Windows 开机不到十分钟D面就开始烫腿。这还怎么Call Him Lap-top？<br>正值假期，49.9元不包邮买了管2g的<a href="https://item.jd.com/8249368.html" target="_blank" rel="noopener">导热硅脂</a>（最贵的<br>可以说是下血本了。拆开后盖后的一顿瞎操作就不提了。</p>
+<h4 id="当我抱着忐忑的心情看到屏幕亮起的那一瞬间，可以说是激动地热泪盈眶了"><a href="#当我抱着忐忑的心情看到屏幕亮起的那一瞬间，可以说是激动地热泪盈眶了" class="headerlink" title="当我抱着忐忑的心情看到屏幕亮起的那一瞬间，可以说是激动地热泪盈眶了"></a>当我抱着忐忑的心情看到屏幕亮起的那一瞬间，可以说是激动地热泪盈眶了</h4><p>开机后体验是很好的，cpu温度稳定在45-65之间，还算比较健康。电池状态看样子7个小时的连续工作问题不大<br>但毕竟是个老年人，不敢更新系统，勉强装到10.11，当前版本肯定是不支持Appstore的xcode的了，跑到<a href="developer.apple.com">苹果的开发者网站</a>，轻松下载8.2的xcode美滋滋。(安装某些东西需要xcode命令行工具，顺便把对应版本的下载下来</p>
+<p>Mac自带Apache和php，只不过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php -v</span><br></pre></td></tr></table></figure></p>
+<p>一瞅是php5.6 这可就难受了,不是php7，那梦想中的高速脚本去哪了？<br>再看一眼Apache<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apachectl -v</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Server version: Apache/2.4.37 (Unix)</p>
+</blockquote>
+<p>2.4 不错不错<br>下一步，安装homebrew。homebrew是一个Mac的包管理工具<br>官方原话：</p>
+<blockquote>
+<p>又提示缺少套件啦？别担心，Homebrew 随时守候。Homebrew —— OS X 不可或缺的套件管理器。</p>
+</blockquote>
+<h3 id="homebrew的安装"><a href="#homebrew的安装" class="headerlink" title="homebrew的安装"></a>homebrew的安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<h3 id="php7的安装"><a href="#php7的安装" class="headerlink" title="php7的安装"></a>php7的安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install php@7.2</span><br></pre></td></tr></table></figure>
+<p>这个安装过程可以说是异常的艰辛了，有梯子不管用依然会失败无数次，后经学长指导得知是没有让homebrew走代理的问题<br><a href="https://www.cnblogs.com/xjnotxj/p/7478614.html" target="_blank" rel="noopener">链接：让Homebrew走代理更新+brew管理node版本</a><br>如果实在忍受不了失败，也可以吧Homebrew更换成国内镜像，以下是更换成清华大学镜像的方法：</p>
+<blockquote>
+<p>替换原有上游<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core"</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line">$ brew update</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>使用homebrew-science或者homebrew-python<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-science"</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-science.git</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-python"</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-python.git</span><br><span class="line"></span><br><span class="line">$ brew update</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>不管怎么说还是有个好处就是安装到中途失败，下载重新运行会接着之前失败的地方开始（貌似是, 所以功夫不负有心人，最后终于还是安装成功,立即：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php -v</span><br></pre></td></tr></table></figure></p>
+<h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><p>不出意外的话看到的还会是php5.6，没配置环境变量嘛！<br>其实人家安装完成已经跟你说的很清楚了：</p>
+<blockquote>
+<p>If you need to have <a href="mailto:php@7.2" target="_blank" rel="noopener">php@7.2</a> first in your PATH run:<br> echo ‘export PATH=”<a href="mailto:/usr/local/opt/php@7.2" target="_blank" rel="noopener">/usr/local/opt/php@7.2</a>/bin:$PATH”‘ &gt;&gt; ~/.bash_profile<br> echo ‘export PATH=”<a href="mailto:/usr/local/opt/php@7.2" target="_blank" rel="noopener">/usr/local/opt/php@7.2</a>/sbin:$PATH”‘ &gt;&gt; ~/.bash_profile</p>
+</blockquote>
+<p>这里只截取了一小段。具体的意思就是教你如何配置环境变量，把上面两句话放进用户根目录下的隐藏文件.bash_profile<br>于是直接cd过去然后：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim .bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>复制粘贴两句 &gt;&gt;之前的所有，按ESC退出编辑，:wq保存退出。这都是命令行的基本操作。最后不要忘记更新使之生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sourse ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>以上。下面贴出安装成功后的所有提示信息：</p>
+<blockquote>
+<p>To enable PHP in Apache add the following to httpd.conf and restart Apache:<br>   LoadModule php7_module <a href="mailto:/usr/local/opt/php@7.2" target="_blank" rel="noopener">/usr/local/opt/php@7.2</a>/lib/httpd/modules/libphp7.so</p>
+   <filesmatch \.php$=""><br>       SetHandler application/x-httpd-php<br>   </filesmatch>
+
+<p>Finally, check DirectoryIndex includes index.php<br>   DirectoryIndex index.php index.html</p>
+<p>The php.ini and php-fpm.ini file can be found in:<br>   /usr/local/etc/php/7.2/</p>
+<p><a href="mailto:php@7.2" target="_blank" rel="noopener">php@7.2</a> is keg-only, which means it was not symlinked into /usr/local,<br>because this is an alternate version of another formula.</p>
+<p>If you need to have <a href="mailto:php@7.2" target="_blank" rel="noopener">php@7.2</a> first in your PATH run:<br> echo ‘export PATH=”<a href="mailto:/usr/local/opt/php@7.2" target="_blank" rel="noopener">/usr/local/opt/php@7.2</a>/bin:$PATH”‘ &gt;&gt; ~/.bash_profile<br> echo ‘export PATH=”<a href="mailto:/usr/local/opt/php@7.2" target="_blank" rel="noopener">/usr/local/opt/php@7.2</a>/sbin:$PATH”‘ &gt;&gt; ~/.bash_profile</p>
+<p>For compilers to find <a href="mailto:php@7.2" target="_blank" rel="noopener">php@7.2</a> you may need to set:<br> export LDFLAGS=”<a href="mailto:-L/usr/local/opt/php@7.2" target="_blank" rel="noopener">-L/usr/local/opt/php@7.2</a>/lib”<br> export CPPFLAGS=”<a href="mailto:-I/usr/local/opt/php@7.2" target="_blank" rel="noopener">-I/usr/local/opt/php@7.2</a>/include”</p>
+<p>To have launchd start <a href="mailto:php@7.2" target="_blank" rel="noopener">php@7.2</a> now and restart at login:<br> brew services start <a href="mailto:php@7.2" target="_blank" rel="noopener">php@7.2</a><br>Or, if you don’t want/need a background service you can just run:<br> php-fpm</p>
+</blockquote>
+<p>这段提示同样可以通过以下命令得到<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew info php@7.2</span><br></pre></td></tr></table></figure></p>
+<h3 id="Apache的配置"><a href="#Apache的配置" class="headerlink" title="Apache的配置"></a>Apache的配置</h3><p>在这里我吃了不少的苦，因为开发任务比较多，刚折腾好电脑之后我立即装了个集成环境XAMPP。确实配置速度是快，但我有强迫症，我只允许电脑上有一个Apache存在，于是开发任务完成后就把集成卸掉了，但是集成安装的Apache和系统自带的Apache端口号都是80，同时我又手欠的用homebrew装了一个。而我又需要把Apache本身自己引得php5.6改成7.2 ，这么一整就基本乱套了.<br>一气之下我做了一个很不明智的决定———删掉了系统自带的Apache<br>其实这也是个可以避免的坑，再仔细看看上面贴出的提示信息，人家明明清清楚楚的写明白了呀！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">To <span class="built_in">enable</span> PHP <span class="keyword">in</span> Apache add the following to httpd.conf and restart Apache:</span><br><span class="line">    LoadModule php7_module /usr/<span class="built_in">local</span>/opt/php@7.2/lib/httpd/modules/libphp7.so</span><br><span class="line"></span><br><span class="line">    &lt;FilesMatch \.php$&gt;</span><br><span class="line">        SetHandler application/x-httpd-php</span><br><span class="line">    &lt;/FilesMatch&gt;</span><br><span class="line"></span><br><span class="line">Finally, check DirectoryIndex includes index.php</span><br></pre></td></tr></table></figure>
+<p>根据提示在Apache的配置文件http.conf中加入:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LoadModule php7_module /usr/<span class="built_in">local</span>/opt/php@7.2/lib/httpd/modules/libphp7.so</span><br><span class="line"></span><br><span class="line">&lt;FilesMatch \.php$&gt;</span><br><span class="line">    SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="然而事情并没有我想象的那么简单，在我意识到提示的重要性之后按照提示一顿操作，并在根目录了里添加了info-php文件"><a href="#然而事情并没有我想象的那么简单，在我意识到提示的重要性之后按照提示一顿操作，并在根目录了里添加了info-php文件" class="headerlink" title="然而事情并没有我想象的那么简单，在我意识到提示的重要性之后按照提示一顿操作，并在根目录了里添加了info.php文件"></a>然而事情并没有我想象的那么简单，在我意识到提示的重要性之后按照提示一顿操作，并在根目录了里添加了info.php文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="built_in">echo</span> phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>页面上显示的是没有被解析的php代码<br>…又经过本人的不懈的尝试和查询<br>终于找到了问题的原因，这个时候的Apache并没有解析php,因为我已经把原来的配置好的可以解析php的Apache删掉了呀！找到：</p>
+<blockquote>
+<p>AddType application/x-gzip .gz .tgz</p>
+</blockquote>
+<p>在他下面添上：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .php</span><br></pre></td></tr></table></figure></p>
+<p>终于出现了赏心悦目的画面💖！<br><img src="/2019/01/08/MAC_setEnov/phpinfo.png" alt="avatar"></p>
+<h4 id="删掉系统自带Apache的问题"><a href="#删掉系统自带Apache的问题" class="headerlink" title="删掉系统自带Apache的问题"></a>删掉系统自带Apache的问题</h4><p>系统自带的Apache端口号80，其他程序不得占用，如果强行开启也会提示端口占用。命令行查看一下端口占用的情况（下图是我在删除系统自带Apache后的截图）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsof -i tcp:80</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/08/MAC_setEnov/port.png" alt="avatar"><br><del>不懂为什么google的进程占用了端口，有时候还会有Sougou或者是QQMusic<br>不想每次开启之前全都把进程kill一遍。无奈，homebrew安装的Apache就只能使用其他端口，这里设的8080.可是又不甘于每次访问都手输:8080，所以设置一个端口转发：<br>修改/etc/pf.conf</del>后经学长指导：这里的80是其他端口转发来的，不影响使用。不需要做端口转发！以下操作端口转发内容依然有效！</p>
+<blockquote>
+<p>在rdr-anchor “com.apple/*” 下加：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rdr on lo0 inet proto tcp from any to 127.0.0.1 port 80 -&gt; 127.0.0.1 port 8080</span><br></pre></td></tr></table></figure>
+<p>同样:wq 最后依次执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo pfctl -d</span><br><span class="line">sudo pfctl -f /etc/pf.conf</span><br><span class="line">sudo pfctl -e</span><br></pre></td></tr></table></figure></p>
+<p>至此，Apache的安装勉强算结束，还有一个小问题，每次都需要手动执行以上三行命令后才能开启端口转发，重启电脑失效。<br>网上大神博客里有讲如何把开启关闭命令做成脚本文件，自行百度。<br>如果你没有像我一样蠢到删掉系统自带Apache或是使用其他服务器比如Tomcat或Nginx等服务器接口转发开启脚本这里就可以等等再说</p>
+<h3 id="Mysql的安装"><a href="#Mysql的安装" class="headerlink" title="Mysql的安装"></a>Mysql的安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install mysql</span><br></pre></td></tr></table></figure>
+<p>需要指定版本在后面加上@版本号即可，例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install mysql@5.7</span><br></pre></td></tr></table></figure></p>
+<p>再来看一下mysql的安装提示</p>
+<blockquote>
+<p>We’ve installed your MySQL database without a root password. To secure it run:<br>   mysql_secure_installation</p>
+<p>MySQL is configured to only allow connections from localhost by default</p>
+<p>To connect run:<br>   mysql -uroot</p>
+<p>To have launchd start mysql now and restart at login:<br> brew services start mysql<br>Or, if you don’t want/need a background service you can just run:<br> mysql.server start</p>
+</blockquote>
+<p>懂英文就是好呀，跟着提示做就行了。最新版的mysql要求系统版本在10.12以上<br>所以在我的信息上面还有一处标红</p>
+<blockquote>
+<p>Required: macOS &gt;= 10.12 ✘</p>
+</blockquote>
+<p>但是这好像不影响本地的正常使用</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>至此，配置环境过程全部结束，在此介绍一款好用的编辑器Atom，我会在后续文章中疯狂安利他的插件的~</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果对你有用送我点零食吧( •̀ ω •́ )！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="赵品均 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/记录/" rel="tag"># 记录</a>
+          
+            <a href="/tags/吃苦记/" rel="tag"># 吃苦记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/08/SIPC_WEB1/" rel="next" title="科技协会web组后端第一次培训">
+                <i class="fa fa-chevron-left"></i> 科技协会web组后端第一次培训
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/11/phpUnit/" rel="prev" title="phpUnit">
+                phpUnit <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="赵品均">
+            
+              <p class="site-author-name" itemprop="name">赵品均</p>
+              <p class="site-description motion-element" itemprop="description">2021届在读本科生</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:834550296@qq.com" title="E-Mail &rarr; mailto:834550296@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chenxiumiao.cn/" title="https://chenxiumiao.cn/" rel="noopener" target="_blank">辰宿喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cactus1102.club" title="https://www.cactus1102.club" rel="noopener" target="_blank">D&X's Studio.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#放假回家翻出了已经放在柜子里落了一层灰的Mac-book-Air-2014。抱着玩玩的心态打开了他的后盖-于是故事就这么开始了："><span class="nav-number">1.</span> <span class="nav-text">放假回家翻出了已经放在柜子里落了一层灰的Mac book Air 2014。抱着玩玩的心态打开了他的后盖..于是故事就这么开始了：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当我抱着忐忑的心情看到屏幕亮起的那一瞬间，可以说是激动地热泪盈眶了"><span class="nav-number">1.1.</span> <span class="nav-text">当我抱着忐忑的心情看到屏幕亮起的那一瞬间，可以说是激动地热泪盈眶了</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#homebrew的安装"><span class="nav-number">2.</span> <span class="nav-text">homebrew的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php7的安装"><span class="nav-number">3.</span> <span class="nav-text">php7的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置环境变量"><span class="nav-number">3.1.</span> <span class="nav-text">配置环境变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache的配置"><span class="nav-number">4.</span> <span class="nav-text">Apache的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#然而事情并没有我想象的那么简单，在我意识到提示的重要性之后按照提示一顿操作，并在根目录了里添加了info-php文件"><span class="nav-number">4.1.</span> <span class="nav-text">然而事情并没有我想象的那么简单，在我意识到提示的重要性之后按照提示一顿操作，并在根目录了里添加了info.php文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删掉系统自带Apache的问题"><span class="nav-number">4.2.</span> <span class="nav-text">删掉系统自带Apache的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mysql的安装"><span class="nav-number">5.</span> <span class="nav-text">Mysql的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵品均</span>
+
+  
+
+  
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
