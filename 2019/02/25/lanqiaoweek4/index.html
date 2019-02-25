@@ -100,18 +100,18 @@
 
 
 
-  <meta name="description" content="开学了,每天上课耽误不少时间…好像带着电脑去上课呀qwq.个人认为广度优先搜索要比深度优先搜索难一些，难在需要借助很多数据结构来解决问题 核心思想广度优先搜索的核心思想个人认为是队列">
+  <meta name="description" content="开学了,每天上课耽误不少时间…好像带着电脑去上课呀qwq.个人认为广度优先搜索要比深度优先搜索难一些，难在需要借助很多数据结构来解决问题 核心思想个人认为广度优先搜索的核心思想是队列">
 <meta name="keywords" content="学习记录,总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="蓝桥杯省赛学习第四周记录（广度优先搜索）">
 <meta property="og:url" content="http://www.pinjunz.com/2019/02/25/lanqiaoweek4/index.html">
 <meta property="og:site_name" content="费心悦己">
-<meta property="og:description" content="开学了,每天上课耽误不少时间…好像带着电脑去上课呀qwq.个人认为广度优先搜索要比深度优先搜索难一些，难在需要借助很多数据结构来解决问题 核心思想广度优先搜索的核心思想个人认为是队列">
+<meta property="og:description" content="开学了,每天上课耽误不少时间…好像带着电脑去上课呀qwq.个人认为广度优先搜索要比深度优先搜索难一些，难在需要借助很多数据结构来解决问题 核心思想个人认为广度优先搜索的核心思想是队列">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-25T16:11:17.188Z">
+<meta property="og:updated_time" content="2019-02-25T16:15:10.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蓝桥杯省赛学习第四周记录（广度优先搜索）">
-<meta name="twitter:description" content="开学了,每天上课耽误不少时间…好像带着电脑去上课呀qwq.个人认为广度优先搜索要比深度优先搜索难一些，难在需要借助很多数据结构来解决问题 核心思想广度优先搜索的核心思想个人认为是队列">
+<meta name="twitter:description" content="开学了,每天上课耽误不少时间…好像带着电脑去上课呀qwq.个人认为广度优先搜索要比深度优先搜索难一些，难在需要借助很多数据结构来解决问题 核心思想个人认为广度优先搜索的核心思想是队列">
 
 
 
@@ -404,7 +404,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-26 00:11:17" itemprop="dateModified" datetime="2019-02-26T00:11:17+08:00">2019-02-26</time>
+                <time title="修改时间：2019-02-26 00:15:10" itemprop="dateModified" datetime="2019-02-26T00:15:10+08:00">2019-02-26</time>
               
             
           </span>
@@ -443,7 +443,7 @@
 
       
         <p>开学了,每天上课耽误不少时间…好像带着电脑去上课呀qwq.<br>个人认为广度优先搜索要比深度优先搜索难一些，难在需要借助很多数据结构来解决问题</p>
-<h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><h3 id="广度优先搜索的核心思想个人认为是队列"><a href="#广度优先搜索的核心思想个人认为是队列" class="headerlink" title="广度优先搜索的核心思想个人认为是队列"></a>广度优先搜索的核心思想个人认为是队列</h3><a id="more"></a>
+<h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><h3 id="个人认为广度优先搜索的核心思想是队列"><a href="#个人认为广度优先搜索的核心思想是队列" class="headerlink" title="个人认为广度优先搜索的核心思想是队列"></a>个人认为广度优先搜索的核心思想是队列</h3><a id="more"></a>
 <h3 id="在一切开始之前，首先要学会队列的用法："><a href="#在一切开始之前，首先要学会队列的用法：" class="headerlink" title="在一切开始之前，首先要学会队列的用法："></a>在一切开始之前，首先要学会队列的用法：</h3><p>数据结构的特性就不说了<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q; <span class="comment">//这里定义了一个数据类型为整形的队列</span></span><br><span class="line"><span class="comment">//向队列中添加元素</span></span><br><span class="line">q.push();</span><br><span class="line"><span class="comment">//删除队列元素</span></span><br><span class="line">q.pop();</span><br><span class="line"><span class="comment">//获得队列元素个数</span></span><br><span class="line">q.size();</span><br><span class="line"><span class="comment">//判断队列是否为空</span></span><br><span class="line">q.empty();</span><br><span class="line"><span class="comment">//清空整个队列</span></span><br><span class="line"><span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">  q.pop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="广度优先搜索的模板"><a href="#广度优先搜索的模板" class="headerlink" title="广度优先搜索的模板"></a>广度优先搜索的模板</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(起始点)</span> </span>&#123;</span><br><span class="line">    将起始点放入队列中;</span><br><span class="line">    标记起点访问;</span><br><span class="line">    <span class="keyword">while</span> (如果队列不为空) &#123;</span><br><span class="line">        访问队列中队首元素x;</span><br><span class="line">        删除队首元素;</span><br><span class="line">        <span class="keyword">for</span> (x 所有相邻点) &#123;</span><br><span class="line">            <span class="keyword">if</span> (该点未被访问过且合法) &#123;</span><br><span class="line">                将该点加入队列末尾;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    队列为空，广度优先搜索结束;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>只看模板会让人看得一头雾水，其简单来说就是：</p>
@@ -698,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#核心思想"><span class="nav-number">1.</span> <span class="nav-text">核心思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#广度优先搜索的核心思想个人认为是队列"><span class="nav-number">1.1.</span> <span class="nav-text">广度优先搜索的核心思想个人认为是队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在一切开始之前，首先要学会队列的用法："><span class="nav-number">1.2.</span> <span class="nav-text">在一切开始之前，首先要学会队列的用法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广度优先搜索的模板"><span class="nav-number">2.</span> <span class="nav-text">广度优先搜索的模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再探走迷宫"><span class="nav-number">3.</span> <span class="nav-text">再探走迷宫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">4.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#核心思想"><span class="nav-number">1.</span> <span class="nav-text">核心思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人认为广度优先搜索的核心思想是队列"><span class="nav-number">1.1.</span> <span class="nav-text">个人认为广度优先搜索的核心思想是队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在一切开始之前，首先要学会队列的用法："><span class="nav-number">1.2.</span> <span class="nav-text">在一切开始之前，首先要学会队列的用法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广度优先搜索的模板"><span class="nav-number">2.</span> <span class="nav-text">广度优先搜索的模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再探走迷宫"><span class="nav-number">3.</span> <span class="nav-text">再探走迷宫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">4.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
             
 
           </div>
