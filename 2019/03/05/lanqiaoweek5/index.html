@@ -108,10 +108,12 @@
 <meta property="og:site_name" content="费心悦己">
 <meta property="og:description" content="猛兽总是独行，牛羊才成群结队 (真的是鲁迅说的)  核心思想递推">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-05T15:47:27.011Z">
+<meta property="og:image" content="http://www.pinjunz.com/2019/03/05/lanqiaoweek5/stairs.png">
+<meta property="og:updated_time" content="2019-03-05T15:51:23.310Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蓝桥杯省赛学习第五周记录（动态规划入门---递推）">
 <meta name="twitter:description" content="猛兽总是独行，牛羊才成群结队 (真的是鲁迅说的)  核心思想递推">
+<meta name="twitter:image" content="http://www.pinjunz.com/2019/03/05/lanqiaoweek5/stairs.png">
 
 
 
@@ -387,7 +389,7 @@
                 
               
 
-              <time title="创建时间：2019-03-05 22:54:14 / 修改时间：23:47:27" itemprop="dateCreated datePublished" datetime="2019-03-05T22:54:14+08:00">2019-03-05</time>
+              <time title="创建时间：2019-03-05 22:54:14 / 修改时间：23:51:23" itemprop="dateCreated datePublished" datetime="2019-03-05T22:54:14+08:00">2019-03-05</time>
             
 
             
@@ -441,7 +443,7 @@
 <h2 id="进阶：爬楼梯与错排公式"><a href="#进阶：爬楼梯与错排公式" class="headerlink" title="进阶：爬楼梯与错排公式"></a>进阶：爬楼梯与错排公式</h2><blockquote>
 <p>给出一段楼梯，每次可以爬两阶或者一阶，问共用多少种不同不同的爬楼方法</p>
 </blockquote>
-<h3 id="爬楼梯分析"><a href="#爬楼梯分析" class="headerlink" title="爬楼梯分析"></a>爬楼梯分析</h3><p>对于每一层的楼梯 我们这样来分析：</p>
+<h3 id="爬楼梯分析"><a href="#爬楼梯分析" class="headerlink" title="爬楼梯分析"></a>爬楼梯分析</h3><p><img src="/2019/03/05/lanqiaoweek5/stairs.png" alt="avatar"><br>对于每一层的楼梯 我们这样来分析：</p>
 <ul>
 <li>爬到终点阶数的方法总数 = 少两阶的方法总数（一次爬两阶到达终点） + 少一阶的方法总数（一次爬一阶到达终点）</li>
 </ul>
@@ -449,7 +451,7 @@
 <ul>
 <li>a % c + b % c = (a + b) % c;</li>
 </ul>
-<p>所以直接每步都直接模就行~   以下代码不取模<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">  <span class="keyword">int</span> f[<span class="number">10005</span>];</span><br><span class="line">  f[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">  f[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    f[i] = f[i - <span class="number">1</span>] + f[i - <span class="number">2</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; f[n] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以直接每步都直接模就行~<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">100007</span>;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">1010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    dp[<span class="number">1</span>] = dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        dp[i] = (dp[i - <span class="number">1</span>] + dp[i - <span class="number">2</span>]) % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; dp[n] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="说到递推不得不提著名的错排公式了："><a href="#说到递推不得不提著名的错排公式了：" class="headerlink" title="说到递推不得不提著名的错排公式了："></a>说到递推不得不提著名的错排公式了：</h3><blockquote>
 <p>十本不同的书放在书架上。现重新摆放，使每本书都不在原来放的位置。有几种摆法？</p>
 </blockquote>
