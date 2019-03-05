@@ -388,7 +388,7 @@
                 
               
 
-              <time title="创建时间：2019-03-05 22:54:14 / 修改时间：23:42:22" itemprop="dateCreated datePublished" datetime="2019-03-05T22:54:14+08:00">2019-03-05</time>
+              <time title="创建时间：2019-03-05 22:54:14 / 修改时间：23:45:18" itemprop="dateCreated datePublished" datetime="2019-03-05T22:54:14+08:00">2019-03-05</time>
             
 
             
@@ -429,42 +429,19 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>猛兽总是独行，牛羊才成群结队 (真的是鲁迅说的)</p>
 </blockquote>
-<h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><h3 id="递推"><a href="#递推" class="headerlink" title="递推"></a>递推</h3><h2 id="入门：最简单的递推：斐波那契数列"><a href="#入门：最简单的递推：斐波那契数列" class="headerlink" title="入门：最简单的递推：斐波那契数列"></a>入门：最简单的递推：斐波那契数列</h2><blockquote>
-<p>F[n]=F[n-1]+F[n-2]</p>
-</blockquote>
-<p>每一步都由其他步推出，这就是递推</p>
-<h2 id="进阶：爬楼梯与错排公式"><a href="#进阶：爬楼梯与错排公式" class="headerlink" title="进阶：爬楼梯与错排公式"></a>进阶：爬楼梯与错排公式</h2><blockquote>
-<p>给出一段楼梯，每次可以爬两阶或者一阶，问共用多少种不同不同的爬楼方法</p>
-</blockquote>
-<h3 id="爬楼梯分析"><a href="#爬楼梯分析" class="headerlink" title="爬楼梯分析"></a>爬楼梯分析</h3><p>对于每一层的楼梯 我们这样来分析：</p>
-<ul>
-<li>爬到终点阶数的方法总数 = 少两阶的方法总数（一次爬两阶到达终点） + 少一阶的方法总数（一次爬一阶到达终点）</li>
-</ul>
-<p>这就有点递归的意思了，但实际上可以不用递归<br>因为阶数多了以后数会非常大，所以这种题一般求得都是取模后的结果<br>道理是一样的，只需要知道：</p>
-<ul>
-<li>a % c + b % c = (a + b) % c;</li>
-</ul>
-<p>所以直接每步都直接模就行~   以下代码不取模<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> f[<span class="number">10005</span>];</span><br><span class="line">  f[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">  f[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    f[i] = f[i - <span class="number">1</span>] + f[i - <span class="number">2</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; f[n] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="说到递推不得不提著名的错排公式了："><a href="#说到递推不得不提著名的错排公式了：" class="headerlink" title="说到递推不得不提著名的错排公式了："></a>说到递推不得不提著名的错排公式了：</h3><blockquote>
-<p>十本不同的书放在书架上。现重新摆放，使每本书都不在原来放的位置。有几种摆法？</p>
-</blockquote>
-<p>当n个编号元素放在n个编号位置，元素编号与位置编号各不对应的方法数用D(n)表示，那么D(n-1)就表示n-1个编号元素放在n-1个编号位置，各不对应的方法数，其它类推.</p>
-<ul>
-<li>第一步，把第n个元素放在一个位置，比如位置k，一共有n-1种方法；</li>
-<li>第二步，放编号为k的元素，这时有两种情况：⑴把它放到位置n，那么，对于剩下的n-1个元素，由于第k个元素放到了位置n，剩下n-2个元素就有D(n-2)种方法；⑵第k个元素不把它放到位置n，这时，对于这n-1个元素，有D(n-1)种方法；<br>综上得到<br>D(n) = (n-1) [D(n-2) + D(n-1)]<br>特殊地，D(1) = 0, D(2) = 1.</li>
-</ul>
-<p>以上，这也是一种递推</p>
-<h2 id="递推与动态规划"><a href="#递推与动态规划" class="headerlink" title="递推与动态规划"></a>递推与动态规划</h2><h3 id="回家的最短路径问题"><a href="#回家的最短路径问题" class="headerlink" title="回家的最短路径问题"></a>回家的最短路径问题</h3><p>只看递推着实是简单了点，下面难度提升啦</p>
-<blockquote>
-<p>A菌要回家，他家在一个n * n地图的左下角，家在右上角，没走上一个格子会花费一定的体力，每一步都只能走到上面说左面的相邻格子上，耗费的体力值标注在了地图上：<br>第一行是地图大小n 接下来n行是地图的描述<br>···<br>3<br>0 3 4<br>6 2 5<br>5 4 3<br>···<br>对于此题，一样是递推，考虑：<br>走到每个格子上一共需要耗费的体力，要么是从这个格子的左面走过来，要么是从这个格子的下面走过来<br>所以我们只需要分别知道当走到 ”每个格子的左面和下面的格子所需要消耗的体力即可”<br>这里的每个格子的下面和左面，体现了递推的过程。</p>
-</blockquote>
-<p>在代码中我定义了动态规划数组dp用来记录走到每个格子最少所需花费体力，具体计算方法是在循环中递推出每个格子的左，下格的最少体力并进行决策<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">110</span>][<span class="number">110</span>];</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">110</span>][<span class="number">110</span>]; <span class="comment">//此数组记录的是走到每个格子最少所需花费体力，</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dp[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;       <span class="comment">//该循环从起点开始循环遍历计算走到每个格子是所需要花费的最小体力，借此递推出走到最后终点时所需体力</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">1</span> &amp;&amp; j == <span class="number">1</span>)&#123; <span class="comment">//当位于起始点，不操作</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(i == <span class="number">1</span>)&#123;          <span class="comment">//位于边界，只有一个来的方向，不需要决策</span></span><br><span class="line">                dp[i][j] = dp[i][j - <span class="number">1</span>] + a[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(j == <span class="number">1</span>)&#123;          <span class="comment">//位于边界，只有一个来的方向，不需要决策</span></span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j] + a[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                dp[i][j] = min(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]) + a[i][j];</span><br><span class="line">            <span class="comment">//当不为地图边界时，从左侧和下侧两个格子的耗费总体力中选出小的作为决策，体现了动态规划的过程</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; dp[n][n] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
+<h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><h3 id="递推"><a href="#递推" class="headerlink" title="递推"></a>递推</h3>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/05/lanqiaoweek5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
