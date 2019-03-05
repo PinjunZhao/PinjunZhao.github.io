@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="费心悦己">
 <meta property="og:description" content="猛兽总是独行，牛羊才成群结队 (真的是鲁迅说的)  核心思想递推">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-05T15:45:18.023Z">
+<meta property="og:updated_time" content="2019-03-05T15:46:20.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蓝桥杯省赛学习第五周记录（动态规划入门---递推）">
 <meta name="twitter:description" content="猛兽总是独行，牛羊才成群结队 (真的是鲁迅说的)  核心思想递推">
@@ -387,7 +387,7 @@
                 
               
 
-              <time title="创建时间：2019-03-05 22:54:14 / 修改时间：23:45:18" itemprop="dateCreated datePublished" datetime="2019-03-05T22:54:14+08:00">2019-03-05</time>
+              <time title="创建时间：2019-03-05 22:54:14 / 修改时间：23:46:20" itemprop="dateCreated datePublished" datetime="2019-03-05T22:54:14+08:00">2019-03-05</time>
             
 
             
@@ -449,7 +449,7 @@
 <ul>
 <li>a % c + b % c = (a + b) % c;</li>
 </ul>
-<p>所以直接每步都直接模就行~   以下代码不取模<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> f[<span class="number">10005</span>];</span><br><span class="line">  f[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">  f[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    f[i] = f[i - <span class="number">1</span>] + f[i - <span class="number">2</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; f[n] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以直接每步都直接模就行~   以下代码不取模<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">  <span class="keyword">int</span> f[<span class="number">10005</span>];</span><br><span class="line">  f[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">  f[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    f[i] = f[i - <span class="number">1</span>] + f[i - <span class="number">2</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; f[n] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="说到递推不得不提著名的错排公式了："><a href="#说到递推不得不提著名的错排公式了：" class="headerlink" title="说到递推不得不提著名的错排公式了："></a>说到递推不得不提著名的错排公式了：</h3><blockquote>
 <p>十本不同的书放在书架上。现重新摆放，使每本书都不在原来放的位置。有几种摆法？</p>
 </blockquote>
