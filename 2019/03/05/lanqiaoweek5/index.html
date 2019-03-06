@@ -112,11 +112,12 @@
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/05/lanqiaoweek5/stairs2.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/05/lanqiaoweek5/tanhuang.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/05/lanqiaoweek5/cww.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/03/05/lanqiaoweek5/qbts.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/05/lanqiaoweek5/ts.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/05/lanqiaoweek5/xxl.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/05/lanqiaoweek5/gh.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/05/lanqiaoweek5/szfz.png">
-<meta property="og:updated_time" content="2019-03-06T14:01:24.422Z">
+<meta property="og:updated_time" content="2019-03-06T14:02:26.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蓝桥杯省赛学习第五周记录（动态规划入门---递推）">
 <meta name="twitter:description" content="猛兽总是独行，牛羊才成群结队 (真的是鲁迅说的)  核心思想递推感觉难就难在递推式不好找，或者是代码不好设计，没办法多做多练吧~">
@@ -413,7 +414,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-06 22:01:24" itemprop="dateModified" datetime="2019-03-06T22:01:24+08:00">2019-03-06</time>
+                <time title="修改时间：2019-03-06 22:02:26" itemprop="dateModified" datetime="2019-03-06T22:02:26+08:00">2019-03-06</time>
               
             
           </span>
@@ -510,7 +511,7 @@
 <p>用两个状态定义数组f[]<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> f[<span class="number">35</span>][<span class="number">35</span>]; <span class="comment">//另个维度分别代表两个状态 ：传递过程中的第几次 ， 传递到某一同事的总路线有几条</span></span><br></pre></td></tr></table></figure></p>
 <p>除此之外，递推公式也要分为三种情况，此阶段拿娃娃的同事如果是1号或者是n号的情况，也需要单独考虑。<br>根据以上分析，就不难写出递推式了，下面给出源码：</p>
 <h4 id="源码-2"><a href="#源码-2" class="headerlink" title="源码"></a>源码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">35</span>][<span class="number">35</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">1</span>)&#123;</span><br><span class="line">                f[i][j] = f[i - <span class="number">1</span>][<span class="number">2</span>] + f[i - <span class="number">1</span>][n];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(j == n)&#123;</span><br><span class="line">                f[i][j] = f[i - <span class="number">1</span>][<span class="number">1</span>] + f[i - <span class="number">1</span>][n - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                f[i][j] = f[i - <span class="number">1</span>][j - <span class="number">1</span>] + f[i - <span class="number">1</span>][j + <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; f[m][<span class="number">1</span>] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="墙壁涂色"><a href="#墙壁涂色" class="headerlink" title="墙壁涂色"></a>墙壁涂色</h3><p>这题看起来和传娃娃有一点点像，但我用了完全不同的分析思路，其实也是有难度的。</p>
+<h3 id="墙壁涂色"><a href="#墙壁涂色" class="headerlink" title="墙壁涂色"></a>墙壁涂色</h3><p>这题看起来和传娃娃有一点点像，但我用了完全不同的分析思路，其实也是有难度的。<br><img src="/2019/03/05/lanqiaoweek5/qbts.png" alt="avatar"></p>
 <h4 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h4><p>一开始可能只是想纯用数学的排列组合的方式得出求解公式，但是我自己也忘得差不多了不会算<br>此题的整个涂色方法类似一个二叉树，只不过最后需要删掉几个和根节点值一样的叶子<br>所以两个状态：</p>
 <ul>
 <li>涂色涂到了第几阶段</li>
