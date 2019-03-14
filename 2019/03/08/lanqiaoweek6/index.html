@@ -100,13 +100,13 @@
 
 
 
-  <meta name="description" content="模型这个玩意儿真的美，啥题不会写上模板稍微改改都能过几个用例，不会也能妥妥的快速拿点分！ 首先还是祭出动态规划的几条属性 阶段：把求解的问题分为若干个阶段 状态：每个阶段面临的各种客观条件（个人人为状态在寻找递推公式中最为重要） 决策 在每个阶段做出的不同操作 状态转移方程 由i阶段的状态和决策决定i + 1阶段的状态 策略 各个阶段决策的序列  下面的分析都会围绕着这几条属性展开">
+  <meta name="description" content="模型这个玩意儿真的美，啥题不会写上模板稍微改改都能过几个用例，不会也能妥妥的快速拿点分！ 首先还是祭出动态规划的几条属性 阶段：把求解的问题分为若干个阶段 状态：每个阶段面临的各种客观条件 决策 在每个阶段做出的不同操作 状态转移方程 由i阶段的状态和决策决定i + 1阶段的状态 策略 各个阶段决策的序列  下面的分析都会围绕着这几条属性展开">
 <meta name="keywords" content="学习记录,总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="蓝桥杯省赛学习第六周记录（常用的动态规划模型和背包）">
 <meta property="og:url" content="http://www.pinjunz.com/2019/03/08/lanqiaoweek6/index.html">
 <meta property="og:site_name" content="费心悦己">
-<meta property="og:description" content="模型这个玩意儿真的美，啥题不会写上模板稍微改改都能过几个用例，不会也能妥妥的快速拿点分！ 首先还是祭出动态规划的几条属性 阶段：把求解的问题分为若干个阶段 状态：每个阶段面临的各种客观条件（个人人为状态在寻找递推公式中最为重要） 决策 在每个阶段做出的不同操作 状态转移方程 由i阶段的状态和决策决定i + 1阶段的状态 策略 各个阶段决策的序列  下面的分析都会围绕着这几条属性展开">
+<meta property="og:description" content="模型这个玩意儿真的美，啥题不会写上模板稍微改改都能过几个用例，不会也能妥妥的快速拿点分！ 首先还是祭出动态规划的几条属性 阶段：把求解的问题分为若干个阶段 状态：每个阶段面临的各种客观条件 决策 在每个阶段做出的不同操作 状态转移方程 由i阶段的状态和决策决定i + 1阶段的状态 策略 各个阶段决策的序列  下面的分析都会围绕着这几条属性展开">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/08/lanqiaoweek6/matrix.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/08/lanqiaoweek6/matrix.png">
@@ -116,10 +116,10 @@
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/08/lanqiaoweek6/zcggzxl.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/08/lanqiaoweek6/hw.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/03/08/lanqiaoweek6/bb.png">
-<meta property="og:updated_time" content="2019-03-14T04:07:58.225Z">
+<meta property="og:updated_time" content="2019-03-14T04:17:13.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蓝桥杯省赛学习第六周记录（常用的动态规划模型和背包）">
-<meta name="twitter:description" content="模型这个玩意儿真的美，啥题不会写上模板稍微改改都能过几个用例，不会也能妥妥的快速拿点分！ 首先还是祭出动态规划的几条属性 阶段：把求解的问题分为若干个阶段 状态：每个阶段面临的各种客观条件（个人人为状态在寻找递推公式中最为重要） 决策 在每个阶段做出的不同操作 状态转移方程 由i阶段的状态和决策决定i + 1阶段的状态 策略 各个阶段决策的序列  下面的分析都会围绕着这几条属性展开">
+<meta name="twitter:description" content="模型这个玩意儿真的美，啥题不会写上模板稍微改改都能过几个用例，不会也能妥妥的快速拿点分！ 首先还是祭出动态规划的几条属性 阶段：把求解的问题分为若干个阶段 状态：每个阶段面临的各种客观条件 决策 在每个阶段做出的不同操作 状态转移方程 由i阶段的状态和决策决定i + 1阶段的状态 策略 各个阶段决策的序列  下面的分析都会围绕着这几条属性展开">
 <meta name="twitter:image" content="http://www.pinjunz.com/2019/03/08/lanqiaoweek6/matrix.png">
 
 
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-14 12:07:58" itemprop="dateModified" datetime="2019-03-14T12:07:58+08:00">2019-03-14</time>
+                <time title="修改时间：2019-03-14 12:17:13" itemprop="dateModified" datetime="2019-03-14T12:17:13+08:00">2019-03-14</time>
               
             
           </span>
@@ -454,7 +454,7 @@
         <p>模型这个玩意儿真的美，啥题不会写上模板稍微改改都能过几个用例，不会也能妥妥的快速拿点分！</p>
 <h2 id="首先还是祭出动态规划的几条属性"><a href="#首先还是祭出动态规划的几条属性" class="headerlink" title="首先还是祭出动态规划的几条属性"></a>首先还是祭出动态规划的几条属性</h2><ul>
 <li>阶段：把求解的问题分为若干个阶段</li>
-<li>状态：每个阶段面临的各种客观条件（个人人为状态在寻找递推公式中最为重要）</li>
+<li>状态：每个阶段面临的各种客观条件</li>
 <li>决策 在每个阶段做出的不同操作</li>
 <li>状态转移方程 由i阶段的状态和决策决定i + 1阶段的状态</li>
 <li>策略 各个阶段决策的序列</li>
@@ -558,7 +558,7 @@
 </ul>
 <p><img src="/2019/03/08/lanqiaoweek6/bb.png" alt="avatar"><br>该表给出了各个阶段的dp值</p>
 <p>和最大上升子序列的思路有点像</p>
-<h3 id="空间优化"><a href="#空间优化" class="headerlink" title="空间优化"></a>空间优化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">1010</span>];</span><br><span class="line"><span class="keyword">int</span> w[<span class="number">21</span>], c[<span class="number">21</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N, V;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; V;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; w[i] &gt;&gt; c[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = V; j &gt;= c[i]; j--)&#123;</span><br><span class="line">            dp[j] = max(dp[j - c[i]] + w[i], dp[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; dp[V] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="空间优化"><a href="#空间优化" class="headerlink" title="空间优化"></a>空间优化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">1010</span>];</span><br><span class="line"><span class="keyword">int</span> w[<span class="number">21</span>], c[<span class="number">21</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N, V;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; V;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; w[i] &gt;&gt; c[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = V; j &gt;= c[i]; j--)&#123;         <span class="comment">//循环枚举背包体积，必须按照从大到小枚举，保证更新的顺序正确</span></span><br><span class="line">            dp[j] = max(dp[j - c[i]] + w[i], dp[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; dp[V] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h3><p>未完待续</p>
 
       
