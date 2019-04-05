@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit_32px.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit_16px.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="重要！写在最前面本来这节课想给大家讲基础语法，但是整理过程中发现真的没啥好说的，太多东西都和c语言一样，并且寒假已经将学习基础语法的任务布置给大家了，而且我们快要考核了，如果此时再讲太多基础语法，那么势必在考核之前大家学不到什么后端方向核心的东西。因此本周的两节课我们先讲核心内容，这两节内容即便你不会基础语法也能听懂。在这一周的时间内，希望基础语法不太会的同学能够抓紧学习，面向对象部分我们后面会讲">
+<meta name="keywords" content="记录,培训,SIPC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科技协会web组后端方向第四次培训——API是什么东东">
+<meta property="og:url" content="http://www.pinjunz.com/2019/04/05/sipc_web4/index.html">
+<meta property="og:site_name" content="费心悦己">
+<meta property="og:description" content="重要！写在最前面本来这节课想给大家讲基础语法，但是整理过程中发现真的没啥好说的，太多东西都和c语言一样，并且寒假已经将学习基础语法的任务布置给大家了，而且我们快要考核了，如果此时再讲太多基础语法，那么势必在考核之前大家学不到什么后端方向核心的东西。因此本周的两节课我们先讲核心内容，这两节内容即便你不会基础语法也能听懂。在这一周的时间内，希望基础语法不太会的同学能够抓紧学习，面向对象部分我们后面会讲">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/05/sipc_web4/searchweatherapi.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/05/sipc_web4/json.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/05/sipc_web4/xml.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/05/sipc_web4/ky.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/05/sipc_web4/kyresult.png">
+<meta property="og:updated_time" content="2019-04-05T16:59:36.398Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="科技协会web组后端方向第四次培训——API是什么东东">
+<meta name="twitter:description" content="重要！写在最前面本来这节课想给大家讲基础语法，但是整理过程中发现真的没啥好说的，太多东西都和c语言一样，并且寒假已经将学习基础语法的任务布置给大家了，而且我们快要考核了，如果此时再讲太多基础语法，那么势必在考核之前大家学不到什么后端方向核心的东西。因此本周的两节课我们先讲核心内容，这两节内容即便你不会基础语法也能听懂。在这一周的时间内，希望基础语法不太会的同学能够抓紧学习，面向对象部分我们后面会讲">
+<meta name="twitter:image" content="http://www.pinjunz.com/2019/04/05/sipc_web4/searchweatherapi.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.pinjunz.com/2019/04/05/sipc_web4/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>科技协会web组后端方向第四次培训——API是什么东东 | 费心悦己</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">费心悦己</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于我</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.pinjunz.com/2019/04/05/sipc_web4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵品均">
+      <meta itemprop="description" content="2021届在读本科生">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="费心悦己">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">科技协会web组后端方向第四次培训——API是什么东东
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-05 16:27:18" itemprop="dateCreated datePublished" datetime="2019-04-05T16:27:18+08:00">2019-04-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-06 00:59:36" itemprop="dateModified" datetime="2019-04-06T00:59:36+08:00">2019-04-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="重要！写在最前面"><a href="#重要！写在最前面" class="headerlink" title="重要！写在最前面"></a>重要！写在最前面</h1><p>本来这节课想给大家讲基础语法，但是整理过程中发现真的没啥好说的，太多东西都和c语言一样，并且寒假已经将学习基础语法的任务布置给大家了，而且我们快要考核了，如果此时再讲太多基础语法，那么势必在考核之前大家学不到什么后端方向核心的东西。因此本周的两节课我们先讲核心内容，这两节内容即便你不会基础语法也能听懂。在这一周的时间内，希望基础语法不太会的同学能够抓紧学习，面向对象部分我们后面会讲，如果不会不必死抠。<br>在这一周内，如果有觉得比较难懂的部分可以私聊给我，本学期的第三次课我们会集中处理一下基本语法中的难点，下面列一个需要自学的基础语法列表，列表里没有提到的基础语法我们都会在第三次课讲。<br><a id="more"></a></p>
+<h2 id="因时间关系直接略过的php基础语法表，希望大家能在一周内把不了解的看会并至少实践一次。"><a href="#因时间关系直接略过的php基础语法表，希望大家能在一周内把不了解的看会并至少实践一次。" class="headerlink" title="因时间关系直接略过的php基础语法表，希望大家能在一周内把不了解的看会并至少实践一次。"></a>因时间关系直接略过的php基础语法表，希望大家能在一周内把不了解的看会并至少实践一次。</h2><ul>
+<li>php语言基础<ul>
+<li>数据类型</li>
+<li>变量</li>
+<li>常量</li>
+<li>预定义常量</li>
+</ul>
+</li>
+<li>流程控制语句<ul>
+<li>条件控制</li>
+<li>循环控制</li>
+<li>跳转语句</li>
+<li>包含语句</li>
+</ul>
+</li>
+<li>函数<ul>
+<li>函数的使用</li>
+<li>函数的参数</li>
+<li>函数的返回值</li>
+<li>可变函数</li>
+<li>内置函数</li>
+<li>匿名函数</li>
+<li>迭代与递归</li>
+</ul>
+</li>
+<li>字符串<ul>
+<li>单引号与双引号的区别</li>
+<li>字符串连接符</li>
+<li>字符串操作函数（先不看也行）</li>
+</ul>
+</li>
+<li><p>数组</p>
+<ul>
+<li>如何使用数组</li>
+<li>多维数组</li>
+<li>数组的各种操作（先不看也行）</li>
+<li>系统预定义数组（会讲，先不看也行）</li>
+</ul>
+<h2 id="学习本节课你需要掌握的知识：表单，javascript"><a href="#学习本节课你需要掌握的知识：表单，javascript" class="headerlink" title="学习本节课你需要掌握的知识：表单，javascript"></a>学习本节课你需要掌握的知识：表单，javascript</h2><p>温馨提示：本节课非常重要</p>
+<h2 id="api是什么"><a href="#api是什么" class="headerlink" title="api是什么"></a>api是什么</h2><p>如果你在百度百科上搜索，你会得到如下结果：API（Application Programming Interface，应用程序编程接口）是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。那么再通俗一点来说，API究竟是什么呢？</p>
+<blockquote>
+<p>在我学习软件开发之前，API听起来似乎像是一种啤酒。<br>而现在，我开始频繁使用这一术语，以至于我在酒吧里都想点一杯API来喝喝看了。<br>酒保发送的响应是：“查无此酒”——404：找不到该资源。</p>
+</blockquote>
+<p>好吧我承认上面这段是抄的，在我看来，整个酒吧如果算一个应用程序的话故事里的酒保更像是api<br>当我们点酒时向酒保（api）发送一个请求，酒保去查酒，并回复给你相应的结果。<br>让我们来看一个实例：</p>
+<p>最近我在玩ios开发，正在做一个天气预报的软件，天气预报软件最重要的部分就是获得查询城市的天气，这个时候就可一调用某团体（例如中央气象台）已经写好的api获得天气数据，这里我上网搜索“天气预报api”并点击第一个查询结果：<br><img src="/2019/04/05/sipc_web4/searchweatherapi.png" alt="avatar"><br>醒目的接口地址 <a href="http://www.weather.com.cn/data/sk/101110101.html" target="_blank" rel="noopener">http://www.weather.com.cn/data/sk/101110101.html</a><br>点进去：<br>（图片下课补）<br>这里我们看到了几行数据，这就是当前访问的结果。<br>这里的数据是有传输格式的，当前的格式为json，为了查看方便，我使用接口测试软件重新调用这个api：<br>（图片下课补）<br>可以清楚地看到结果查询结果</p>
+</li>
+</ul>
+<p>看完了以上案例，我想你已经清楚地知道api是做什么的了<br>通常一个应用程序，与之对应的api有多个，每个api有着不同的分工，比如有专门负责登录注册的api，有专门查询app版本号的api，有专门修改用户信息的api….</p>
+<h2 id="关于传输数据的格式问题"><a href="#关于传输数据的格式问题" class="headerlink" title="关于传输数据的格式问题"></a>关于传输数据的格式问题</h2><p>当前主流的数据传输格式有两种</p>
+<ul>
+<li>json</li>
+<li>xml</li>
+</ul>
+<p>json 格式数据的基本样式<br><img src="/2019/04/05/sipc_web4/json.png" alt="avatar"><br>xml 格式数据的基本样式<br><img src="/2019/04/05/sipc_web4/xml.png" alt="avatar"></p>
+<h2 id="如何将获得的返回数据解析"><a href="#如何将获得的返回数据解析" class="headerlink" title="如何将获得的返回数据解析"></a>如何将获得的返回数据解析</h2><p>使用js有多种方式，这里使用ajax（一个jQuery插件的方法），因为我们讲后端，这里不多介绍<br>直接看js的示例代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#submit"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//获得文档对象id为submit，设置监听事件</span></span><br><span class="line">  $.ajax(&#123;</span><br><span class="line">    type:<span class="string">"数据提交方式"</span>,</span><br><span class="line">    url:<span class="string">"apiURL"</span>,</span><br><span class="line">    headers : &#123; <span class="string">'content-type'</span> : <span class="string">'application/x-www-form-urlencoded'</span> &#125;,<span class="comment">//请求头</span></span><br><span class="line">    data: $(<span class="string">'#form1'</span>).serialize(), <span class="comment">//serialize方法获得表单内容</span></span><br><span class="line">    <span class="keyword">async</span>: <span class="literal">false</span>,  <span class="comment">//是否异步处理</span></span><br><span class="line">    timeout : <span class="number">50000</span>, <span class="comment">//同步处理的超时限制</span></span><br><span class="line">    dataType:<span class="string">"json"</span>, <span class="comment">//数据格式为json</span></span><br><span class="line">    success:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;  <span class="comment">//成功</span></span><br><span class="line">      alert(res);</span><br><span class="line">    &#125;,</span><br><span class="line">    error:<span class="function"><span class="keyword">function</span>(<span class="params">XMLHttpRequest, textStatus, errorThrown</span>)</span>&#123; <span class="comment">//失败</span></span><br><span class="line">      alert(XMLHttpRequest.status);<span class="comment">//状态码</span></span><br><span class="line">      alert(XMLHttpRequest.readyState);<span class="comment">//状态</span></span><br><span class="line">      alert(textStatus);<span class="comment">//错误信息</span></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="小实验，用php开发一个接口并在前端调用它"><a href="#小实验，用php开发一个接口并在前端调用它" class="headerlink" title="小实验，用php开发一个接口并在前端调用它"></a>小实验，用php开发一个接口并在前端调用它</h3><ul>
+<li>后端接口的设计</li>
+<li>前端ajax请求</li>
+<li>接口测试和常见错误<h2 id="进阶：-跨域请求"><a href="#进阶：-跨域请求" class="headerlink" title="进阶： 跨域请求"></a>进阶： 跨域请求</h2><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3>浏览器出于安全方面的考虑，只允许与本域下的接口交互（当前页面得url必须和接口得url是同源的）。不同源的客户端脚本在没有明确授权的情况下，不能读写对方的资源。<h4 id="同源"><a href="#同源" class="headerlink" title="同源"></a>同源</h4></li>
+<li>同协议：如都是http或者https</li>
+<li>同域名：如都是<a href="https://www.pinjunz.com/a">https://www.pinjunz.com/a</a> 和<a href="https://www.pinjunz.com/b">https://www.pinjunz.com/b</a></li>
+<li>同端口：如都是80端口</li>
+</ul>
+<p>以上有一条不满足即为不同源<br>我在本机用ajax做一个跨域请求，会出现拒绝访问的情况，因为ajax不支持跨域<br><img src="/2019/04/05/sipc_web4/ky.png" alt="avatar"></p>
+<h3 id="跨域解决方法（有多种）"><a href="#跨域解决方法（有多种）" class="headerlink" title="跨域解决方法（有多种）"></a>跨域解决方法（有多种）</h3><ul>
+<li>jsonp跨域</li>
+<li>php修改请求头</li>
+<li>nginx反向代理</li>
+</ul>
+<p>因为有些同学php的基础可能现在还不太好，所以我们这里用大家已经学过的js的方法</p>
+<h4 id="jsonp跨域："><a href="#jsonp跨域：" class="headerlink" title="jsonp跨域："></a>jsonp跨域：</h4><blockquote>
+<p>JSONP（JSON with Padding：填充式JSON)，应用JSON的一种新方法，<br>JSON、JSONP的区别：<br>　1、JSON返回的是一串数据、JSONP返回的是脚本代码(包含一个函数调用)<br>　2、JSONP 只支持get请求、不支持post请求<br>　(类似往页面添加一个script标签，通过src属性去触发对指定地址的请求,故只能是Get请求)</p>
+</blockquote>
+<p>以上是抄的，更通俗一点的讲，就是：</p>
+<blockquote>
+<p>HTML 中 script 标签可以加载其他域下的js，也就是说script的src能使用任何网站对应得文件，只要该网站愿意去提供这个东西。</p>
+</blockquote>
+<p>原生的js代码有一点麻烦，好在ajax已经对jsonp进行了很好的封装，所以一下只用ajax做一遍测试：</p>
+<h5 id="前端核心代码："><a href="#前端核心代码：" class="headerlink" title="前端核心代码："></a>前端核心代码：</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//该部分在tomcat服务器上，端口号8080，为了区别于apache的默认端口80，来造成一个跨域访问</span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">contentType</span>=<span class="string">"text/html;charset=UTF-8"</span> <span class="attr">language</span>=<span class="string">"java"</span> %&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>跨域查询<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> <span class="comment">&lt;!-- jQuery Library --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span> = <span class="string">"search"</span>&gt;</span>点击这里查询信息！<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    $(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span></span><br><span class="line"><span class="javascript">        script.type = <span class="string">'text/javascript'</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 传参并指定回调执行函数为onBack</span></span></span><br><span class="line"><span class="javascript">        script.src = <span class="string">'http://127.0.0.1:80/sipctest/response.php?callback=showdata'</span>;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.head.appendChild(script);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    &#125;)</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 回调执行函数</span></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">showdata</span>(<span class="params">res</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="built_in">JSON</span>.stringify(res));</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="后端部分核心代码"><a href="#后端部分核心代码" class="headerlink" title="后端部分核心代码"></a>后端部分核心代码</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//该部分在apache服务器上，端口号为80</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">"conn.php"</span>);</span><br><span class="line">$result = mysqli_fetch_assoc($conn -&gt; query(<span class="string">"select *  from sipcer where sno = '20175552'"</span>));</span><br><span class="line">$callback = !<span class="keyword">empty</span>($_GET[<span class="string">'callback'</span>]) ? trim($_GET[<span class="string">'callback'</span>]) : <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">empty</span>($callback)) &#123;</span><br><span class="line">    $data = json_encode($result);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&#123;$callback&#125;(&#123;$data&#125;);"</span>;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/04/05/sipc_web4/kyresult.png" alt="avatar"></p>
+<h3 id="最后：完成一个实时获得天气的网页"><a href="#最后：完成一个实时获得天气的网页" class="headerlink" title="最后：完成一个实时获得天气的网页"></a>最后：完成一个实时获得天气的网页</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果对你有用送我点零食吧( •̀ ω •́ )！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="赵品均 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/记录/" rel="tag"># 记录</a>
+          
+            <a href="/tags/培训/" rel="tag"># 培训</a>
+          
+            <a href="/tags/SIPC/" rel="tag"># SIPC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/15/weekly190315/" rel="next" title="周记：关于努力这件小事😈">
+                <i class="fa fa-chevron-left"></i> 周记：关于努力这件小事😈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="赵品均">
+            
+              <p class="site-author-name" itemprop="name">赵品均</p>
+              <p class="site-description motion-element" itemprop="description">2021届在读本科生</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:834550296@qq.com" title="E-Mail &rarr; mailto:834550296@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chenxiumiao.cn/" title="https://chenxiumiao.cn/" rel="noopener" target="_blank">辰宿喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cactus1102.club" title="https://www.cactus1102.club" rel="noopener" target="_blank">D&X's Studio.</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://codeminions.github.io" title="https://codeminions.github.io" rel="noopener" target="_blank">Minions</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#重要！写在最前面"><span class="nav-number">1.</span> <span class="nav-text">重要！写在最前面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#因时间关系直接略过的php基础语法表，希望大家能在一周内把不了解的看会并至少实践一次。"><span class="nav-number">1.1.</span> <span class="nav-text">因时间关系直接略过的php基础语法表，希望大家能在一周内把不了解的看会并至少实践一次。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习本节课你需要掌握的知识：表单，javascript"><span class="nav-number">1.2.</span> <span class="nav-text">学习本节课你需要掌握的知识：表单，javascript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#api是什么"><span class="nav-number">1.3.</span> <span class="nav-text">api是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于传输数据的格式问题"><span class="nav-number">1.4.</span> <span class="nav-text">关于传输数据的格式问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何将获得的返回数据解析"><span class="nav-number">1.5.</span> <span class="nav-text">如何将获得的返回数据解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#小实验，用php开发一个接口并在前端调用它"><span class="nav-number">1.5.1.</span> <span class="nav-text">小实验，用php开发一个接口并在前端调用它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶：-跨域请求"><span class="nav-number">1.6.</span> <span class="nav-text">进阶： 跨域请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同源策略"><span class="nav-number">1.6.1.</span> <span class="nav-text">同源策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同源"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">同源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域解决方法（有多种）"><span class="nav-number">1.6.2.</span> <span class="nav-text">跨域解决方法（有多种）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jsonp跨域："><span class="nav-number">1.6.2.1.</span> <span class="nav-text">jsonp跨域：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#前端核心代码："><span class="nav-number">1.6.2.1.1.</span> <span class="nav-text">前端核心代码：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#后端部分核心代码"><span class="nav-number">1.6.2.1.2.</span> <span class="nav-text">后端部分核心代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后：完成一个实时获得天气的网页"><span class="nav-number">1.6.3.</span> <span class="nav-text">最后：完成一个实时获得天气的网页</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵品均</span>
+
+  
+
+  
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
