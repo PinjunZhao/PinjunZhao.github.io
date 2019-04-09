@@ -119,7 +119,7 @@
 <meta property="og:image" content="http://www.pinjunz.com/2019/04/07/ios1/Outlet.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/04/07/ios1/developerhelp.png">
 <meta property="og:image" content="http://www.pinjunz.com/2019/04/07/ios1/motion.png">
-<meta property="og:updated_time" content="2019-04-09T09:28:45.017Z">
+<meta property="og:updated_time" content="2019-04-09T09:36:11.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="周记 + 跟着项目学IOS12入门记录 xcode-storyboard、IBOutlet、IBAction">
 <meta name="twitter:description" content="前言（也算一个小周记吧！）：关于为什么要开ios的坑第一点还是自己有兴趣，一旦接触了xcode storyboard之后简直是欲罢不能，上瘾了，简直就是为设计师设计的工具啊！同时现在市场上ios的岗位还是比较少的，相比现阶段比较擅长的web方向可能ios将来明年实习会好找一些（一个懂后端的人无论什么方向可能都会更有竞争力😁）前段时间如火如荼的蓝桥杯和天梯赛也比完了，蓝桥杯一败涂地（回来明明都上知">
@@ -418,7 +418,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-09 17:28:45" itemprop="dateModified" datetime="2019-04-09T17:28:45+08:00">2019-04-09</time>
+                <time title="修改时间：2019-04-09 17:36:11" itemprop="dateModified" datetime="2019-04-09T17:36:11+08:00">2019-04-09</time>
               
             
           </span>
@@ -457,12 +457,12 @@
 
       
         <h2 id="前言（也算一个小周记吧！）：关于为什么要开ios的坑"><a href="#前言（也算一个小周记吧！）：关于为什么要开ios的坑" class="headerlink" title="前言（也算一个小周记吧！）：关于为什么要开ios的坑"></a>前言（也算一个小周记吧！）：关于为什么要开ios的坑</h2><p>第一点还是自己有兴趣，一旦接触了xcode storyboard之后简直是欲罢不能，上瘾了，简直就是为设计师设计的工具啊！<br>同时现在市场上ios的岗位还是比较少的，相比现阶段比较擅长的web方向可能ios将来明年实习会好找一些（一个懂后端的人无论什么方向可能都会更有竞争力😁）<br>前段时间如火如荼的蓝桥杯和天梯赛也比完了，蓝桥杯一败涂地（回来明明都上知乎对了答案）。提交的时候发现少做一道题，但是所有题目都提交了，考完就怀疑是不是有提交错位的题，发下成绩来看到结果就确定了自己的怀疑…谁也不能怪，只能怪自己粗心吧，到最后一刻还在死扣高阶圣堂武士。<br>本来想要证明自己，最后却是一个笑话。有时候努力收不到成果的时候，真的感觉很孤独…<br>就这样失落了几天又高高兴兴的去比天梯赛了。<br>今年天梯赛字符串处理得题是真的多，我也没用过他们的平台，不知道每道题右上角是有当前通过率的，于是就喜闻乐见的卡在了到最后也没几个人过的1-8，本来以为自己是队伍里最菜的，结果比完交流了一下发现大家都没做出来☹️，可是有这个时间..我为什么不去做L2的题呢？一个半小时白白浪费了。<br>还好队伍最终拿到了期待的奖项…<br>收拾好情绪，推掉了积压在身上数月的项目，一身轻松，眼下技术方面只有一个信安比赛的前端和培训科协两个任务了！<br>于是：打开了Apple开发者网站，（也是为了完成学习深搜时立下的做一个解数独小程序的flag）我决定与当前世界上最大的科技公司站在一队：<br>然后再给本文加个配乐吧，这样就完美了：苹果发布会用过的：（讲道理发布会这么多音乐也就共和时代的两首好听点🙃）<br>
-        <div id="aplayer-EBvhJnDm" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-GHFktaSi" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-EBvhJnDm"),
+            element: document.getElementById("aplayer-GHFktaSi"),
             narrow: false,
             autoplay: false,
             showlrc: false,
@@ -482,7 +482,7 @@
 <h3 id="设备需求"><a href="#设备需求" class="headerlink" title="设备需求"></a>设备需求</h3><p>需要一台OSX系统的设备。没有Mac也不用装黑苹果，<a href="https://www.macincloud.com/" target="_blank" rel="noopener">戳这里Mac in cloud</a></p>
 <h3 id="xcode"><a href="#xcode" class="headerlink" title="xcode"></a>xcode</h3><p>有了系统还需要xcode软件</p>
 <h4 id="xcode-关于IOS和OSX开发的界面介绍"><a href="#xcode-关于IOS和OSX开发的界面介绍" class="headerlink" title="xcode 关于IOS和OSX开发的界面介绍"></a>xcode 关于IOS和OSX开发的界面介绍</h4><p>新建一个xcodeProject，选中ios栏下面的Single View App（如果要开发osx软件，选择macos下的cocoa App）<br><img src="/2019/04/07/ios1/xcodeproject.png" alt="avatar"><br>如果需要将项目安装到真机上，需要设置team：团体名和团体id自己填：<br><img src="/2019/04/07/ios1/project.png" alt="avatar"><br>左侧导航栏和文件夹：<br><img src="/2019/04/07/ios1/leftdh.png" alt="avatar"><br>右侧：<br><img src="/2019/04/07/ios1/rightdh.png" alt="avatar"><br>其他杂七杂八的..太多啦！就提以上这几个非常重要的吧</p>
-<h3 id="关于swift的版本"><a href="#关于swift的版本" class="headerlink" title="关于swift的版本"></a>关于swift的版本</h3><p>swift版本适合xcode接挂钩的，10.2当前时间最新版本的xcode支持swift及以上的版本，所以有什么swift3的项目，10.2的xcode肯定是运行不了的。</p>
+<h3 id="关于swift的版本"><a href="#关于swift的版本" class="headerlink" title="关于swift的版本"></a>关于swift的版本</h3><p>swift版本是和xcode接挂钩的，10.2当前时间最新版本的xcode支持swift4及以上的版本，所以有什么swift3的项目，10.2的xcode肯定是运行不了的。</p>
 <h3 id="关于开发应用的资源："><a href="#关于开发应用的资源：" class="headerlink" title="关于开发应用的资源："></a>关于开发应用的资源：</h3><p>上面已经展示了资源文件夹，把图片拖进去～注意像素对应！<br><img src="/2019/04/07/ios1/assets.png" alt="avatar"></p>
 <h2 id="storyboard与ViewController"><a href="#storyboard与ViewController" class="headerlink" title="storyboard与ViewController"></a>storyboard与ViewController</h2><p>点击刚才的控件管理按钮，在弹出的控件管理窗口中和storyboard的iphone界面中大展身手吧！<br><img src="/2019/04/07/ios1/storyboard.png" alt="avatar"></p>
 <h3 id="控件与ViewController的关联："><a href="#控件与ViewController的关联：" class="headerlink" title="控件与ViewController的关联："></a>控件与ViewController的关联：</h3><p><img src="/2019/04/07/ios1/IBOutlet.png" alt="avatar"><br>这里以Mabgic 8 Bell为例，选中中间的图片按住control拖出一个关联到ViewController类下，在弹出的对话框中选择Outlet，tepe设为UIImageView。名字起一个对应它功能的<br><img src="/2019/04/07/ios1/Outlet.png" alt="avatar"><br>对应的，按钮也拖到ViewController类下，选择链接方式为action，毕竟它是一个行为（点击改变图片）type设为UIbutton，Event设为Touch Up Inside（即当点击且在按钮内松开）时触发，设置完成后同样自动生成代码，只需完善点击后进行的部分。</p>
