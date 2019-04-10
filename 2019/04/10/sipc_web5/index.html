@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit_32px.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit_16px.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="api试验后续：cookie什么是cookie当我们登录淘宝网后，一个比较amazing的事情是：当我们关闭浏览器一段时间之后再次访问淘宝网，会发现不需要我们再次登录，直接在页面上侧就可以查看到我们的账号已经是登陆的状态：这实际上就是淘宝在我们的存储了一个叫做cookie的东西。当我使用chrome浏览器地址栏右侧的小按钮时，会看到当前访问网页对我们使用cookie的情况：在图片有cookie的名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科技协会web组后端方向第五次培训——session、cookie、正则表达式">
+<meta property="og:url" content="http://www.pinjunz.com/2019/04/10/sipc_web5/index.html">
+<meta property="og:site_name" content="费心悦己">
+<meta property="og:description" content="api试验后续：cookie什么是cookie当我们登录淘宝网后，一个比较amazing的事情是：当我们关闭浏览器一段时间之后再次访问淘宝网，会发现不需要我们再次登录，直接在页面上侧就可以查看到我们的账号已经是登陆的状态：这实际上就是淘宝在我们的存储了一个叫做cookie的东西。当我使用chrome浏览器地址栏右侧的小按钮时，会看到当前访问网页对我们使用cookie的情况：在图片有cookie的名">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/10/sipc_web5/taobao.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/10/sipc_web5/taobaocookie.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/10/sipc_web5/cookieexample.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/10/sipc_web5/sipc_web5/httpcookie.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/10/sipc_web5/network.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/10/sipc_web5/smile.jpg">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/10/sipc_web5/sessionheader.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/10/sipc_web5/smile.jpg">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/10/sipc_web5/zzbds.png">
+<meta property="og:updated_time" content="2019-04-10T15:32:46.700Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="科技协会web组后端方向第五次培训——session、cookie、正则表达式">
+<meta name="twitter:description" content="api试验后续：cookie什么是cookie当我们登录淘宝网后，一个比较amazing的事情是：当我们关闭浏览器一段时间之后再次访问淘宝网，会发现不需要我们再次登录，直接在页面上侧就可以查看到我们的账号已经是登陆的状态：这实际上就是淘宝在我们的存储了一个叫做cookie的东西。当我使用chrome浏览器地址栏右侧的小按钮时，会看到当前访问网页对我们使用cookie的情况：在图片有cookie的名">
+<meta name="twitter:image" content="http://www.pinjunz.com/2019/04/10/sipc_web5/taobao.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.pinjunz.com/2019/04/10/sipc_web5/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>科技协会web组后端方向第五次培训——session、cookie、正则表达式 | 费心悦己</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">费心悦己</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于我</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.pinjunz.com/2019/04/10/sipc_web5/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵品均">
+      <meta itemprop="description" content="2021届在读本科生">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="费心悦己">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">科技协会web组后端方向第五次培训——session、cookie、正则表达式
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-10 12:44:14 / 修改时间：23:32:46" itemprop="dateCreated datePublished" datetime="2019-04-10T12:44:14+08:00">2019-04-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="api试验后续："><a href="#api试验后续：" class="headerlink" title="api试验后续："></a>api试验后续：</h2><h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><h3 id="什么是cookie"><a href="#什么是cookie" class="headerlink" title="什么是cookie"></a>什么是cookie</h3><p>当我们登录淘宝网后，一个比较amazing的事情是：当我们关闭浏览器一段时间之后再次访问淘宝网，会发现不需要我们再次登录，直接在页面上侧就可以查看到我们的账号已经是登陆的状态：<br><img src="/2019/04/10/sipc_web5/taobao.png" alt="avatar"><br>这实际上就是淘宝在我们的存储了一个叫做cookie的东西。当我使用chrome浏览器地址栏右侧的小按钮时，会看到当前访问网页对我们使用cookie的情况：<br><img src="/2019/04/10/sipc_web5/taobaocookie.png" alt="avatar"><br><img src="/2019/04/10/sipc_web5/cookieexample.png" alt="avatar"><br>在图片有cookie的名称，内容，创建时间，到期时间<br>因为有“保质期”，这也就解释了我们长时间不上淘宝，需要重新登录的原因。<br>在设置-&gt;高级 里面把cookie删除试试呢？<br>…<br>同时在http请求中，我们也能找到浏览器设置该网页为我们设置cookie的情况:<br><img src="sipc_web5/httpcookie.png" alt="avatar"><br>对应的，我们也可以直接在network项的cookie栏中更直观的看到cookie的设置情况<br><img src="/2019/04/10/sipc_web5/network.png" alt="avatar"><br>上图（不是淘宝网）<br>response.cookie是将内容写入到客户端的COOKIE里面 这个是在浏览器内的<br>request.cookie是将内容从客户端浏览器里面读出来对应的COOKIE内容</p>
+<p>结合以上案例分析：</p>
+<blockquote>
+<p>“Cookie是一种存储在客户端的数据，能存储Cookie的客户端不只是浏览器，但绝大多数情况下都是由浏览器来实现的。浏览器通过HTTP协议和服务端进行Cookie交互。Cookie是独立于语言而存在的，很多种语言都可以设置和读取Cookie。在实现过程中，编程语言是通过指令通知浏览器，然后是浏览器实现设置Cookie的功能的。读取Cookie则是通过浏览器请求服务端时携带的HTTP头部中的Cookie信息得来的。”</p>
+</blockquote>
+<h3 id="php设置cookie"><a href="#php设置cookie" class="headerlink" title="php设置cookie"></a>php设置cookie</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bool setcookie (string $name [, string $value = <span class="string">""</span> [, int $expire = <span class="number">0</span> [, string $path = <span class="string">""</span> [, string $domain = <span class="string">""</span> [,</span><br><span class="line">bool $secure = <span class="keyword">false</span> [, bool $httponly = <span class="keyword">false</span> ]]]]]] );</span><br></pre></td></tr></table></figure>
+<ul>
+<li>name cookie的名称</li>
+<li>value Cookie 值。 这个值储存于用户的电脑里，请勿储存敏感信息。 比如 name 是 ‘cookiename’， 可通过 $_COOKIE[‘cookiename’] 获取它的值。</li>
+<li>expire Cookie 的过期时间。 这是个 Unix 时间戳，即 Unix 纪元以来（格林威治时间 1970 年 1 月 1 日 00:00:00）的秒数。 也就是说，基本可以用 time() 函数的结果加上希望过期的秒数。</li>
+<li>path Cookie 有效的服务器路径。 设置成 ‘/‘ 时，Cookie 对整个域名 domain 有效。 如果设置成 ‘/foo/‘， Cookie 仅仅对 domain 中 /foo/ 目录及其子目录有效（比如 /foo/bar/）。 默认值是设置 Cookie 时的当前目录。</li>
+<li>Cookie 的有效域名/子域名。 设置成子域名（例如 ‘<a href="http://www.example.com&#39;），会使" target="_blank" rel="noopener">www.example.com&#39;），会使</a> Cookie 对这个子域名和它的三级域名有效（例如 w2.<a href="http://www.example.com）。" target="_blank" rel="noopener">www.example.com）。</a> 要让 Cookie 对整个域名有效（包括它的全部子域名），只要设置成域名就可以了（这个例子里是 ‘example.com’）。</li>
+<li>设置成 TRUE，Cookie 仅可通过 HTTP 协议访问。 这意思就是 Cookie 无法通过类似 JavaScript 这样的脚本语言访问。 要有效减少 XSS 攻击时的身份窃取行为，可建议用此设置（虽然不是所有浏览器都支持），不过这个说法经常有争议。<h3 id="删除cookie"><a href="#删除cookie" class="headerlink" title="删除cookie"></a>删除cookie</h3>unset()函数<h3 id="php示例"><a href="#php示例" class="headerlink" title="php示例"></a>php示例</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setcookie(<span class="string">"TestCookie"</span>, $value, time()+<span class="number">3600</span>);  <span class="comment">/* 1 小时过期  */</span></span><br><span class="line"><span class="keyword">unset</span>($_COOKIE[<span class="string">'TestCookie'</span>]); <span class="comment">//删除cookie</span></span><br><span class="line">setcookie(<span class="string">"TestCookie"</span>, $value, time()<span class="number">-3600</span>);  <span class="comment">//设成负数，删除cookie</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="javascript设置cookie"><a href="#javascript设置cookie" class="headerlink" title="javascript设置cookie"></a>javascript设置cookie</h3><p>相较于php设置cookie来说，比较麻烦，直接给出完整实例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">cname,cvalue,exdays</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//设置一个日期对象</span></span><br><span class="line">    <span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="comment">//该日期对象时间为1天</span></span><br><span class="line">    d.setTime(d.getTime()+(exdays*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>));</span><br><span class="line">    <span class="comment">//拼接字符串</span></span><br><span class="line">    <span class="keyword">var</span> expires = <span class="string">"expires="</span> + d.toGMTString();</span><br><span class="line">    <span class="comment">//设置cookie</span></span><br><span class="line">    <span class="built_in">document</span>.cookie = cname + <span class="string">"="</span> + cvalue + <span class="string">"; "</span> + expires;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">cname</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//设置查询字符串</span></span><br><span class="line">    <span class="keyword">var</span> name = cname + <span class="string">"="</span>;</span><br><span class="line">    <span class="comment">//获取全部cookie并以;为界将字符串分割为数组</span></span><br><span class="line">    <span class="keyword">var</span> ca = <span class="built_in">document</span>.cookie.split(<span class="string">';'</span>);</span><br><span class="line">    <span class="comment">//遍历分隔好的存储cookie值数组</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; ca.length; i++) &#123;</span><br><span class="line">      <span class="comment">//去掉字符串两侧多与空格</span></span><br><span class="line">        <span class="keyword">var</span> c = ca[i].trim();</span><br><span class="line">        <span class="comment">//存在（首次出现位置为0）</span></span><br><span class="line">        <span class="keyword">if</span> (c.indexOf(name)==<span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(c);</span><br><span class="line">            <span class="comment">//返回编辑后的字符串();</span></span><br><span class="line">            <span class="keyword">return</span> c.substring(name.length,c.length);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkCookie</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> user = getCookie(<span class="string">"username"</span>);</span><br><span class="line">    <span class="keyword">if</span> (user != <span class="string">""</span>)&#123;</span><br><span class="line">        alert(<span class="string">"欢迎 "</span> + user + <span class="string">" 再次访问"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        user = prompt(<span class="string">"请输入你的名字: "</span>,<span class="string">" "</span>);</span><br><span class="line">        <span class="keyword">if</span> (user != <span class="string">""</span> &amp;&amp; user != <span class="literal">null</span>)&#123;</span><br><span class="line">          setCookie(<span class="string">"username"</span>,user,<span class="number">30</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><del>(30s内~)</del><br>同php一样，js删除cookie只需要将时间设为负数</p>
+<h3 id="cookie的应用和存储机制"><a href="#cookie的应用和存储机制" class="headerlink" title="cookie的应用和存储机制"></a>cookie的应用和存储机制</h3><p>Cookie经常用来存储一些不敏感的信息，如用来防止刷票、记录用户名、限制重复提交等<br>以上代码实现的是防止用户在一分钟之内多次提交表单，当用户第一次提交表单时，设置Cookie有效期为1分钟，当再次提交时判断Cookie是否过期来限制用户的提交<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">SetCookie</span>(<span class="params">name, value</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> Days = <span class="number">30</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="built_in">Date</span>();</span></span><br><span class="line"><span class="javascript">    exp.setTime(exp.getTime() + <span class="number">60</span> * <span class="number">100</span>);<span class="comment">//过期时间为1分钟</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.cookie = name + <span class="string">"="</span> + <span class="built_in">escape</span>(value) + <span class="string">";expires="</span> + exp.toGMTString();</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">submit</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span>(getCookie(<span class="string">'submit'</span>)) &#123;</span></span><br><span class="line"><span class="javascript">      alert(<span class="string">'you haved submited before,please submit after one minute'</span>);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">      SetCookie(<span class="string">'submit'</span>,<span class="string">'yes'</span>);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">name</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> arr,reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^| )"</span>+name+<span class="string">"=([^;]*)(;|$)"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span>(arr=<span class="built_in">document</span>.cookie.match(reg))</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="built_in">unescape</span>(arr[<span class="number">2</span>]);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">else</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="literal">null</span>;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>“Cookie是存储在客户端的一段数据，但是不同的浏览器存储Cookie的地方不同：一种是将Cookie数据保存在文件中，另一种是保存在浏览器内存中。<br>在Windows系统上（这里以Windows 7为例）。IE浏览器Cookie数据位于%APPDATA%\ Microsoft\Windows\Cookies\目录中的xxx.txt文件，里面可能有很多个.txt Cookie文件，如C:\Users\yren9\AppData\Roaming\Microsoft\Windows\Cookies\0WQ6YROK.txt。<br>在IE浏览器中，IE将各个站点的Cookie分别保存为一个XXX.txt这样的纯文本文件；而Firefox和Chrome是将所有的Cookie都保存在一个文件中，该文件的格式为SQLite数据库格式的文件。Firefox的Cookie数据位于%APPDATA%\Mozilla\Firefox\Profiles\目录中的xxx.default目录下，名为Cookies.sqlite的文件中，如C:\Users\jay\AppData\Roaming\Mozilla\Firefox\Profiles\ji4grfex.default\cookies.sqlite。<br>在Firefox中查看Cookie，可以选择“工具&gt;选项&gt;隐私&gt;显示Cookie”。Chrome的Cookie数据位于%LOCALAPPDATA%\Google\Chrome\User Data[…]”</p>
+<p>摘录来自: 陈小龙. “PHP7实践指南：O2O网站与App后台开发。” Apple Books.</p>
+</blockquote>
+<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p><img src="/2019/04/10/sipc_web5/smile.jpg" alt="avatar"><br>在有些不大的购物网站中（大网站一般把信息存数据库）..一个比较amazing的事情是：购物车里的东西无论在网站上怎么浏览，都不变，一关浏览器，或者换浏览器，购物车就空了<br>这就是用了session的原理，通过以上信息我们还可以得知：session的生命周期 = 浏览器生命周期<br>Session存储在服务端，本质上和Cookie没有区别，都是针对HTTP协议的局限性而提出的一种保持客户端和服务端间会话状态的机制常用来网站的上下文间实现页面变量的传递、用户身份认证、程序状态记录等，常见的有配合Cookie使用、实现保存用户的登录状态或者记录用户的购物下单信息等。<br>在我访问github时：<br><img src="/2019/04/10/sipc_web5/sessionheader.png" alt="avatar"><br>通过上图我们还能得出一个结论，某种程度上来说：session是需要cookie配合来设置的</p>
+<blockquote>
+<p>“当在代码中设置了Session时，在HTTP请求的消息头中会携带一个名为PHPSESSID的Cookie，其值是一个32位十六进制的字符串。每个客户端向服务器请求时都会产生一个不同的值，如果清除浏览器的Cookie，再次刷新页面时将会重新设置一个PHPSESSID的值。服务端接收到这个Cookie，根据其值在服务器中找到对应的Session文件，从而实现保持与客户端链接状态的信息，其中Session中存储着序列化的Session键值等信息。”</p>
+<p>摘录来自: 陈小龙. “PHP7实践指南：O2O网站与App后台开发。” Apple Books.</p>
+</blockquote>
+<p>session是”会话“的意思，我们需要开启这个会话，使用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  session_start();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>设置一个session：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$_SESSION[<span class="string">'name'</span>] = value;</span><br></pre></td></tr></table></figure></p>
+<h2 id="重要！session和cookie都需要在一切输出之前使用，否则报错"><a href="#重要！session和cookie都需要在一切输出之前使用，否则报错" class="headerlink" title="重要！session和cookie都需要在一切输出之前使用，否则报错"></a>重要！session和cookie都需要在一切输出之前使用，否则报错</h2><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>在有些网站的的注册页面，可能会让我们输手机号，邮箱号，一个比较amazing的事情是：故意输一个错的手机号（比如只有10位），网页竟然神奇般的知道我们输得是错的！<br><img src="/2019/04/10/sipc_web5/smile.jpg" alt="avatar"><br>太神奇啦！<br>他是怎么知道的呢？？？<br>正则表达式！<br>实例(用来验证是不是一串纯数字)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[0-9]*$</span><br></pre></td></tr></table></figure></p>
+<p>其实正则表达式类似sql语言，他是一种通用的,前端正则判断就用js结合正则表达式<br>正则表达式web开发必备！</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><blockquote>
+<p>构造正则表达式的方法和创建数学表达式的方法一样。也就是用多种元字符与运算符可以将小的表达式结合在一起来创建更大的表达式。正则表达式的组件可以是单个的字符、字符集合、字符范围、字符间的选择或者所有这些组件的任意组合。<br>正则表达式是由普通字符（例如字符 a 到 z）以及特殊字符（称为”元字符”）组成的文字模式。模式描述在搜索文本时要匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字符串进行匹配。</p>
+</blockquote>
+<p><img src="/2019/04/10/sipc_web5/zzbds.png" alt="avatar"></p>
+<ul>
+<li>runoo+b，可以匹配 runoob、runooob、runoooooob 等，+ 号代表前面的字符必须至少出现一次（1次或多次）。</li>
+<li>runoo<em>b，可以匹配 runob、runoob、runoooooob 等，</em> 号代表字符可以不出现，也可以出现一次或者多次（0次、或1次、或多次）。</li>
+<li>colou?r 可以匹配 color 或者 colour，? 问号代表前面的字符最多只可以出现一次（0次、或1次）。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//用户名正则，4到16位（字母，数字，下划线，减号）</span><br><span class="line">/^[a-zA-Z0-9_-]&#123;4,16&#125;$/;</span><br><span class="line"></span><br><span class="line">//手机号正则</span><br><span class="line">/^1([38]\d|5[0-35-9]|7[3678])\d&#123;8&#125;$/;</span><br><span class="line"></span><br><span class="line">//Email正则</span><br><span class="line">/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]&#123;2,4&#125;)$/;</span><br><span class="line"></span><br><span class="line">//包含中文正则</span><br><span class="line"></span><br><span class="line"> /[\u4E00-\u9FA5]/;</span><br></pre></td></tr></table></figure>
+<p>正则表达式还得多练，30分钟就学会的那是超人。<br>另外，推荐一个地方：<a href="http://www.bejson.com/othertools/regex_create/" target="_blank" rel="noopener">正则表达式生成</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果对你有用送我点零食吧( •̀ ω •́ )！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="赵品均 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/07/ios1/" rel="next" title="周记 + 跟着项目学IOS12入门记录 xcode-storyboard、IBOutlet、IBAction">
+                <i class="fa fa-chevron-left"></i> 周记 + 跟着项目学IOS12入门记录 xcode-storyboard、IBOutlet、IBAction
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="赵品均">
+            
+              <p class="site-author-name" itemprop="name">赵品均</p>
+              <p class="site-description motion-element" itemprop="description">2021届在读本科生</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:834550296@qq.com" title="E-Mail &rarr; mailto:834550296@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chenxiumiao.cn/" title="https://chenxiumiao.cn/" rel="noopener" target="_blank">辰宿喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cactus1102.club" title="https://www.cactus1102.club" rel="noopener" target="_blank">D&X's Studio.</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://codeminions.github.io" title="https://codeminions.github.io" rel="noopener" target="_blank">Minions</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://macchac.com/" title="https://macchac.com/" rel="noopener" target="_blank">蔡蔡的屋子</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#api试验后续："><span class="nav-number">1.</span> <span class="nav-text">api试验后续：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie"><span class="nav-number">2.</span> <span class="nav-text">cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是cookie"><span class="nav-number">2.1.</span> <span class="nav-text">什么是cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php设置cookie"><span class="nav-number">2.2.</span> <span class="nav-text">php设置cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除cookie"><span class="nav-number">2.3.</span> <span class="nav-text">删除cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php示例"><span class="nav-number">2.4.</span> <span class="nav-text">php示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javascript设置cookie"><span class="nav-number">2.5.</span> <span class="nav-text">javascript设置cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie的应用和存储机制"><span class="nav-number">2.6.</span> <span class="nav-text">cookie的应用和存储机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#session"><span class="nav-number">3.</span> <span class="nav-text">session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要！session和cookie都需要在一切输出之前使用，否则报错"><span class="nav-number">4.</span> <span class="nav-text">重要！session和cookie都需要在一切输出之前使用，否则报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">5.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简述"><span class="nav-number">5.1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">5.2.</span> <span class="nav-text">语法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵品均</span>
+
+  
+
+  
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
