@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit_32px.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit_16px.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一些每个大分类下只列出难点数据类型 字符串 整形 浮点型 布尔型 数组 对象 NULL值变量   以$符开始  其他与c基本相同 变量的作用域 local global static parameter在所有函数外部定义的变量拥有全局作用域，此变量称为全局变量。全局变量可以被脚本中的任何部分直接使用变量名称访问，但是要在一个函数定义体中访问一个全局变量，需要使用global关键字。在PHP函数内部">
+<meta name="keywords" content="记录,培训,SIPC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科技协会web组后端方向第五次培训——php基础查漏补缺、数据库复习">
+<meta property="og:url" content="http://www.pinjunz.com/2019/04/14/sipc_web6/index.html">
+<meta property="og:site_name" content="费心悦己">
+<meta property="og:description" content="一些每个大分类下只列出难点数据类型 字符串 整形 浮点型 布尔型 数组 对象 NULL值变量   以$符开始  其他与c基本相同 变量的作用域 local global static parameter在所有函数外部定义的变量拥有全局作用域，此变量称为全局变量。全局变量可以被脚本中的任何部分直接使用变量名称访问，但是要在一个函数定义体中访问一个全局变量，需要使用global关键字。在PHP函数内部">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/14/sipc_web6/sipc_web4/test1.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/14/sipc_web6/sipc_web4/magicconst.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/14/sipc_web6/sipc_web4/server.png">
+<meta property="og:image" content="http://www.pinjunz.com/2019/04/14/sipc_web6/sipc_web4/server2.png">
+<meta property="og:updated_time" content="2019-04-14T08:24:04.232Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="科技协会web组后端方向第五次培训——php基础查漏补缺、数据库复习">
+<meta name="twitter:description" content="一些每个大分类下只列出难点数据类型 字符串 整形 浮点型 布尔型 数组 对象 NULL值变量   以$符开始  其他与c基本相同 变量的作用域 local global static parameter在所有函数外部定义的变量拥有全局作用域，此变量称为全局变量。全局变量可以被脚本中的任何部分直接使用变量名称访问，但是要在一个函数定义体中访问一个全局变量，需要使用global关键字。在PHP函数内部">
+<meta name="twitter:image" content="http://www.pinjunz.com/2019/04/14/sipc_web6/sipc_web4/test1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.pinjunz.com/2019/04/14/sipc_web6/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>科技协会web组后端方向第五次培训——php基础查漏补缺、数据库复习 | 费心悦己</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">费心悦己</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于我</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.pinjunz.com/2019/04/14/sipc_web6/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵品均">
+      <meta itemprop="description" content="2021届在读本科生">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="费心悦己">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">科技协会web组后端方向第五次培训——php基础查漏补缺、数据库复习
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-14 15:49:49 / 修改时间：16:24:04" itemprop="dateCreated datePublished" datetime="2019-04-14T15:49:49+08:00">2019-04-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一些每个大分类下只列出难点"><a href="#一些每个大分类下只列出难点" class="headerlink" title="一些每个大分类下只列出难点"></a>一些每个大分类下只列出难点</h2><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ol>
+<li>字符串</li>
+<li>整形</li>
+<li>浮点型</li>
+<li>布尔型</li>
+<li>数组</li>
+<li>对象</li>
+<li>NULL值<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2></li>
+</ol>
+<ul>
+<li>以$符开始</li>
+</ul>
+<p>其他与c基本相同</p>
+<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><ul>
+<li>local</li>
+<li>global</li>
+<li>static</li>
+<li>parameter<br>在所有函数外部定义的变量拥有全局作用域，此变量称为全局变量。全局变量可以被脚本中的任何部分直接使用变量名称访问，但是要在一个函数定义体中访问一个全局变量，需要使用global关键字。<br>在PHP函数内部声明的变量是局部变量，仅能在函数内部访问。</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$x=<span class="number">5</span>; <span class="comment">// 全局变量</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">myTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">    $y=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;p&gt;Test variables inside the function:&lt;p&gt;"</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Variable x is:"</span> . $x;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Variable y is: $y"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  myTest();</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;p&gt;Test variables outside the function:&lt;p&gt;"</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"Variable x is:"</span> . $x;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"Variable y is: $y"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/04/14/sipc_web6/sipc_web4/test1.png" alt="avatar"><br>因为$x是在函数外部定义的，所以在函数内部无法访问$x；$y是在函数内部定义的，所以在外部也访问不到。如果要在函数内部访问$x，就必须在函数内先使用global，示例如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$x = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">global</span> $x;</span><br><span class="line">  <span class="keyword">echo</span> $x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//也可以这样写：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> $GLOBALS[<span class="string">'x'</span>];</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br><span class="line">test2();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当一个函数完成时，它的所有变量通常都会被删除。如果想让函数执行完毕时函数内的局部变量保留，可以使用static关键词。代码如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myTest1</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">static</span> $x=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">echo</span> $x;</span><br><span class="line">  $x++;</span><br><span class="line">&#125;</span><br><span class="line">myTest1();</span><br><span class="line">myTest1();</span><br><span class="line">myTest1();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这样当每次执行myTest()函数的时候，$x变量都会保存上一次调用时的值。上述代码的运行结果为：012。<br>在函数里还有一个参数作用域，即传递给函数的参数，参数在函数声明时即声明。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">($x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> $x;</span><br><span class="line"></span><br><span class="line">test(<span class="number">5</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>可变变量：动态的改变变量的名字，导致混乱，不推荐用。</p>
+<blockquote>
+<p>$$</p>
+</blockquote>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="comment">// 合法的常量名</span></span><br><span class="line">  define(<span class="string">"FOO"</span>,     <span class="string">"something"</span>);   <span class="comment">// 定义一个名为 FOO的常量</span></span><br><span class="line">  define(<span class="string">"FOO2"</span>,    <span class="string">"something else"</span>);</span><br><span class="line">  define(<span class="string">"FOO_BAR"</span>, <span class="string">"something more"</span>);</span><br><span class="line">  <span class="comment">// 非法的常量名</span></span><br><span class="line">  define(<span class="string">"2FOO"</span>,    <span class="string">"something"</span>);</span><br><span class="line">  <span class="keyword">const</span> A = <span class="string">'AAA'</span>;    <span class="comment">// 使用const 定义一个常量，与define定义效果一样</span></span><br><span class="line">  <span class="comment">// 下面的定义是合法的，但应该避免这样做（自定义常量不要以__开头）</span></span><br><span class="line">  <span class="comment">// 也许将来有一天PHP会定义一个__FOO__的魔术常量</span></span><br><span class="line">  <span class="comment">// 这样就会与你的代码相冲突</span></span><br><span class="line">  define(<span class="string">"__FOO__"</span>, <span class="string">"something"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="魔术常量"><a href="#魔术常量" class="headerlink" title="魔术常量"></a>魔术常量</h3><p><img src="/2019/04/14/sipc_web6/sipc_web4/magicconst.png" alt="avatar"></p>
+<h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><h3 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$arr = <span class="keyword">array</span>(</span><br><span class="line"><span class="string">"one"</span> =&gt; <span class="number">1</span>,</span><br><span class="line"><span class="string">"two"</span> =&gt; <span class="number">2</span>,</span><br><span class="line"><span class="string">"three"</span> =&gt; <span class="number">3</span>,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;pre&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"[$key] =&gt; $value\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>[one] =&gt; 1<br>[two] =&gt; 2<br>[three] =&gt; 3</p>
+</blockquote>
+<h3 id="包含语句"><a href="#包含语句" class="headerlink" title="包含语句"></a>包含语句</h3><ul>
+<li>include</li>
+<li>require</li>
+<li>include_once</li>
+<li>require_once</li>
+</ul>
+<p>_once 确保只被包含一次.例如，a.php代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">echo</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="number">2</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>test.php代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">'a.php'</span>;</span><br><span class="line">  <span class="keyword">include</span> <span class="string">'a.php'</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>运行test.php，打印结果为：1212</p>
+<p>如果test.php中的代码为：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include_once</span> <span class="string">'a.php'</span>;</span><br><span class="line">  <span class="keyword">include_once</span> <span class="string">'a.php'</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>那么运行test.php的结果为：12</p>
+<p>require语句和include语句几乎完全一样，不同的是当被包含的文件不存在时，require语句会发出一个Fatal error错误，程序终止执行；include则会发出一个Warining警告，接着向下执行。</p>
+<h2 id="预定义数组"><a href="#预定义数组" class="headerlink" title="预定义数组"></a>预定义数组</h2><h3 id="SERVER"><a href="#SERVER" class="headerlink" title="$_SERVER"></a>$_SERVER</h3><p><img src="/2019/04/14/sipc_web6/sipc_web4/server.png" alt="avatar"><br><figure class="highlight php7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;pre&gt;"</span>;</span><br><span class="line">    print_r($_SERVER);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/04/14/sipc_web6/sipc_web4/server2.png" alt="avatar"></p>
+<h3 id="REQUEST"><a href="#REQUEST" class="headerlink" title="$_REQUEST"></a>$_REQUEST</h3><p>默认情况下，$_REQUEST[]数组包含了$_GET、$_POST和$_COOKIE的数组。</p>
+<h3 id="FILE"><a href="#FILE" class="headerlink" title="$_FILE"></a>$_FILE</h3><p>$_FILES数组用于获取通过POST方法上传文件的相关信息，如果为单个文件上传，那么该数组为二维数组，如果为多个文件上传，那么该数组为三维数组。</p>
+<h3 id="SESSION和-COOKIE"><a href="#SESSION和-COOKIE" class="headerlink" title="$_SESSION和$_COOKIE"></a>$_SESSION和$_COOKIE</h3><p>$_COOKIE[]全局数组存储了通过HTTP COOKIE传递到脚本的信息，PHP可通过setcookie()函数设置COOKIE的值，用$_COOKIE[]数组接收COOKIE的值，$_COOKIE[]数组的索引为COOKIE的名称。<br>$_SESSION[]数组用于获取会话变量的相关信息。</p>
+<h2 id="数据库复习"><a href="#数据库复习" class="headerlink" title="数据库复习"></a>数据库复习</h2><p>~~</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果对你有用送我点零食吧( •̀ ω •́ )！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="赵品均 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/记录/" rel="tag"># 记录</a>
+          
+            <a href="/tags/培训/" rel="tag"># 培训</a>
+          
+            <a href="/tags/SIPC/" rel="tag"># SIPC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/10/sipc_web5/" rel="next" title="科技协会web组后端方向第五次培训——session、cookie、正则表达式">
+                <i class="fa fa-chevron-left"></i> 科技协会web组后端方向第五次培训——session、cookie、正则表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="赵品均">
+            
+              <p class="site-author-name" itemprop="name">赵品均</p>
+              <p class="site-description motion-element" itemprop="description">2021届在读本科生</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:834550296@qq.com" title="E-Mail &rarr; mailto:834550296@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chenxiumiao.cn/" title="https://chenxiumiao.cn/" rel="noopener" target="_blank">辰宿喵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cactus1102.club" title="https://www.cactus1102.club" rel="noopener" target="_blank">D&X's Studio.</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://codeminions.github.io" title="https://codeminions.github.io" rel="noopener" target="_blank">Minions</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://macchac.com/" title="https://macchac.com/" rel="noopener" target="_blank">蔡蔡的屋子</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些每个大分类下只列出难点"><span class="nav-number">1.</span> <span class="nav-text">一些每个大分类下只列出难点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">2.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">3.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的作用域"><span class="nav-number">4.</span> <span class="nav-text">变量的作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量"><span class="nav-number">5.</span> <span class="nav-text">常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#魔术常量"><span class="nav-number">5.1.</span> <span class="nav-text">魔术常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制语句"><span class="nav-number">6.</span> <span class="nav-text">流程控制语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#foreach"><span class="nav-number">6.1.</span> <span class="nav-text">foreach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包含语句"><span class="nav-number">6.2.</span> <span class="nav-text">包含语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预定义数组"><span class="nav-number">7.</span> <span class="nav-text">预定义数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SERVER"><span class="nav-number">7.1.</span> <span class="nav-text">$_SERVER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REQUEST"><span class="nav-number">7.2.</span> <span class="nav-text">$_REQUEST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FILE"><span class="nav-number">7.3.</span> <span class="nav-text">$_FILE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SESSION和-COOKIE"><span class="nav-number">7.4.</span> <span class="nav-text">$_SESSION和$_COOKIE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库复习"><span class="nav-number">8.</span> <span class="nav-text">数据库复习</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵品均</span>
+
+  
+
+  
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
