@@ -390,7 +390,7 @@
                 
               
 
-              <time title="创建时间：2019-04-14 15:49:49 / 修改时间：16:24:04" itemprop="dateCreated datePublished" datetime="2019-04-14T15:49:49+08:00">2019-04-14</time>
+              <time title="创建时间：2019-04-14 15:49:49 / 修改时间：17:15:57" itemprop="dateCreated datePublished" datetime="2019-04-14T15:49:49+08:00">2019-04-14</time>
             
 
             
@@ -431,60 +431,24 @@
 
       
         
-          
-            <h2 id="一些每个大分类下只列出难点"><a href="#一些每个大分类下只列出难点" class="headerlink" title="一些每个大分类下只列出难点"></a>一些每个大分类下只列出难点</h2><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ol>
+          <h2 id="一些每个大分类下只列出难点"><a href="#一些每个大分类下只列出难点" class="headerlink" title="一些每个大分类下只列出难点"></a>一些每个大分类下只列出难点</h2><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ol>
 <li>字符串</li>
 <li>整形</li>
 <li>浮点型</li>
 <li>布尔型</li>
 <li>数组</li>
 <li>对象</li>
-<li>NULL值<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2></li>
+<li>NULL值</li>
 </ol>
-<ul>
-<li>以$符开始</li>
-</ul>
-<p>其他与c基本相同</p>
-<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><ul>
-<li>local</li>
-<li>global</li>
-<li>static</li>
-<li>parameter<br>在所有函数外部定义的变量拥有全局作用域，此变量称为全局变量。全局变量可以被脚本中的任何部分直接使用变量名称访问，但是要在一个函数定义体中访问一个全局变量，需要使用global关键字。<br>在PHP函数内部声明的变量是局部变量，仅能在函数内部访问。</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$x=<span class="number">5</span>; <span class="comment">// 全局变量</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">myTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">    $y=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;p&gt;Test variables inside the function:&lt;p&gt;"</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Variable x is:"</span> . $x;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Variable y is: $y"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  myTest();</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;p&gt;Test variables outside the function:&lt;p&gt;"</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"Variable x is:"</span> . $x;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"Variable y is: $y"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2019/04/14/sipc_web6/sipc_web4/test1.png" alt="avatar"><br>因为$x是在函数外部定义的，所以在函数内部无法访问$x；$y是在函数内部定义的，所以在外部也访问不到。如果要在函数内部访问$x，就必须在函数内先使用global，示例如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$x = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">global</span> $x;</span><br><span class="line">  <span class="keyword">echo</span> $x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//也可以这样写：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> $GLOBALS[<span class="string">'x'</span>];</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br><span class="line">test2();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>当一个函数完成时，它的所有变量通常都会被删除。如果想让函数执行完毕时函数内的局部变量保留，可以使用static关键词。代码如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myTest1</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">static</span> $x=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">echo</span> $x;</span><br><span class="line">  $x++;</span><br><span class="line">&#125;</span><br><span class="line">myTest1();</span><br><span class="line">myTest1();</span><br><span class="line">myTest1();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这样当每次执行myTest()函数的时候，$x变量都会保存上一次调用时的值。上述代码的运行结果为：012。<br>在函数里还有一个参数作用域，即传递给函数的参数，参数在函数声明时即声明。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">($x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> $x;</span><br><span class="line"></span><br><span class="line">test(<span class="number">5</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>可变变量：动态的改变变量的名字，导致混乱，不推荐用。</p>
-<blockquote>
-<p>$$</p>
-</blockquote>
-<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="comment">// 合法的常量名</span></span><br><span class="line">  define(<span class="string">"FOO"</span>,     <span class="string">"something"</span>);   <span class="comment">// 定义一个名为 FOO的常量</span></span><br><span class="line">  define(<span class="string">"FOO2"</span>,    <span class="string">"something else"</span>);</span><br><span class="line">  define(<span class="string">"FOO_BAR"</span>, <span class="string">"something more"</span>);</span><br><span class="line">  <span class="comment">// 非法的常量名</span></span><br><span class="line">  define(<span class="string">"2FOO"</span>,    <span class="string">"something"</span>);</span><br><span class="line">  <span class="keyword">const</span> A = <span class="string">'AAA'</span>;    <span class="comment">// 使用const 定义一个常量，与define定义效果一样</span></span><br><span class="line">  <span class="comment">// 下面的定义是合法的，但应该避免这样做（自定义常量不要以__开头）</span></span><br><span class="line">  <span class="comment">// 也许将来有一天PHP会定义一个__FOO__的魔术常量</span></span><br><span class="line">  <span class="comment">// 这样就会与你的代码相冲突</span></span><br><span class="line">  define(<span class="string">"__FOO__"</span>, <span class="string">"something"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="魔术常量"><a href="#魔术常量" class="headerlink" title="魔术常量"></a>魔术常量</h3><p><img src="/2019/04/14/sipc_web6/sipc_web4/magicconst.png" alt="avatar"></p>
-<h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><h3 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$arr = <span class="keyword">array</span>(</span><br><span class="line"><span class="string">"one"</span> =&gt; <span class="number">1</span>,</span><br><span class="line"><span class="string">"two"</span> =&gt; <span class="number">2</span>,</span><br><span class="line"><span class="string">"three"</span> =&gt; <span class="number">3</span>,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;pre&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"[$key] =&gt; $value\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>[one] =&gt; 1<br>[two] =&gt; 2<br>[three] =&gt; 3</p>
-</blockquote>
-<h3 id="包含语句"><a href="#包含语句" class="headerlink" title="包含语句"></a>包含语句</h3><ul>
-<li>include</li>
-<li>require</li>
-<li>include_once</li>
-<li>require_once</li>
-</ul>
-<p>_once 确保只被包含一次.例如，a.php代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">echo</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="number">2</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>test.php代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">'a.php'</span>;</span><br><span class="line">  <span class="keyword">include</span> <span class="string">'a.php'</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>运行test.php，打印结果为：1212</p>
-<p>如果test.php中的代码为：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include_once</span> <span class="string">'a.php'</span>;</span><br><span class="line">  <span class="keyword">include_once</span> <span class="string">'a.php'</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>那么运行test.php的结果为：12</p>
-<p>require语句和include语句几乎完全一样，不同的是当被包含的文件不存在时，require语句会发出一个Fatal error错误，程序终止执行；include则会发出一个Warining警告，接着向下执行。</p>
-<h2 id="预定义数组"><a href="#预定义数组" class="headerlink" title="预定义数组"></a>预定义数组</h2><h3 id="SERVER"><a href="#SERVER" class="headerlink" title="$_SERVER"></a>$_SERVER</h3><p><img src="/2019/04/14/sipc_web6/sipc_web4/server.png" alt="avatar"><br><figure class="highlight php7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;pre&gt;"</span>;</span><br><span class="line">    print_r($_SERVER);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="/2019/04/14/sipc_web6/sipc_web4/server2.png" alt="avatar"></p>
-<h3 id="REQUEST"><a href="#REQUEST" class="headerlink" title="$_REQUEST"></a>$_REQUEST</h3><p>默认情况下，$_REQUEST[]数组包含了$_GET、$_POST和$_COOKIE的数组。</p>
-<h3 id="FILE"><a href="#FILE" class="headerlink" title="$_FILE"></a>$_FILE</h3><p>$_FILES数组用于获取通过POST方法上传文件的相关信息，如果为单个文件上传，那么该数组为二维数组，如果为多个文件上传，那么该数组为三维数组。</p>
-<h3 id="SESSION和-COOKIE"><a href="#SESSION和-COOKIE" class="headerlink" title="$_SESSION和$_COOKIE"></a>$_SESSION和$_COOKIE</h3><p>$_COOKIE[]全局数组存储了通过HTTP COOKIE传递到脚本的信息，PHP可通过setcookie()函数设置COOKIE的值，用$_COOKIE[]数组接收COOKIE的值，$_COOKIE[]数组的索引为COOKIE的名称。<br>$_SESSION[]数组用于获取会话变量的相关信息。</p>
-<h2 id="数据库复习"><a href="#数据库复习" class="headerlink" title="数据库复习"></a>数据库复习</h2><p>~~</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/14/sipc_web6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
